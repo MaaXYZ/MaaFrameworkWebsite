@@ -2,13 +2,16 @@ import * as path from 'node:path';
 import {defineConfig} from 'rspress/config';
 import mermaid from 'rspress-plugin-mermaid';
 import sitemap from "rspress-plugin-sitemap";
+import toc from 'rspress-plugin-toc';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'MaaFramework',
   plugins: [
     mermaid(),
-    sitemap({}),],
+    sitemap({}),
+    toc()
+  ],
   description: '基于图像识别的自动化黑盒测试框架',
   icon: '/maafw.png',
   lang: 'zh',
