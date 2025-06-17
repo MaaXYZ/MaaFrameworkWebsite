@@ -40,26 +40,10 @@ docs/
 ├── public/           # 静态资源
 │   └── maafw.png    # Logo
 ├── zh/              # 中文文档
-│   ├── 1.1-快速开始.md
-│   ├── 1.2-术语解释.md
-│   ├── 2.1-集成文档.md
-│   ├── 2.2-回调协议.md
-│   ├── 3.1-任务流水线协议.md
-│   ├── 3.2-ProjectInterface协议.md
-│   ├── 4.1-构建指南.md
-│   ├── 4.2-标准化接口设计.md
-│   └── _meta.json   # 文档元数据
+│   └── index.md     # 首页
 └── en/              # 英文文档
-    ├── index.md     # 英文首页
-    ├── 1.1-QuickStarted.md
-    ├── 1.2-ExplanationOfTerms.md
-    ├── 2.1-Integration.md
-    ├── 2.2-CallbackProtocol.md
-    ├── 3.1-PipelineProtocol.md
-    ├── 3.2-ProjectInterface.md
-    ├── 4.1-BuildGuide.md
-    ├── 4.2-StandardizedInterfaceDesign.md
-    └── _meta.json   # 文档元数据
+    └── index.md     # 首页
+
 ```
 
 ## 功能特性
