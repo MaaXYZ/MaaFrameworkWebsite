@@ -1,0 +1,4 @@
+User-agent:*
+Disallow:
+
+Sitemap: https://maafw.xyz/MaaFramework-Docs-Website/sitemap.xml
