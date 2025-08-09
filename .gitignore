@@ -2,7 +2,4 @@ node_modules
 */.vitepress/cache
 */.vitepress/dist
 
-/docs/**/docs/*
-!/docs/**/docs/.gitkeep
-
 *.zip
