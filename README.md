@@ -1,8 +1,11 @@
 # MaaFramework 文档网站
 
-maafw 文档站 vitepress 架构
+> [!TIP]
+> 本仓库不包含文档文件。如果你希望编写/修正文档，请前往 [MaaFramework 主仓库](https://github.com/MaaXYZ/MaaFramework/tree/main/docs)
 
-## 开发
+## 完善站点
+
+### 开发
 
 1. clone 此项目至本地
 
@@ -23,8 +26,11 @@ yarn
 yarn dev
 ```
 
-## 打包
+### 打包
 
 ```shell
 yarn build
 ```
+
+## 鸣谢
+- **[VitePress](https://vitepress.dev/)**
