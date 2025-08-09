@@ -23,7 +23,7 @@ jobs:
 
       - name: Prepare Docs
         run: |
-          cd docs
+          cd src
           cp -r ../raw/docs/zh_cn/* docs
           cp -r ../raw/docs/en_us/* en/docs
 
@@ -45,11 +45,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: src/.vitepress/dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: docs/.vitepress/dist
-            publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: src/.vitepress/dist
+          publish_branch: gh-pages

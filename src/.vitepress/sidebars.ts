@@ -3,7 +3,7 @@ import { VitePressSidebarOptions } from "vitepress-sidebar/types";
 
 export function genSidebar(args: VitePressSidebarOptions = {}) {
   return generateSidebar({
-    documentRootPath: "/docs",
+    documentRootPath: "/src",
     ...args,
   });
 }
