@@ -24,8 +24,8 @@ jobs:
       - name: Prepare Docs
         run: |
           cd docs
-          cp -r ../raw/docs/zh_cn/* maafw
-          cp -r ../raw/docs/en_us/* en/maafw
+          cp -r ../raw/docs/zh_cn/* docs
+          cp -r ../raw/docs/en_us/* en/docs
 
       - name: Setup Node
         uses: actions/setup-node@v4

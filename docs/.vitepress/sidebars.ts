@@ -10,7 +10,7 @@ export function genSidebar(args: VitePressSidebarOptions = {}) {
 
 function processRewritesRecursion(routes, targetKV) {
   const rewrites = {};
-  routes.forEach((route, index) => {
+  routes.forEach((route) => {
     let link = route.link as string;
     let text = route.text as string;
     // 递归
@@ -61,8 +61,8 @@ function getFileNameKV(routes: Array<any>) {
 
 function getLocaleSidebars() {
   // 生成侧边栏
-  let zn_routes = genSidebar({ scanStartPath: "/maafw" }) as Array<any>;
-  let en_routes = genSidebar({ scanStartPath: "/en/maafw" }) as Array<any>;
+  let zn_routes = genSidebar({ scanStartPath: "/docs" }) as Array<any>;
+  let en_routes = genSidebar({ scanStartPath: "/en/docs" }) as Array<any>;
 
   // 生成国际化路径重写
   const rewriteList = [zn_routes];
