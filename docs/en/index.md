@@ -1,14 +1,17 @@
 ---
-pageType: home
+layout: home
 
 hero:
   name: MaaFramework
-  text: 
-  tagline: ✨ An automation black-box testing framework based on image recognition ✨
+  text: An automation black-box testing framework based on image recognition
+  tagline: Empowering developers to easily write better black-box test programs.
   actions:
     - theme: brand
       text: Quick Start
-      link: /en/doc/1.1-QuickStarted
+      link: /en/maafw/1.1-QuickStarted
+    - theme: alt
+      text: Community Project
+      link: /en/community/projects
     - theme: alt
       text: GitHub
       link: https://github.com/MaaXYZ/MaaFramework
@@ -25,4 +28,17 @@ features:
   - title: Flexible Extension
     details: Support custom recognition and action modules through Agent Server, seamlessly integrate your own business logic.
     icon: 🔧
---- 
+---
+
+<h2 class="maa-title">Community Project</h2>
+
+<section class="maa-project-list">
+
+  <script setup>
+    import Project from "../components/Project.vue"
+    import { projects } from "../assets/data/projects.ts"
+  </script>
+
+  <Project v-for="project in projects" :title="project.name" :desc="project.enDesc" :logo="project.logo" :stack="project.stack" :link="project.link" />
+
+</section>

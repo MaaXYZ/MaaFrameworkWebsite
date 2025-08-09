@@ -1,31 +1,8 @@
-# Local
-.DS_Store
-*.local
-*.log*
-
-# Dist
 node_modules
-dist/
-doc_build/
+*/.vitepress/cache
+*/.vitepress/dist
 
-# IDE
-.vscode/*
-!.vscode/extensions.json
-.idea
-### react template
-.DS_*
-*.log
-logs
-**/*.backup.*
-**/*.back.*
+**/maafw/
+!**/maafw/.gitkeep
 
-node_modules
-bower_components
-
-*.sublime*
-doc_build
-psd
-thumb
-sketch
-
-
+*.zip
