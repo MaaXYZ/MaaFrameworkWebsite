@@ -40,6 +40,9 @@ function processRoutes(routes) {
     if (texts.length > 1) {
       route["text"] = texts[1].trim();
     }
+    if (route.link) {
+      route.link = "/" + route.link;
+    }
   });
 }
 
@@ -78,7 +81,7 @@ function getLocaleSidebars() {
     zh: zn_routes,
     en: en_routes,
     rewrites,
-    kv
+    kv,
   };
 }
 
