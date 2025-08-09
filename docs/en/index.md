@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Quick Start
-      link: /en/maafw/1.1-QuickStarted
+      link: /en/docs/1.1-QuickStarted
     - theme: alt
       text: Community Project
       link: /en/community/projects

@@ -2,8 +2,8 @@ export const zhNav = [
   { text: "主页", link: "/" },
   {
     text: "文档",
-    activeMatch: "/maafw/",
-    link: "/maafw/1.1-QuickStarted",
+    activeMatch: "/docs/",
+    link: "/docs/1.1-QuickStarted",
   },
   {
     text: "社区",
@@ -22,8 +22,8 @@ export const enNav = [
   { text: "Home", link: "/en" },
   {
     text: "Docs",
-    activeMatch: "/en/maafw/",
-    link: "/en/maafw/1.1-QuickStarted",
+    activeMatch: "/en/docs/",
+    link: "/en/docs/1.1-QuickStarted",
   },
   {
     text: "Community",
