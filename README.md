@@ -7,13 +7,13 @@ maafw 文档站 vitepress 架构
 1. clone 此项目至本地
 
 ```shell
-git clone https://github.com/kqcoxn/MaaFrameworkDocsWebsiteVite
+git clone https://github.com/MaaXYZ/MaaFrameworkDocsWebsite
 ```
 
 2. 装载依赖
 
 ```shell
-cd ./MaaFrameworkDocsWebsiteVite
+cd ./MaaFrameworkDocsWebsite
 yarn
 ```
 

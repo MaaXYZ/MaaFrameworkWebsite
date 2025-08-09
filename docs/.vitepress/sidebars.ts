@@ -64,8 +64,9 @@ function getLocaleSidebars() {
   // 生成国际化路径重写
   const rewriteList = [zn_routes];
   const rewrites = {};
+  const kv = getFileNameKV(en_routes);
   rewriteList.forEach((item) => {
-    const rw = processRewritesRecursion(item, getFileNameKV(en_routes));
+    const rw = processRewritesRecursion(item, kv);
     Object.assign(rewrites, rw);
   });
 
@@ -77,6 +78,7 @@ function getLocaleSidebars() {
     zh: zn_routes,
     en: en_routes,
     rewrites,
+    kv
   };
 }
 
