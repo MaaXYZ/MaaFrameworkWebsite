@@ -1,20 +1,16 @@
 {
-  "name": "maa-framework-docs-website",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "rspress build",
-    "dev": "rspress dev",
-    "preview": "rspress preview"
-  },
-  "dependencies": {
-    "rspress": "^1.40.2",
-    "rspress-plugin-font-open-sans": "^1.0.0",
-    "rspress-plugin-mermaid": "^0.3.0",
-    "rspress-plugin-sitemap": "^1.1.4",
-    "rspress-plugin-toc": "^0.3.0"
-  },
   "devDependencies": {
-    "@types/node": "^18.11.17"
-  }
+    "markdown-it-task-lists": "^2.1.1",
+    "mermaid": "^11.6.0",
+    "sass-embedded": "^1.89.2",
+    "vitepress": "^1.6.3",
+    "vitepress-plugin-mermaid": "^2.0.17",
+    "vitepress-sidebar": "^1.33.0"
+  },
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "dependencies": {}
 }
