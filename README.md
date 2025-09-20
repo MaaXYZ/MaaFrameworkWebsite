@@ -1,4 +1,4 @@
-# MaaFramework 文档网站
+# MaaFramework 网站
 
 > [!TIP]
 > 本仓库不包含文档文件。如果你希望编写/修正文档，请前往 [MaaFramework 主仓库](https://github.com/MaaXYZ/MaaFramework/tree/main/docs)
@@ -10,13 +10,13 @@
 1. clone 此项目至本地
 
 ```shell
-git clone https://github.com/MaaXYZ/MaaFrameworkDocsWebsite
+git clone https://github.com/MaaXYZ/MaaFrameworkWebsite
 ```
 
 2. 装载依赖
 
 ```shell
-cd ./MaaFrameworkDocsWebsite
+cd ./MaaFrameworkWebsite
 yarn
 ```
 
