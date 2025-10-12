@@ -1,3 +1,5 @@
+/* 主页与全局 */
+
 :root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(
@@ -66,4 +68,10 @@ input.task-list-item-checkbox {
     width: 70%;
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+/* 文档页 */
+
+.vp-doc h2 {
+  margin: 24px 0 16px !important;
 }
