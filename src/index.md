@@ -1,5 +1,7 @@
 ---
 layout: home
+title: MaaFramework 文档
+description: 基于图像识别的自动化黑盒测试框架。简单易用、强大识别、灵活扩展，助力开发者轻松编写更好的黑盒测试程序。
 
 hero:
   name: MaaFramework
@@ -34,15 +36,16 @@ features:
     icon: 🔧
 ---
 
+<script setup>
+  import Project from "./components/Project.vue"
+  import MoreProjectButton from "./components/MoreProjectButton.vue"
+  import { randomProjects } from "./assets/data/projects.ts"
+</script>
+
 <h2 class="maa-title">社区项目</h2>
 
 <section class="maa-project-list">
-
-  <script setup>
-    import Project from "./components/Project.vue"
-    import { projects } from "./assets/data/projects.ts"
-  </script>
-
-  <Project v-for="project in projects" :title="project.name" :desc="project.desc" :logo="project.logo" :stack="project.stack" :link="project.link" />
-
+  <Project v-for="project in randomProjects" :title="project.name" :desc="project.desc" :logo="project.logo" :stack="project.stack" :link="project.link" />
 </section>
+
+<MoreProjectButton :lang="'zh'" />

@@ -1,4 +1,3 @@
-// import { defineConfig } from "vitepress";
 import { withMermaid } from "vitepress-plugin-mermaid";
 import taskLists from "markdown-it-task-lists";
 
@@ -9,10 +8,134 @@ export default withMermaid({
   title: "MaaFramework",
   description: "基于图像识别的自动化黑盒测试框架",
   lang: "zh-cn",
-  head: [["link", { rel: "icon", href: `/maafw.png` }]],
+  head: [
+    ["link", { rel: "icon", href: `/maafw.ico` }],
+    ["meta", { name: "author", content: "MaaXYZ" }],
+    ["meta", { name: "theme-color", content: "#1b73e8" }],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:site_name", content: "MaaFramework" }],
+    ["meta", { name: "robots", content: "index,follow" }],
+    ["meta", { property: "og:image", content: "/maafw.png" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+  ],
   base: `/`,
+  cleanUrls: true,
+  lastUpdated: true,
   rewrites: sidebars.rewrites,
+  sitemap: { hostname: "https://maafw.xyz" },
   locales,
+  transformHead({ page, siteConfig }) {
+    const hostname = "https://maafw.xyz";
+    const siteBase = (siteConfig && (siteConfig as any).site?.base) || "/";
+    const relativePath: string = (page as any).relativePath || "";
+    let normalized = relativePath;
+    if (normalized.endsWith("index.md")) {
+      normalized = normalized.slice(0, -"index.md".length);
+    }
+    if (normalized.endsWith(".md")) {
+      normalized = normalized.slice(0, -3);
+    }
+    let routePath = "/" + normalized.replace(/^\/+/, "");
+    if (!routePath.endsWith(".html") && !routePath.endsWith("/")) {
+      routePath += "/";
+    }
+
+    const baseNoSlash = siteBase.endsWith("/")
+      ? siteBase.slice(0, -1)
+      : siteBase;
+    const canonical = hostname + baseNoSlash + routePath;
+
+    // hreflang alternates between zh and en
+    const isEn = routePath.startsWith("/en/") || routePath === "/en/";
+    const zhPath = isEn ? routePath.replace(/^\/en\//, "/") : routePath;
+    const enPath = isEn
+      ? routePath
+      : routePath.startsWith("/en/")
+      ? routePath
+      : "/en" + routePath;
+    const zhUrl = hostname + baseNoSlash + zhPath;
+    const enUrl = hostname + baseNoSlash + enPath;
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "MaaFramework",
+      url: hostname + baseNoSlash + "/",
+      inLanguage: isEn ? "en-US" : "zh-CN",
+    };
+
+    const fm: any = (page as any).frontmatter || {};
+    const pageTitle: string =
+      fm.title ||
+      (page as any).title ||
+      (isEn ? "MaaFramework" : "MaaFramework 文档");
+    const pageDescription: string =
+      fm.description ||
+      (page as any).description ||
+      (isEn
+        ? "An automation black-box testing framework based on image recognition"
+        : "基于图像识别的自动化黑盒测试框架");
+
+    const heroImg: string | undefined =
+      fm?.hero?.image?.src || fm?.image || "/maafw.png";
+    const absoluteOgImage = heroImg?.startsWith("http")
+      ? heroImg
+      : hostname + heroImg;
+
+    const ogLocale = isEn ? "en_US" : "zh_CN";
+
+    const segments = routePath
+      .replace(/^\//, "")
+      .replace(/\/$/, "")
+      .split("/")
+      .filter(Boolean);
+    const breadcrumbItems = [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: isEn ? "Home" : "首页",
+        item: hostname + baseNoSlash + "/",
+      },
+      ...segments.map((seg, index) => {
+        const url =
+          hostname +
+          baseNoSlash +
+          "/" +
+          segments.slice(0, index + 1).join("/") +
+          "/";
+        const name = decodeURIComponent(seg).replace(/-/g, " ");
+        return {
+          "@type": "ListItem",
+          position: index + 2,
+          name,
+          item: url,
+        };
+      }),
+    ];
+    const breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbItems,
+    };
+
+    return [
+      ["link", { rel: "canonical", href: canonical }],
+      ["link", { rel: "alternate", href: zhUrl, hreflang: "zh-CN" }],
+      ["link", { rel: "alternate", href: enUrl, hreflang: "en-US" }],
+      ["link", { rel: "alternate", href: canonical, hreflang: "x-default" }],
+      ["meta", { property: "og:url", content: canonical }],
+      ["meta", { property: "og:title", content: pageTitle }],
+      ["meta", { property: "og:description", content: pageDescription }],
+      ["meta", { property: "og:image", content: absoluteOgImage }],
+      ["meta", { property: "og:locale", content: ogLocale }],
+      ["meta", { name: "description", content: pageDescription }],
+      ["meta", { name: "twitter:title", content: pageTitle }],
+      ["meta", { name: "twitter:description", content: pageDescription }],
+      ["meta", { name: "twitter:image", content: absoluteOgImage }],
+      ["script", { type: "application/ld+json" }, JSON.stringify(jsonLd)],
+      ["script", { type: "application/ld+json" }, JSON.stringify(breadcrumbLd)],
+    ];
+  },
   themeConfig: {
     logo: "/maafw.png",
     search: {

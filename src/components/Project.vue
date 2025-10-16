@@ -99,14 +99,18 @@
 
       .title {
         margin-top: 4px;
+        max-width: 84%;
         font-size: 24px;
         font-weight: bold;
         letter-spacing: 0.5px;
         color: #222e3a;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
 
         html.dark & {
-          color: #e0e7ff; // 浅色文字
+          color: #e0e7ff;
         }
       }
 
@@ -167,7 +171,7 @@
     transition: color 0.2s;
 
     html.dark & {
-      color: #b0bac9; // 浅色描述文字
+      color: #b0bac9;
     }
   }
 
@@ -228,6 +232,9 @@
         letter-spacing: 0.5px;
         color: #222e3a;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
 
         html.dark & {
           color: #e0e7ff; // 浅色文字

@@ -55,6 +55,14 @@ export const tools = [
     stack: [Stack.CSharp],
     link: "https://github.com/SweetSmellFox/MFATools",
   },
+  {
+    name: "MaaPipelineEditor",
+    desc: "基于 react-flow 的 MaaFramework Pipeline 工作流式可视化编辑器，使用“无代码”流程图构建您的 Pipeline！",
+    enDesc: `MaaFramework Pipeline workflow visual editor based on react-flow. Create your Pipeline using a "no code" flowchart!`,
+    logo: Logos.MPE,
+    stack: [Stack.TS],
+    link: "https://github.com/kqcoxn/MaaPipelineEditor",
+  },
 ];
 
 export const apps = [
@@ -229,6 +237,23 @@ export const apps = [
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/miaojiuqing/SLIMEIM_Maa",
   },
+  {
+    name: "Maa_bbb",
+    desc: "崩坏三小助手。使用图像识别+模拟控制技术，解放双手！PC端与模拟器端同步支持，由 MaaFramework 强力驱动！",
+    enDesc:
+      "Honkai Impact 3 Mini Assistant. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
+    logo: Logos.Maabbb,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/miaojiuqing/Maa_bbb",
+  },
 ];
 
 export const projects = [...uis, ...tools, ...apps];
+export const randomProjects = (() => {
+  let rps = [...projects];
+  for (let i = rps.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [rps[i], rps[j]] = [rps[j], rps[i]];
+  }
+  return rps.slice(0, 6);
+})();

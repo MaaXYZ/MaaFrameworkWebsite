@@ -18,6 +18,8 @@ import SLIMEIM_Maa from "./slimeim_maa.ico";
 import MFAWPF from "./mfawpf.png";
 import MFWPyQt6 from "./mfwpyqt6.png";
 import MFAAvalonia from "./mfaavalonia.ico";
+import Maabbb from "./maabbb.ico";
+import MPE from "./mpe.png";
 
 const Logos = {
   MaaFW,
@@ -40,6 +42,8 @@ const Logos = {
   MFAWPF,
   MFWPyQt6,
   MFAAvalonia,
+  Maabbb,
+  MPE,
 };
 
 export default Logos;

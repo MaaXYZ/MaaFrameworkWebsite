@@ -1,5 +1,7 @@
 ---
 layout: home
+title: MaaFramework Documentation
+description: An automation black-box testing framework based on image recognition. Simple, powerful, and extensible for developers to build better test programs.
 
 hero:
   name: MaaFramework
@@ -30,15 +32,16 @@ features:
     icon: 🔧
 ---
 
+<script setup>
+  import Project from "../components/Project.vue"
+  import MoreProjectButton from "../components/MoreProjectButton.vue"
+  import { randomProjects } from "../assets/data/projects.ts"
+</script>
+
 <h2 class="maa-title">Community Project</h2>
 
 <section class="maa-project-list">
-
-  <script setup>
-    import Project from "../components/Project.vue"
-    import { projects } from "../assets/data/projects.ts"
-  </script>
-
-  <Project v-for="project in projects" :title="project.name" :desc="project.enDesc" :logo="project.logo" :stack="project.stack" :link="project.link" />
-
+  <Project v-for="project in randomProjects" :title="project.name" :desc="project.enDesc" :logo="project.logo" :stack="project.stack" :link="project.link" />
 </section>
+
+<MoreProjectButton :lang="'en'" />
