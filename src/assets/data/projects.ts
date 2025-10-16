@@ -249,11 +249,12 @@ export const apps = [
 ];
 
 export const projects = [...uis, ...tools, ...apps];
-export const randomProjects = (() => {
-  let rps = [...projects];
+
+export function getRandomProjects(count: number = 6) {
+  const rps = [...projects];
   for (let i = rps.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(Math.random() * (i + 1));
     [rps[i], rps[j]] = [rps[j], rps[i]];
   }
-  return rps.slice(0, 6);
-})();
+  return rps.slice(0, count);
+}

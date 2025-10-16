@@ -37,15 +37,21 @@ features:
 ---
 
 <script setup>
+  import { ref, onMounted } from 'vue'
   import Project from "./components/Project.vue"
   import MoreProjectButton from "./components/MoreProjectButton.vue"
-  import { randomProjects } from "./assets/data/projects.ts"
+  import { projects, getRandomProjects } from "./assets/data/projects.ts"
+
+  const items = ref(projects.slice(0, 6))
+  onMounted(() => {
+    items.value = getRandomProjects(6)
+  })
 </script>
 
 <h2 class="maa-title">社区项目</h2>
 
 <section class="maa-project-list">
-  <Project v-for="project in randomProjects" :title="project.name" :desc="project.desc" :logo="project.logo" :stack="project.stack" :link="project.link" />
+  <Project v-for="project in items" :key="project.link" :title="project.name" :desc="project.desc" :logo="project.logo" :stack="project.stack" :link="project.link" />
 </section>
 
 <MoreProjectButton :lang="'zh'" />
