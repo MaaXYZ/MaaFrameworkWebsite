@@ -48,4 +48,4 @@ features:
   <Project v-for="project in randomProjects" :title="project.name" :desc="project.desc" :logo="project.logo" :stack="project.stack" :link="project.link" />
 </section>
 
-<MoreProjectButton :lang="zh"  />
+<MoreProjectButton :lang="'zh'" />
