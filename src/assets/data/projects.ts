@@ -56,7 +56,7 @@ export const tools = [
     link: "https://github.com/SweetSmellFox/MFATools",
   },
   {
-    name: "MFATools",
+    name: "MaaPipelineEditor",
     desc: "基于 react-flow 的 MaaFramework Pipeline 工作流式可视化编辑器，使用“无代码”流程图构建您的 Pipeline！",
     enDesc: `MaaFramework Pipeline workflow visual editor based on react-flow. Create your Pipeline using a "no code" flowchart!`,
     logo: Logos.MPE,
@@ -249,3 +249,11 @@ export const apps = [
 ];
 
 export const projects = [...uis, ...tools, ...apps];
+export const randomProjects = (() => {
+  let rps = [...projects];
+  for (let i = rps.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [rps[i], rps[j]] = [rps[j], rps[i]];
+  }
+  return rps.slice(0, 6);
+})();

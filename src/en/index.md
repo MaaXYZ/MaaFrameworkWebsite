@@ -38,9 +38,9 @@ features:
 
   <script setup>
     import Project from "../components/Project.vue"
-    import { projects } from "../assets/data/projects.ts"
+    import { randomProjects } from "../assets/data/projects.ts"
   </script>
 
-  <Project v-for="project in projects" :title="project.name" :desc="project.enDesc" :logo="project.logo" :stack="project.stack" :link="project.link" />
+  <Project v-for="project in randomProjects" :title="project.name" :desc="project.enDesc" :logo="project.logo" :stack="project.stack" :link="project.link" />
 
 </section>
