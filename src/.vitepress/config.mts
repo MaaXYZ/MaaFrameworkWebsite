@@ -65,10 +65,7 @@ export default withMermaid({
     };
 
     const fm: any = (page as any).frontmatter || {};
-    const pageTitle: string =
-      fm.title ||
-      (page as any).title ||
-      (isEn ? "MaaFramework" : "MaaFramework 文档");
+    const pageTitle: string = fm.title || (page as any).title || "MaaFramework";
     const pageDescription: string =
       fm.description ||
       (page as any).description ||

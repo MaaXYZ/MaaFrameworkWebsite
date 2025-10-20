@@ -1,6 +1,6 @@
 ---
 layout: home
-title: MaaFramework Documentation
+title: MaaFramework
 description: An automation black-box testing framework based on image recognition. Simple, powerful, and extensible for developers to build better test programs.
 
 hero:
