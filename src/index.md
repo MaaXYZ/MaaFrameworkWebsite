@@ -1,6 +1,6 @@
 ---
 layout: home
-title: MaaFramework 文档
+title: MaaFramework
 description: 基于图像识别的自动化黑盒测试框架。简单易用、强大识别、灵活扩展，助力开发者轻松编写更好的黑盒测试程序。
 
 hero:
