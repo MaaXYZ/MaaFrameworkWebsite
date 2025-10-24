@@ -151,20 +151,28 @@ export default withMermaid({
         const hrefIndex = token.attrIndex("href");
         if (hrefIndex >= 0) {
           let href = token.attrs![hrefIndex][1];
-          if (
-            !href.startsWith("http://") &&
-            !href.startsWith("https://") &&
-            !href.startsWith("//") &&
-            !href.startsWith("#") &&
-            !href.startsWith("/")
-          ) {
+
+          // 判断是否为外部链接
+          const isExternal =
+            href.startsWith("http://") ||
+            href.startsWith("https://") ||
+            href.startsWith("//");
+
+          if (!isExternal && !href.startsWith("#") && !href.startsWith("/")) {
             const parsedHref = parseParam(href);
             const target = sidebars.kv[parsedHref.seq];
             if (target) {
               href = href.replace(parsedHref.name, target).replace(".md", "");
             }
           }
+
           token.attrs![hrefIndex][1] = href;
+
+          // 外链标签
+          if (isExternal) {
+            token.attrSet("target", "_blank");
+            token.attrSet("rel", "noopener noreferrer");
+          }
         }
         return self.renderToken(tokens, idx, options);
       };
