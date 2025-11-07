@@ -81,9 +81,9 @@ input.task-list-item-checkbox {
   vertical-align: middle;
 }
 
-.vp-doc a[href^="http"]::after,
-.vp-doc a[href^="https://"]::after,
-.vp-doc a[target="_blank"]::after {
+.vp-doc a[href^="http"]:not(.alink)::after,
+.vp-doc a[href^="https://"]:not(.alink)::after,
+.vp-doc a[target="_blank"]:not(.alink)::after {
   content: "↗";
   display: inline-block;
   margin-left: 4px;
