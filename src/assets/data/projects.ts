@@ -245,7 +245,14 @@ export const apps = [
     logo: Logos.Maabbb,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/miaojiuqing/Maa_bbb",
-  },
+  }, {
+    name: "MaaAutoNaruto",
+    desc: "火影忍者手游自动化工具。使用图像识别+模拟控制技术，解放双手！由 MaaFramework 强力驱动！",
+    enDesc: "Automation tool for NarutoMobile. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
+    logo: Logos.MAN,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/duorua/narutomobile",
+  }
 ];
 
 export const projects = [...uis, ...tools, ...apps];
