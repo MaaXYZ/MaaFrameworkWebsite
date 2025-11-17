@@ -245,14 +245,42 @@ export const apps = [
     logo: Logos.Maabbb,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/miaojiuqing/Maa_bbb",
-  }, {
+  },
+  {
     name: "MaaAutoNaruto",
     desc: "火影忍者手游自动化工具。使用图像识别+模拟控制技术，解放双手！由 MaaFramework 强力驱动！",
     enDesc: "Automation tool for NarutoMobile. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
     logo: Logos.MAN,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/duorua/narutomobile",
-  }
+  },
+  {
+    name: "MaaGakumasu",
+    desc: "学园偶像大师小助手。使用图像技术 + 模拟控制 + 深度学习，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "Assistant for Gakuen Idolmaster. Image recognition + simulation control + deep learning to free your hands! Powered by MaaFramework!",
+    logo: Logos.MaaGakumasu,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/SuperWaterGod/MaaGakumasu",
+  },
+  {
+    name: "MaaStarResonance",
+    desc: "星痕共鸣小助手。使用图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "Assistant for StarResonance. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
+    logo: Logos.MaaStarResonance,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/233Official/MaaStarResonance",
+  },
+  {
+    name: "MAG",
+    desc: "深空之眼小助手。使用图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "Assistant for Aether Gazer. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
+    logo: Logos.MaaFW,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/Kazaorus/MAG",
+  },
 ];
 
 export const projects = [...uis, ...tools, ...apps];

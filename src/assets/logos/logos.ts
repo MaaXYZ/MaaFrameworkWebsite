@@ -21,6 +21,8 @@ import MFAAvalonia from "./mfaavalonia.ico";
 import Maabbb from "./maabbb.ico";
 import MPE from "./mpe.png";
 import MAN from "./man.png";
+import MaaGakumasu from "./MaaGakumasu.png";
+import MaaStarResonance from "./MaaStarResonance.png";
 
 const Logos = {
   MaaFW,
@@ -45,7 +47,9 @@ const Logos = {
   MFAAvalonia,
   Maabbb,
   MPE,
-  MAN
+  MAN,
+  MaaGakumasu,
+  MaaStarResonance,
 };
 
 export default Logos;
