@@ -20,9 +20,9 @@ import MFWPyQt6 from "./mfwpyqt6.png";
 import MFAAvalonia from "./mfaavalonia.ico";
 import Maabbb from "./maabbb.ico";
 import MPE from "./mpe.png";
+import MAN from "./man.png";
 import MaaGakumasu from "./MaaGakumasu.png";
 import MaaStarResonance from "./MaaStarResonance.png";
-import MAN from "./man.ico";
 
 const Logos = {
   MaaFW,
@@ -47,9 +47,9 @@ const Logos = {
   MFAAvalonia,
   Maabbb,
   MPE,
+  MAN,
   MaaGakumasu,
   MaaStarResonance,
-  MAN,
 };
 
 export default Logos;
