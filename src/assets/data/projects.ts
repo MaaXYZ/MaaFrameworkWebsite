@@ -3,15 +3,6 @@ import { Stack } from "../types/Stack";
 
 export const uis = [
   {
-    name: "MFAWPF",
-    desc: "基于 MAA 全新架构的 通用 GUI。由 MaaFramework 强力驱动！",
-    enDesc:
-      "A Universal GUI based on MAA's new architecture. Powered by MaaFramework.",
-    logo: Logos.MFAWPF,
-    stack: [Stack.CSharp],
-    link: "https://github.com/SweetSmellFox/MFAWPF",
-  },
-  {
     name: "MFW-PyQt6",
     desc: "基于PyQt6的通用GUI。由 MaaFramework 强力驱动！",
     enDesc: "A generic GUI based on PyQt6. Powered by MaaFramework!",
@@ -76,15 +67,6 @@ export const apps = [
     link: "https://github.com/MaaXYZ/M9A",
   },
   {
-    name: "MAS",
-    desc: "森空岛 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "A Snow break Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
-    logo: Logos.MAS,
-    stack: [Stack.Pipeline],
-    link: "https://github.com/MaaXYZ/MaaAssistantSkland",
-  },
-  {
     name: "MSBA",
     desc: "尘白禁区 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
@@ -101,15 +83,6 @@ export const apps = [
     logo: Logos.MaaYYs,
     stack: [Stack.Python, Stack.Qt6],
     link: "https://github.com/TanyaShue/MaaYYs",
-  },
-  {
-    name: "MRA",
-    desc: "战舰少女R 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "An assistant for Warship Girls R. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
-    logo: Logos.MRA,
-    stack: [Stack.Pipeline],
-    link: "https://github.com/Saratoga-Official/MRA",
   },
   {
     name: "MPA",
@@ -148,15 +121,6 @@ export const apps = [
     link: "https://github.com/DarkLingYun/MaaGF2Exilium",
   },
   {
-    name: "MaaAshEchoes",
-    desc: "白荆回廊 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "An assistant for Ash Echoes. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
-    logo: Logos.MaaAshEchoes,
-    stack: [Stack.Pipeline],
-    link: "https://github.com/moulai/MaaAshEchoes",
-  },
-  {
     name: "MaaXuexi",
     desc: "学习强国 自动化助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
@@ -164,15 +128,6 @@ export const apps = [
     logo: Logos.MaaFW,
     stack: [Stack.Python, Stack.Pipeline],
     link: "https://github.com/ravizhan/MaaXuexi",
-  },
-  {
-    name: "MACC",
-    desc: "无期迷途 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "MACC: Minos Assistant of Crisis Control is an assistant. Image technology + analogue control to free your hands! Powered by MaaFramework!",
-    logo: Logos.MACC,
-    stack: [Stack.Pipeline],
-    link: "https://github.com/mxia9416/MACC",
   },
   {
     name: "MAA_MHXY_MG",
