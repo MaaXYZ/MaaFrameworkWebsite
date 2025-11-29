@@ -18,6 +18,8 @@ import MPE from "./mpe.png";
 import MAN from "./man.png";
 import MaaGakumasu from "./MaaGakumasu.png";
 import MaaStarResonance from "./MaaStarResonance.png";
+import MAAAE from "./maaae.png";
+import MBCCTools from "./mbcctools.jpg";
 
 const Logos = {
   MaaFW,
@@ -40,6 +42,8 @@ const Logos = {
   MAN,
   MaaGakumasu,
   MaaStarResonance,
+  MAAAE,
+  MBCCTools,
 };
 
 export default Logos;

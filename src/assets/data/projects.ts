@@ -204,7 +204,8 @@ export const apps = [
   {
     name: "MaaAutoNaruto",
     desc: "火影忍者手游自动化工具。使用图像识别+模拟控制技术，解放双手！由 MaaFramework 强力驱动！",
-    enDesc: "Automation tool for NarutoMobile. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
+    enDesc:
+      "Automation tool for NarutoMobile. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
     logo: Logos.MAN,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/duorua/narutomobile",
@@ -235,6 +236,24 @@ export const apps = [
     logo: Logos.MaaFW,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/Kazaorus/MAG",
+  },
+  {
+    name: "MAAAE",
+    desc: "白荆回廊 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "An assistant for Ash Echoes. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
+    logo: Logos.MAAAE,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/NewWYoming/MAAAE",
+  },
+  {
+    name: "MBCCtools",
+    desc: "无期迷途 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "Assistant for Path to Nowhere. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
+    logo: Logos.MBCCTools,
+    stack: [Stack.Pipeline],
+    link: "https://github.com/quietlysnow/MBCCtools",
   },
 ];
 
