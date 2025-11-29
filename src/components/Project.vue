@@ -285,7 +285,7 @@
 </style>
 
 <template>
-  <div class="project" @click="Router.open(link, false)">
+  <div class="project" @click="Router.open(link, true)">
     <a class="alink" :href="link"></a>
     <div class="head">
       <div class="logo">
