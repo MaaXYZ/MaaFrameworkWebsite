@@ -81,9 +81,9 @@ input.task-list-item-checkbox {
   vertical-align: middle;
 }
 
-.vp-doc a[href^="http"]:not(.alink)::after,
-.vp-doc a[href^="https://"]:not(.alink)::after,
-.vp-doc a[target="_blank"]:not(.alink)::after {
+.vp-doc a[href^="http"]:not(.alink):not(:has(img))::after,
+.vp-doc a[href^="https://"]:not(.alink):not(:has(img))::after,
+.vp-doc a[target="_blank"]:not(.alink):not(:has(img))::after {
   content: "↗";
   display: inline-block;
   margin-left: 4px;
@@ -93,8 +93,8 @@ input.task-list-item-checkbox {
   transition: transform 0.2s ease;
 }
 
-.vp-doc a[href^="http"]:hover::after,
-.vp-doc a[href^="https://"]:hover::after,
-.vp-doc a[target="_blank"]:hover::after {
+.vp-doc a[href^="http"]:not(:has(img)):hover::after,
+.vp-doc a[href^="https://"]:not(:has(img)):hover::after,
+.vp-doc a[target="_blank"]:not(:has(img)):hover::after {
   transform: translate(1px, -1px);
 }
