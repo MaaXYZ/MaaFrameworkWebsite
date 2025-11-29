@@ -159,17 +159,31 @@ export default withMermaid({
             href.startsWith("//");
 
           if (!isExternal && !href.startsWith("#") && !href.startsWith("/")) {
-            const parsedHref = parseParam(href);
-            const target = sidebars.kv[parsedHref.seq];
-            if (target) {
-              href = href.replace(parsedHref.name, target).replace(".md", "");
+            // 检测向上跳转的相对路径
+            if (href.startsWith("../")) {
+              // 转换为 GitHub 仓库链接
+              const githubBase =
+                "https://github.com/MaaXYZ/MaaFramework/blob/main";
+              // 移除开头的 ../ 路径
+              const cleanPath = href.replace(/^(\.\.\/)+/, "");
+              href = `${githubBase}/${cleanPath}`;
+            } else {
+              const parsedHref = parseParam(href);
+              const target = sidebars.kv[parsedHref.seq];
+              if (target) {
+                href = href.replace(parsedHref.name, target).replace(".md", "");
+              }
             }
           }
 
           token.attrs![hrefIndex][1] = href;
 
           // 外链标签
-          if (isExternal) {
+          const isFinalExternal =
+            href.startsWith("http://") ||
+            href.startsWith("https://") ||
+            href.startsWith("//");
+          if (isFinalExternal) {
             token.attrSet("target", "_blank");
             token.attrSet("rel", "noopener noreferrer");
           }
