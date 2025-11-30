@@ -57,7 +57,7 @@ export const enContent: HomepageContent = {
     items: [
       {
         id: "mpe",
-        name: "MPE Zero-Code Development",
+        name: "MPE Zero-Code Dev",
         scenario: "Visual editing, complex JSON organization",
         advantages: [
           "View and edit your logic with flowcharts",
@@ -117,7 +117,7 @@ export const enContent: HomepageContent = {
       },
       {
         id: "hybrid",
-        name: "JSON + Custom Extension",
+        name: "JSON + Custom",
         recommended: true,
         scenario: "Medium complexity business logic",
         advantages: [
@@ -153,7 +153,7 @@ AgentServer.start_up(sock_id)`,
       },
       {
         id: "code",
-        name: "Full Code Development",
+        name: "Full Code Dev",
         scenario: "Deep customization, complex workflows",
         advantages: [
           "Complete control over execution flow",

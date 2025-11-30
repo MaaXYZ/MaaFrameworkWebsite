@@ -237,7 +237,7 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
 
 .tab-button {
   position: relative;
-  padding: 16px 32px;
+  padding: 16px 28px;
   background: rgba(26, 35, 50, 0.4);
   border: 2px solid rgba(71, 202, 255, 0.2);
   border-radius: 12px;
@@ -248,7 +248,11 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
+  flex-wrap: wrap;
+  line-height: 1.5;
+  text-align: center;
 
   &:hover {
     border-color: rgba(71, 202, 255, 0.5);
@@ -653,6 +657,8 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   .tab-button {
     width: 100%;
     justify-content: center;
+    padding: 14px 20px;
+    line-height: 1.5;
   }
 
   .code-example .code-body {
