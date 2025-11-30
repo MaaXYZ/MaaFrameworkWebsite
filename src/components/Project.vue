@@ -285,7 +285,11 @@
 </style>
 
 <template>
-  <div class="project" @click="Router.open(link, true)">
+  <div
+    class="project"
+    :class="{ 'homepage-light': isLightMode }"
+    @click="Router.open(link, true)"
+  >
     <a class="alink" :href="link"></a>
     <div class="head">
       <div class="logo">
@@ -350,6 +354,10 @@ const props = defineProps({
   link: {
     type: String,
     required: true,
+  },
+  isLightMode: {
+    type: Boolean,
+    default: false,
   },
 });
 
