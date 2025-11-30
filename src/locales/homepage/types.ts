@@ -26,7 +26,8 @@ export interface Integration {
   advantages: string[];
   codeExample: {
     language: string;
-    code: string;
+    code?: string;
+    image?: string;
   };
   resources?: {
     label: string;

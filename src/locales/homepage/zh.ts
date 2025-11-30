@@ -40,9 +40,33 @@ export const zhContent: HomepageContent = {
     ],
   },
   integrations: {
-    title: "三种集成方案，满足不同需求",
+    title: "多种方案，满足不同需求",
     subtitle: "从零编码到完全自定义,灵活选择适合您的开发方式",
     items: [
+      {
+        id: "mpx",
+        name: "MPE 零代码开发",
+        scenario: "可视化编辑、复杂 JSON 梳理",
+        advantages: [
+          "使用流程图查看与编辑你的思路",
+          "配套本地文件管理，无缝衔接其他工具",
+          "兼容既有文件，快速入手项目",
+        ],
+        codeExample: {
+          language: "image",
+          image: "/mpe.png",
+        },
+        resources: [
+          {
+            label: "🐈‍⬛ 项目地址",
+            link: "https://mpe.codax.site/docs/",
+          },
+          {
+            label: "📖 文档",
+            link: "https://mpe.codax.site/docs/",
+          },
+        ],
+      },
       {
         id: "json",
         name: "纯 JSON 低代码",
@@ -108,6 +132,12 @@ class CustomAction:
 
 AgentServer.start_up(sock_id)`,
         },
+        resources: [
+          {
+            label: "📖 流水线协议",
+            link: "/docs/3.1-PipelineProtocol",
+          },
+        ],
       },
       {
         id: "code",
@@ -131,6 +161,12 @@ AgentServer.start_up(sock_id)`,
         # 执行混合任务链
         tasker.post_task("点击确认图标").wait()`,
         },
+        resources: [
+          {
+            label: "📖 集成文档",
+            link: "/docs/2.1-Integration",
+          },
+        ],
       },
     ],
     comparison: {

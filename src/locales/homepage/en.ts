@@ -23,6 +23,7 @@ export const enContent: HomepageContent = {
           "No coding skills required",
           "JSON low-code programming",
           "Video tutorials included",
+          "Official MCP support",
         ],
       },
       {
@@ -50,10 +51,34 @@ export const enContent: HomepageContent = {
     ],
   },
   integrations: {
-    title: "Three Integration Solutions for Different Needs",
+    title: "Multiple Solutions for Different Needs",
     subtitle:
       "From zero-code to fully customizable, choose the development approach that suits you",
     items: [
+      {
+        id: "mpe",
+        name: "MPE Zero-Code Development",
+        scenario: "Visual editing, complex JSON organization",
+        advantages: [
+          "View and edit your logic with flowcharts",
+          "Built-in local file management, seamless integration with other tools",
+          "Compatible with existing files, quick project onboarding",
+        ],
+        codeExample: {
+          language: "image",
+          image: "/mpe.png",
+        },
+        resources: [
+          {
+            label: "🐈‍⬛ Project",
+            link: "https://mpe.codax.site/docs/",
+          },
+          {
+            label: "📖 Documentation",
+            link: "https://mpe.codax.site/docs/",
+          },
+        ],
+      },
       {
         id: "json",
         name: "Pure JSON Low-Code",
@@ -119,6 +144,12 @@ class CustomAction:
 
 AgentServer.start_up(sock_id)`,
         },
+        resources: [
+          {
+            label: "📖 Pipeline Protocol",
+            link: "/en/docs/3.1-PipelineProtocol",
+          },
+        ],
       },
       {
         id: "code",
@@ -146,6 +177,12 @@ AgentServer.start_up(sock_id)`,
         # Execute hybrid task chain
         tasker.post_task("ClickConfirmIcon").wait()`,
         },
+        resources: [
+          {
+            label: "📖 Integration Docs",
+            link: "/en/docs/2.1-Integration",
+          },
+        ],
       },
     ],
     comparison: {
@@ -162,52 +199,28 @@ AgentServer.start_up(sock_id)`,
     subtitle: "Hear what community developers say about MaaFramework",
     items: [
       {
-        name: "Zhang Ming",
-        role: "Automation Test Engineer",
-        avatar: "Z",
+        name: "MistEO",
+        role: "Project Architect",
+        avatar: "M",
         content:
-          "MaaFramework significantly reduced our automation testing development costs. The JSON configuration approach allows non-technical staff to participate in building automation processes. Team collaboration efficiency increased by 3x!",
+          "MaaFramework significantly reduced our automation testing development costs. The JSON configuration approach allows non-technical staff to participate in building automation processes. Team collaboration efficiency has greatly improved!",
         project: "MAA",
       },
       {
-        name: "Alex Chen",
-        role: "Independent Developer",
-        avatar: "A",
-        content:
-          "As an individual developer, I love the AgentServer architecture most. I can quickly implement custom logic with Python while retaining the convenience of JSON configuration. The development experience is excellent!",
-        project: "MFAWPF",
-      },
-      {
-        name: "Li Hua",
+        name: "Windsland52",
         role: "Game Script Developer",
-        avatar: "L",
-        content:
-          "OCR recognition accuracy is very high, and template matching is stable. Compared to other frameworks, MaaFramework has a gentler learning curve, and the documentation and community support are excellent. Highly recommended!",
-        project: "MBA",
-      },
-      {
-        name: "Sarah Wang",
-        role: "Product Manager",
-        avatar: "S",
-        content:
-          "Even without programming background, I was able to get started quickly through video tutorials. Now I can build simple automation processes myself, greatly reducing communication costs with the development team.",
-        project: "MaaPracticeBoilerplate",
-      },
-      {
-        name: "Wang Qiang",
-        role: "Full Stack Engineer",
         avatar: "W",
         content:
-          "Cross-platform support is excellent - Windows, Linux, macOS all run seamlessly. High code quality, reasonable API design, and strong extensibility. This is one of the most professional automation frameworks I've seen.",
-        project: "MaaY",
+          "OCR recognition accuracy is very high, and template matching is stable. Compared to other frameworks, MaaFramework has a gentler learning curve, and the documentation and community support are excellent. Highly recommended!",
+        project: "M9A",
       },
       {
-        name: "David Liu",
-        role: "RPA Developer",
-        avatar: "D",
+        name: "屑のFO",
+        role: "UI Developer",
+        avatar: "F",
         content:
-          "After switching from traditional RPA tools to MaaFramework, development efficiency improved significantly. Especially the deep learning recognition feature makes handling complex scenarios much easier. Definitely worth trying!",
-        project: "MaaFramework",
+          "Cross-platform support is excellent - Windows, Linux, macOS all run seamlessly. High code quality, reasonable API design, and strong extensibility. This is one of the most professional automation frameworks I've seen!",
+        project: "MFAA",
       },
     ],
   },
@@ -221,18 +234,18 @@ AgentServer.start_up(sock_id)`,
     subtitle: "Choose the best way to start using MaaFramework",
     cards: [
       {
-        icon: "🚀",
-        title: "Quick Start",
-        description: "Follow tutorials to get started quickly",
-        buttonText: "Start Learning",
-        link: "/en/docs/1.1-QuickStarted",
-      },
-      {
         icon: "🌍",
         title: "Community Projects",
         description: "Explore real-world use cases",
         buttonText: "View Projects",
         link: "/en/community/projects",
+      },
+      {
+        icon: "🚀",
+        title: "Quick Start",
+        description: "Follow tutorials to get started quickly",
+        buttonText: "Start Learning",
+        link: "/en/docs/1.1-QuickStarted",
       },
       {
         icon: "📦",
@@ -268,10 +281,6 @@ AgentServer.start_up(sock_id)`,
           },
           { label: "Community Projects", link: "/en/community/projects" },
           {
-            label: "Contributing Guide",
-            link: "https://github.com/MaaXYZ/MaaFramework/blob/main/docs/en_us/3.2-IntegrationOverview.md",
-          },
-          {
             label: "Release Notes",
             link: "https://github.com/MaaXYZ/MaaFramework/releases",
           },
@@ -285,20 +294,20 @@ AgentServer.start_up(sock_id)`,
             link: "https://github.com/MaaXYZ/MaaFramework/releases",
           },
           {
-            label: "VSCode Extension",
-            link: "https://marketplace.visualstudio.com/items?itemName=nekosu.maa-support",
-          },
-          {
             label: "Video Tutorials",
             link: "https://www.bilibili.com/video/BV1yr421E7MW",
           },
           {
-            label: "Pipeline Debugger",
+            label: "VSCode Extension",
+            link: "https://marketplace.visualstudio.com/items?itemName=nekosu.maa-support",
+          },
+          {
+            label: "Debugger Tool",
             link: "https://github.com/MaaXYZ/MaaDebugger",
           },
         ],
       },
     ],
-    copyright: "© 2024 MaaXYZ. All rights reserved.",
+    copyright: "© 2025 MaaXYZ. All rights reserved.",
   },
 };

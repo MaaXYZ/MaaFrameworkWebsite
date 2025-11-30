@@ -67,7 +67,20 @@
             </div>
 
             <div class="panel-right">
-              <div class="code-example">
+              <div
+                v-if="item.codeExample.image"
+                class="image-example tilt-container"
+                @mousemove="handleImageMouseMove"
+                @mouseleave="handleImageMouseLeave"
+              >
+                <img :src="item.codeExample.image" :alt="item.name" />
+              </div>
+              <div
+                v-else
+                class="code-example tilt-container"
+                @mousemove="handleCodeMouseMove"
+                @mouseleave="handleCodeMouseLeave"
+              >
                 <div class="code-header">
                   <span class="code-language">{{
                     item.codeExample.language
@@ -107,6 +120,56 @@ defineProps<{
 }>();
 
 const activeTab = ref(1);
+
+const handleImageMouseMove = (e: MouseEvent) => {
+  const container = e.currentTarget as HTMLElement;
+
+  const rect = container.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  const deltaX = (x - centerX) / centerX;
+  const deltaY = (y - centerY) / centerY;
+
+  const rotateX = -deltaY * 8;
+  const rotateY = deltaX * 8;
+
+  container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+};
+
+const handleImageMouseLeave = (e: MouseEvent) => {
+  const container = e.currentTarget as HTMLElement;
+
+  container.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+};
+
+const handleCodeMouseMove = (e: MouseEvent) => {
+  const container = e.currentTarget as HTMLElement;
+
+  const rect = container.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  const deltaX = (x - centerX) / centerX;
+  const deltaY = (y - centerY) / centerY;
+
+  const rotateX = -deltaY * 8;
+  const rotateY = deltaX * 8;
+
+  container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+};
+
+const handleCodeMouseLeave = (e: MouseEvent) => {
+  const container = e.currentTarget as HTMLElement;
+
+  container.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+};
 </script>
 
 <style scoped lang="scss">
@@ -263,7 +326,7 @@ const activeTab = ref(1);
 
 .panel-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 0.8fr 1.5fr;
   gap: 48px;
 }
 
@@ -400,11 +463,45 @@ const activeTab = ref(1);
   }
 }
 
+.image-example {
+  width: 100%;
+  max-height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(71, 202, 255, 0.3);
+  position: relative;
+  animation: codeGlow 3s ease-in-out infinite;
+  border: 1px solid rgba(71, 202, 255, 0.3);
+  background: rgba(10, 14, 26, 0.6);
+  padding: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .integration-comparison.light-mode & {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(71, 202, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 40px rgba(71, 202, 255, 0.2);
+  }
+}
+
+.tilt-container {
+  transition: transform 0.2s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 .code-example {
   background: rgba(10, 14, 26, 0.8);
   border: 1px solid rgba(71, 202, 255, 0.3);
   border-radius: 16px;
   overflow: hidden;
+  max-height: 500px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(71, 202, 255, 0.3),
     inset 0 0 40px rgba(71, 202, 255, 0.05);
   position: relative;
