@@ -134,7 +134,9 @@
           </button>
           <a
             :href="
-              lang === 'zh' ? '/docs/1.1-快速开始' : '/en/docs/1.1-QuickStarted'
+              lang === 'zh'
+                ? '/docs/1.1-QuickStarted'
+                : '/en/docs/1.1-QuickStarted'
             "
             class="nav-link"
             >{{ lang === "zh" ? "文档" : "Docs" }}</a
