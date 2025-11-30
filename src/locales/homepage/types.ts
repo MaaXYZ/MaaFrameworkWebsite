@@ -72,6 +72,12 @@ export interface HomepageContent {
     comparison: {
       dimensions: string[];
     };
+    labels: {
+      recommended: string;
+      scenario: string;
+      advantages: string;
+      resources: string;
+    };
   };
   testimonials: {
     title: string;

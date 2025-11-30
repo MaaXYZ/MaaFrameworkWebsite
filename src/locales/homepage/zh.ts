@@ -172,6 +172,12 @@ AgentServer.start_up(sock_id)`,
     comparison: {
       dimensions: ["配置复杂度", "开发效率", "灵活性", "学习曲线"],
     },
+    labels: {
+      recommended: "推荐",
+      scenario: "适用场景",
+      advantages: "核心优势",
+      resources: "相关资源",
+    },
   },
   testimonials: {
     title: "开发者评价",

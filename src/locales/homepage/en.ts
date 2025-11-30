@@ -193,6 +193,12 @@ AgentServer.start_up(sock_id)`,
         "Learning Curve",
       ],
     },
+    labels: {
+      recommended: "Recommended",
+      scenario: "Use Cases",
+      advantages: "Core Advantages",
+      resources: "Resources",
+    },
   },
   testimonials: {
     title: "Developer Reviews",

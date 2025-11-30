@@ -18,7 +18,9 @@
           @click="activeTab = index"
         >
           <span class="tab-name">{{ item.name }}</span>
-          <span v-if="item.recommended" class="tab-badge">推荐</span>
+          <span v-if="item.recommended" class="tab-badge">{{
+            content.labels.recommended
+          }}</span>
         </button>
       </div>
 
@@ -32,12 +34,12 @@
           <div class="panel-grid">
             <div class="panel-left">
               <div class="info-section">
-                <h3 class="info-title">适用场景</h3>
+                <h3 class="info-title">{{ content.labels.scenario }}</h3>
                 <p class="info-text">{{ item.scenario }}</p>
               </div>
 
               <div class="info-section">
-                <h3 class="info-title">核心优势</h3>
+                <h3 class="info-title">{{ content.labels.advantages }}</h3>
                 <ul class="advantages-list">
                   <li
                     v-for="(advantage, aIndex) in item.advantages"
@@ -50,7 +52,7 @@
               </div>
 
               <div v-if="item.resources" class="info-section">
-                <h3 class="info-title">相关资源</h3>
+                <h3 class="info-title">{{ content.labels.resources }}</h3>
                 <div class="resources-links">
                   <a
                     v-for="(resource, rIndex) in item.resources"
@@ -114,6 +116,12 @@ defineProps<{
     items: Integration[];
     comparison: {
       dimensions: string[];
+    };
+    labels: {
+      recommended: string;
+      scenario: string;
+      advantages: string;
+      resources: string;
     };
   };
   isLightMode: boolean;
