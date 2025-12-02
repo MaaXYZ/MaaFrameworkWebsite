@@ -70,7 +70,7 @@ export const enContent: HomepageContent = {
         },
         resources: [
           {
-            label: "🐈‍⬛ Project",
+            label: "Project",
             link: "https://mpe.codax.site/docs/",
           },
           {
@@ -127,7 +127,23 @@ export const enContent: HomepageContent = {
         ],
         codeExample: {
           language: "python",
-          code: `from maa.agent.agent_server import AgentServer
+          code: `# ========== JSON Config ==========
+# pipeline.json
+{
+  "ClickConfirmIcon": {
+    "next": ["CustomProcessModule"]
+  },
+  "CustomProcessModule": {
+    "recognition": "Custom",
+    "custom_recognition": "MyReco",
+    "action": "Custom",
+    "custom_action": "MyAct"
+  }
+}
+
+# ========== Python Code ==========
+# agent.py
+from maa.agent.agent_server import AgentServer
 
 # Register custom recognizer
 @AgentServer.custom_recognition("MyReco")

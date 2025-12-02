@@ -58,7 +58,7 @@ export const zhContent: HomepageContent = {
         },
         resources: [
           {
-            label: "🐈‍⬛ 项目地址",
+            label: "项目地址",
             link: "https://mpe.codax.site/docs/",
           },
           {
@@ -115,7 +115,21 @@ export const zhContent: HomepageContent = {
         ],
         codeExample: {
           language: "python",
-          code: `from maa.agent.agent_server import AgentServer
+          code: `# ========== Pipeline ==========
+{
+  "点击确认图标": {
+    "next": ["自定义处理模块"]
+  },
+  "自定义处理模块": {
+    "recognition": "Custom",
+    "custom_recognition": "MyReco",
+    "action": "Custom",
+    "custom_action": "MyAct"
+  }
+}
+
+# ======= Custom (Agent) =======
+from maa.agent.agent_server import AgentServer
 
 # 注册自定义识别器
 @AgentServer.custom_recognition("MyReco")

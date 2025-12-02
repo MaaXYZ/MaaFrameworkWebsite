@@ -13,5 +13,7 @@
     "build": "vitepress build src",
     "preview": "vitepress preview src"
   },
-  "dependencies": {}
+  "dependencies": {
+    "shiki": "^3.18.0"
+  }
 }

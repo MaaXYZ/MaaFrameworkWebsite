@@ -93,9 +93,10 @@
                     <span></span>
                   </div>
                 </div>
-                <div class="code-body">
-                  <pre><code>{{ item.codeExample.code }}</code></pre>
-                </div>
+                <div
+                  class="code-body"
+                  v-html="highlightedCode[item.id]"
+                ></div>
               </div>
             </div>
           </div>
@@ -106,10 +107,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
 import type { Integration } from "../../locales/homepage/types";
+import { codeToHtml } from "shiki";
 
-defineProps<{
+const activeTab = ref(1);
+const highlightedCode = ref<{ [key: string]: string }>({});
+
+const props = defineProps<{
   content: {
     title: string;
     subtitle: string;
@@ -127,7 +132,28 @@ defineProps<{
   isLightMode: boolean;
 }>();
 
-const activeTab = ref(1);
+const highlightCode = async () => {
+  const highlighted: { [key: string]: string } = {};
+  for (const item of props.content.items) {
+    if (item.codeExample.code) {
+      try {
+        const html = await codeToHtml(item.codeExample.code, {
+          lang: item.codeExample.language.toLowerCase(),
+          theme: "github-dark",
+        });
+        highlighted[item.id] = html;
+      } catch (error) {
+        console.error(`Failed to highlight code for ${item.id}:`, error);
+        highlighted[item.id] = `<pre><code>${item.codeExample.code}</code></pre>`;
+      }
+    }
+  }
+  highlightedCode.value = highlighted;
+};
+
+onMounted(() => {
+  highlightCode();
+});
 
 const handleImageMouseMove = (e: MouseEvent) => {
   const container = e.currentTarget as HTMLElement;
@@ -458,7 +484,7 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
       transparent 70%
     );
     filter: blur(30px);
-    animation: glowPulse 3s ease-in-out infinite;
+    animation: glowPulse 5s ease-in-out infinite;
     z-index: -1;
   }
 }
@@ -466,12 +492,10 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
 @keyframes glowPulse {
   0%,
   100% {
-    opacity: 0.6;
-    transform: scale(1);
+    opacity: 0.3;
   }
   50% {
-    opacity: 1;
-    transform: scale(1.05);
+    opacity: 0.5;
   }
 }
 
@@ -482,7 +506,7 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(71, 202, 255, 0.3);
   position: relative;
-  animation: codeGlow 3s ease-in-out infinite;
+  animation: codeGlow 5s ease-in-out infinite;
   border: 1px solid rgba(71, 202, 255, 0.3);
   background: rgba(10, 14, 26, 0.6);
   padding: 10px;
@@ -517,7 +541,11 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(71, 202, 255, 0.3),
     inset 0 0 40px rgba(71, 202, 255, 0.05);
   position: relative;
-  animation: codeGlow 3s ease-in-out infinite;
+  animation: codeGlow 5s ease-in-out infinite;
+
+  .integration-comparison.light-mode & {
+    background: rgba(10, 14, 26, 0.82);
+  }
 
   &::before {
     content: "";
@@ -582,15 +610,18 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
     position: relative;
     z-index: 2;
 
-    pre {
+    :deep(pre) {
       margin: 0;
       font-family: "Fira Code", "Consolas", monospace;
       font-size: 0.9375rem;
       line-height: 1.7;
+      background: transparent !important;
+      padding: 0 !important;
 
       code {
-        color: #e0e7ff;
         white-space: pre;
+        background: transparent !important;
+        font-family: "Fira Code", "Consolas", monospace;
       }
     }
 
@@ -664,7 +695,7 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   .code-example .code-body {
     padding: 16px;
 
-    pre {
+    :deep(pre) {
       font-size: 0.8125rem;
     }
   }
