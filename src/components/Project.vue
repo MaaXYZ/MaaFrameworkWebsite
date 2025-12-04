@@ -293,7 +293,7 @@
     <a class="alink" :href="link"></a>
     <div class="head">
       <div class="logo">
-        <img :src="logo" />
+        <img :src="logoSrc" loading="lazy" ref="logoImg" />
       </div>
       <div class="right">
         <div class="title">{{ title }}</div>
@@ -304,7 +304,7 @@
             :style="{ backgroundColor: badges[item].bgColor }"
           >
             <div class="icon">
-              <img :src="badges[item].icon" />
+              <img :src="badges[item].icon" loading="lazy" />
             </div>
             <div class="label">{{ badges[item].label }}</div>
           </div>
@@ -324,7 +324,7 @@
           :style="{ backgroundColor: badges[item].bgColor }"
         >
           <div class="icon">
-            <img :src="badges[item].icon" />
+            <img :src="badges[item].icon" loading="lazy" />
           </div>
           <div class="label">{{ badges[item].label }}</div>
         </div>
@@ -334,13 +334,19 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { Router } from "./utils/route";
+import { Stack } from "../assets/types/Stack";
+import badges from "../assets/data/badges";
+import icons from "../assets/icons/icons";
+
 const props = defineProps({
   title: {
     type: String,
     required: true,
   },
   logo: {
-    type: String,
+    type: [String, Function],
     required: true,
   },
   desc: {
@@ -361,8 +367,20 @@ const props = defineProps({
   },
 });
 
-import { Router } from "./utils/route";
-import { Stack } from "../assets/types/Stack";
-import badges from "../assets/data/badges";
-import icons from "../assets/icons/icons";
+const logoSrc = ref("");
+const logoImg = ref<HTMLImageElement | null>(null);
+
+onMounted(async () => {
+  // 动态导入
+  if (typeof props.logo === "function") {
+    try {
+      const module = await props.logo();
+      logoSrc.value = module.default;
+    } catch (error) {
+      console.error("图片加载失败:", error);
+    }
+  } else {
+    logoSrc.value = props.logo;
+  }
+});
 </script>
