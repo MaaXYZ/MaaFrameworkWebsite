@@ -255,6 +255,15 @@ export const apps = [
     stack: [Stack.Pipeline],
     link: "https://github.com/quietlysnow/MBCCtools",
   },
+  {
+    name: "MaaEOV",
+    desc: "异象回声 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "Assistant for Echoes Of Vision. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
+    logo: Logos.MaaEOV,
+    stack: [Stack.Pipeline],
+    link: "https://github.com/Tigerisu/MaaEOV",
+  },
 ];
 
 export const projects = [...uis, ...tools, ...apps];

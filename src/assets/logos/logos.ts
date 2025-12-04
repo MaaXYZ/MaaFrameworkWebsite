@@ -20,6 +20,7 @@ import MaaGakumasu from "./MaaGakumasu.png";
 import MaaStarResonance from "./MaaStarResonance.png";
 import MAAAE from "./maaae.png";
 import MBCCTools from "./mbcctools.jpg";
+import MaaEOV from "./maaeov.png";
 
 const Logos = {
   MaaFW,
@@ -44,6 +45,7 @@ const Logos = {
   MaaStarResonance,
   MAAAE,
   MBCCTools,
+  MaaEOV,
 };
 
 export default Logos;
