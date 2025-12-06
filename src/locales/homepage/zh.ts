@@ -62,6 +62,7 @@ export const zhContent: HomepageContent = {
             link: "https://mpe.codax.site/docs/",
           },
           {
+            icon: "book",
             label: "文档",
             link: "https://mpe.codax.site/docs/",
           },
@@ -94,10 +95,12 @@ export const zhContent: HomepageContent = {
         },
         resources: [
           {
+            icon: "video",
             label: "视频教程",
             link: "https://www.bilibili.com/video/BV1yr421E7MW",
           },
           {
+            icon: "star",
             label: "项目模板",
             link: "https://github.com/MaaXYZ/MaaPracticeBoilerplate",
           },
@@ -148,6 +151,7 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
+            icon: "book",
             label: "流水线协议",
             link: "/docs/3.1-PipelineProtocol",
           },
@@ -177,6 +181,7 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
+            icon: "book",
             label: "集成文档",
             link: "/docs/2.1-Integration",
           },

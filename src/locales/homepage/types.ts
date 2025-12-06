@@ -30,6 +30,7 @@ export interface Integration {
     image?: string;
   };
   resources?: {
+    icon?: string;
     label: string;
     link: string;
   }[];
