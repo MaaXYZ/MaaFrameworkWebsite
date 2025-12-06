@@ -16,7 +16,7 @@ export const enContent: HomepageContent = {
     title: "Core Features",
     items: [
       {
-        icon: "🚀",
+        icon: "rocket",
         title: "Easy to Use",
         description: "Simple JSON configuration for automation workflows",
         highlights: [
@@ -27,7 +27,7 @@ export const enContent: HomepageContent = {
         ],
       },
       {
-        icon: "🔍",
+        icon: "search",
         title: "Powerful Recognition",
         description: "Built-in OCR text recognition and template matching",
         highlights: [
@@ -38,7 +38,7 @@ export const enContent: HomepageContent = {
         ],
       },
       {
-        icon: "🔧",
+        icon: "wrench",
         title: "Flexible Extension",
         description:
           "Support custom recognition and action modules through Agent Server",
@@ -74,7 +74,7 @@ export const enContent: HomepageContent = {
             link: "https://mpe.codax.site/docs/",
           },
           {
-            label: "📖 Documentation",
+            label: "Documentation",
             link: "https://mpe.codax.site/docs/",
           },
         ],
@@ -106,11 +106,11 @@ export const enContent: HomepageContent = {
         },
         resources: [
           {
-            label: "🎞️ Video Tutorial",
+            label: "Video Tutorial",
             link: "https://www.bilibili.com/video/BV1yr421E7MW",
           },
           {
-            label: "⭐ Project Template",
+            label: "Project Template",
             link: "https://github.com/MaaXYZ/MaaPracticeBoilerplate",
           },
         ],
@@ -162,7 +162,7 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
-            label: "📖 Pipeline Protocol",
+            label: "Pipeline Protocol",
             link: "/en/docs/3.1-PipelineProtocol",
           },
         ],
@@ -195,7 +195,7 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
-            label: "📖 Integration Docs",
+            label: "Integration Docs",
             link: "/en/docs/2.1-Integration",
           },
         ],
@@ -256,21 +256,21 @@ AgentServer.start_up(sock_id)`,
     subtitle: "Choose the best way to start using MaaFramework",
     cards: [
       {
-        icon: "🌍",
+        icon: "globe",
         title: "Community Projects",
         description: "Explore real-world use cases",
         buttonText: "View Projects",
         link: "/en/community/projects",
       },
       {
-        icon: "🚀",
+        icon: "rocket",
         title: "Quick Start",
         description: "Follow tutorials to get started quickly",
         buttonText: "Start Learning",
         link: "/en/docs/1.1-QuickStarted",
       },
       {
-        icon: "📦",
+        icon: "package",
         title: "Integration Docs",
         description: "Integrate into your project",
         buttonText: "View Docs",

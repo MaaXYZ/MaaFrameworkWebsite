@@ -11,7 +11,11 @@
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <div class="feature-icon">
-            <span class="icon-emoji">{{ feature.icon }}</span>
+            <img v-if="feature.icon === 'rocket'" class="icon-svg" src="../../assets/icons/rocket.svg" alt="rocket" />
+            <img v-else-if="feature.icon === 'search'" class="icon-svg" src="../../assets/icons/search.svg" alt="search" />
+            <img v-else-if="feature.icon === 'wrench'" class="icon-svg" src="../../assets/icons/wrench.svg" alt="wrench" />
+            <!-- Fallback for emoji -->
+            <span v-else class="icon-emoji">{{ feature.icon }}</span>
           </div>
           <h3 class="feature-title">{{ feature.title }}</h3>
           <p class="feature-description">{{ feature.description }}</p>
@@ -196,6 +200,12 @@ defineProps<{
 
   .icon-emoji {
     font-size: 2.5rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  .icon-svg {
+    width: 2.5rem;
+    height: 2.5rem;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   }
 }

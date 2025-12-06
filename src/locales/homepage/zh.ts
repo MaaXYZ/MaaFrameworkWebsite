@@ -15,7 +15,7 @@ export const zhContent: HomepageContent = {
     title: "核心特性",
     items: [
       {
-        icon: "🚀",
+        icon: "rocket",
         title: "简单易用",
         description: "通过简单的 JSON 配置即可实现自动化流程",
         highlights: [
@@ -26,13 +26,13 @@ export const zhContent: HomepageContent = {
         ],
       },
       {
-        icon: "🔍",
+        icon: "search",
         title: "强大识别",
         description: "内置 OCR 文字识别和模板匹配",
         highlights: ["OCR 文字识别", "模板匹配", "特征检测", "深度学习"],
       },
       {
-        icon: "🔧",
+        icon: "wrench",
         title: "灵活扩展",
         description: "通过 Agent Server 支持自定义识别和动作模块",
         highlights: ["AgentServer 架构", "自定义识别/动作", "跨语言支持"],
@@ -62,7 +62,7 @@ export const zhContent: HomepageContent = {
             link: "https://mpe.codax.site/docs/",
           },
           {
-            label: "📖 文档",
+            label: "文档",
             link: "https://mpe.codax.site/docs/",
           },
         ],
@@ -94,11 +94,11 @@ export const zhContent: HomepageContent = {
         },
         resources: [
           {
-            label: "🎞️ 视频教程",
+            label: "视频教程",
             link: "https://www.bilibili.com/video/BV1yr421E7MW",
           },
           {
-            label: "⭐ 项目模板",
+            label: "项目模板",
             link: "https://github.com/MaaXYZ/MaaPracticeBoilerplate",
           },
         ],
@@ -148,7 +148,7 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
-            label: "📖 流水线协议",
+            label: "流水线协议",
             link: "/docs/3.1-PipelineProtocol",
           },
         ],
@@ -177,7 +177,7 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
-            label: "📖 集成文档",
+            label: "集成文档",
             link: "/docs/2.1-Integration",
           },
         ],
@@ -233,21 +233,21 @@ AgentServer.start_up(sock_id)`,
     subtitle: "选择最适合您的方式开始使用 MaaFramework",
     cards: [
       {
-        icon: "🌍",
+        icon: "globe",
         title: "社区项目",
         description: "参考实际应用案例",
         buttonText: "查看项目",
         link: "/community/projects",
       },
       {
-        icon: "🚀",
+        icon: "rocket",
         title: "新手入门",
         description: "跟随教程快速上手",
         buttonText: "开始学习",
         link: "/docs/1.1-QuickStarted",
       },
       {
-        icon: "📦",
+        icon: "package",
         title: "集成文档",
         description: "集成到您的项目",
         buttonText: "查看文档",

@@ -45,7 +45,9 @@
                     v-for="(advantage, aIndex) in item.advantages"
                     :key="aIndex"
                   >
-                    <span class="advantage-icon">✓</span>
+                    <span class="advantage-icon">
+                      <img src="../../assets/icons/check.svg" alt="check" />
+                    </span>
                     {{ advantage }}
                   </li>
                 </ul>
@@ -432,9 +434,12 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 0.875rem;
+
+      svg {
+        width: 14px;
+        height: 14px;
+        stroke: white;
+      }
     }
 
     .integration-comparison.light-mode & {
