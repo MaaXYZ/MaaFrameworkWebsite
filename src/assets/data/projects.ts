@@ -264,6 +264,15 @@ export const apps = [
     stack: [Stack.Pipeline],
     link: "https://github.com/Tigerisu/MaaEOV",
   },
+  {
+    name: "MAA Star Resonance",
+    desc: "星痕共鸣小助手。使用 Electron + 文本图像识别 + ADB模拟控制 技术，解放双手！由 MaaFramework 和 Quasar 强力驱动！",
+    enDesc:
+      "A helper for Star Resonance. Using Electron + text image recognition + ADB simulation control technology, freeing your hands! Powered by MaaFramework and Quasar.",
+    logo: Logos.MaaFW,
+    stack: [Stack.TS],
+    link: "https://github.com/26F-Studio/maa-star-resonance",
+  },
 ];
 
 export const projects = [...uis, ...tools, ...apps];
