@@ -11,9 +11,7 @@
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <div class="feature-icon">
-            <img v-if="feature.icon === 'rocket'" class="icon-svg" src="../../assets/icons/rocket.svg" alt="rocket" />
-            <img v-else-if="feature.icon === 'search'" class="icon-svg" src="../../assets/icons/search.svg" alt="search" />
-            <img v-else-if="feature.icon === 'wrench'" class="icon-svg" src="../../assets/icons/wrench.svg" alt="wrench" />
+            <img v-if="iconMap[feature.icon]" class="icon-svg" :src="iconMap[feature.icon]" :alt="feature.icon" />
             <!-- Fallback for emoji -->
             <span v-else class="icon-emoji">{{ feature.icon }}</span>
           </div>
@@ -33,6 +31,7 @@
 
 <script setup lang="ts">
 import type { Feature } from "../../locales/homepage/types";
+import { iconMap } from "../../assets/icons/icons";
 
 defineProps<{
   content: {

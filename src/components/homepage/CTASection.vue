@@ -12,9 +12,12 @@
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <div class="card-icon">
-            <img v-if="card.icon === 'globe'" class="icon-svg" src="../../assets/icons/globe.svg" alt="globe" />
-            <img v-else-if="card.icon === 'rocket'" class="icon-svg" src="../../assets/icons/rocket.svg" alt="rocket" />
-            <img v-else-if="card.icon === 'package'" class="icon-svg" src="../../assets/icons/package.svg" alt="package" />
+            <img
+              v-if="iconMap[card.icon]"
+              class="icon-svg"
+              :src="iconMap[card.icon]"
+              :alt="card.icon"
+            />
             <!-- Fallback for emoji -->
             <span v-else class="icon-emoji">{{ card.icon }}</span>
           </div>
@@ -32,6 +35,7 @@
 
 <script setup lang="ts">
 import type { CTACard } from "../../locales/homepage/types";
+import { iconMap } from "../../assets/icons/icons";
 
 defineProps<{
   content: {
