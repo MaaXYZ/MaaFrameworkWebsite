@@ -13,12 +13,11 @@
         >
           <div class="card-icon">
             <img
-              v-if="iconMap[card.icon]"
-              class="icon-svg"
-              :src="iconMap[card.icon]"
+              v-if="emojis[card.icon]"
+              class="icon-png"
+              :src="emojis[card.icon]"
               :alt="card.icon"
             />
-            <!-- Fallback for emoji -->
             <span v-else class="icon-emoji">{{ card.icon }}</span>
           </div>
           <h3 class="card-title">{{ card.title }}</h3>
@@ -35,7 +34,7 @@
 
 <script setup lang="ts">
 import type { CTACard } from "../../locales/homepage/types";
-import { iconMap } from "../../assets/icons/icons";
+import { emojis } from "../../assets/emojis/emojis";
 
 defineProps<{
   content: {
@@ -246,9 +245,9 @@ defineProps<{
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
 
+  .icon-png,
   .icon-svg {
-    width: 4rem;
-    height: 4rem;
+    width: 4.2rem;
   }
 
   .icon-emoji {

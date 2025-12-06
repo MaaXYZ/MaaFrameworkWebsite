@@ -46,7 +46,7 @@
                     :key="aIndex"
                   >
                     <span class="advantage-icon">
-                      <img src="../../assets/icons/check.svg" alt="check" />
+                      <span class="check-mark">✓</span>
                     </span>
                     {{ advantage }}
                   </li>
@@ -66,8 +66,8 @@
                   >
                     <div class="resource-item">
                       <img
-                        v-if="resource.icon"
-                        :src="`../../assets/icons/${resource.icon}.svg`"
+                        v-if="resource.icon && emojis[resource.icon]"
+                        :src="emojis[resource.icon]"
                         :alt="resource.icon"
                         class="resource-icon"
                       />
@@ -117,6 +117,7 @@
 import { ref, onMounted, watch } from "vue";
 import type { Integration } from "../../locales/homepage/types";
 import { codeToHtml } from "shiki";
+import { emojis } from "../../assets/emojis/emojis";
 
 const activeTab = ref(1);
 const highlightedCode = ref<{ [key: string]: string }>({});
@@ -442,10 +443,11 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
       align-items: center;
       justify-content: center;
 
-      svg {
-        width: 14px;
-        height: 14px;
-        stroke: white;
+      .check-mark {
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1;
       }
     }
 

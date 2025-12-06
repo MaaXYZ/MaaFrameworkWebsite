@@ -220,8 +220,8 @@ AgentServer.start_up(sock_id)`,
         project: "M9A",
       },
       {
-        name: "屑のFO",
-        role: "UI开发者",
+        name: "SweetSmellFox",
+        role: "UI 开发者",
         avatar: avatars.SweetSmellFox,
         content:
           "跨平台支持非常完善，Windows、Linux、macOS 都能无缝运行。代码质量高，API 设计合理，扩展性强。这是我见过最专业的自动化框架之一！",

@@ -36,7 +36,7 @@
                 v-for="i in 5"
                 :key="i"
                 class="star"
-                src="../../assets/icons/star.svg"
+                :src="emojis['star']"
                 alt="star"
               />
             </div>
@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 import type { Testimonial } from "../../locales/homepage/types";
+import { emojis } from "../../assets/emojis/emojis";
 
 defineProps<{
   content: {

@@ -1,4 +1,5 @@
 import type { HomepageContent } from "./types";
+import avatars from "../../assets/avatars/avatars";
 
 export const enContent: HomepageContent = {
   hero: {
@@ -74,6 +75,7 @@ export const enContent: HomepageContent = {
             link: "https://mpe.codax.site/docs/",
           },
           {
+            icon: "book",
             label: "Documentation",
             link: "https://mpe.codax.site/docs/",
           },
@@ -111,6 +113,7 @@ export const enContent: HomepageContent = {
             link: "https://www.bilibili.com/video/BV1yr421E7MW",
           },
           {
+            icon: "star",
             label: "Project Template",
             link: "https://github.com/MaaXYZ/MaaPracticeBoilerplate",
           },
@@ -224,7 +227,7 @@ AgentServer.start_up(sock_id)`,
       {
         name: "MistEO",
         role: "Project Architect",
-        avatar: "M",
+        avatar: avatars.MistEO,
         content:
           "MaaFramework significantly reduced our automation testing development costs. The JSON configuration approach allows non-technical staff to participate in building automation processes. Team collaboration efficiency has greatly improved!",
         project: "MAA",
@@ -232,15 +235,15 @@ AgentServer.start_up(sock_id)`,
       {
         name: "Windsland52",
         role: "Game Script Developer",
-        avatar: "W",
+        avatar: avatars.Windsland52,
         content:
           "OCR recognition accuracy is very high, and template matching is stable. Compared to other frameworks, MaaFramework has a gentler learning curve, and the documentation and community support are excellent. Highly recommended!",
         project: "M9A",
       },
       {
-        name: "屑のFO",
+        name: "SweetSmellFox",
         role: "UI Developer",
-        avatar: "F",
+        avatar: avatars.SweetSmellFox,
         content:
           "Cross-platform support is excellent - Windows, Linux, macOS all run seamlessly. High code quality, reasonable API design, and strong extensibility. This is one of the most professional automation frameworks I've seen!",
         project: "MFAA",
