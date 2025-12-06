@@ -11,7 +11,16 @@
           class="cta-card"
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
-          <div class="card-icon">{{ card.icon }}</div>
+          <div class="card-icon">
+            <img
+              v-if="iconMap[card.icon]"
+              class="icon-svg"
+              :src="iconMap[card.icon]"
+              :alt="card.icon"
+            />
+            <!-- Fallback for emoji -->
+            <span v-else class="icon-emoji">{{ card.icon }}</span>
+          </div>
           <h3 class="card-title">{{ card.title }}</h3>
           <p class="card-description">{{ card.description }}</p>
           <a :href="card.link" class="card-button">
@@ -26,6 +35,7 @@
 
 <script setup lang="ts">
 import type { CTACard } from "../../locales/homepage/types";
+import { iconMap } from "../../assets/icons/icons";
 
 defineProps<{
   content: {
@@ -229,10 +239,21 @@ defineProps<{
 }
 
 .card-icon {
-  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 0 24px 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+
+  .icon-svg {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .icon-emoji {
+    font-size: 4rem;
+  }
 }
 
 .card-title {

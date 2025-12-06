@@ -26,7 +26,7 @@
           </div>
           <div class="testimonial-footer">
             <div class="rating">
-              <span v-for="i in 5" :key="i" class="star">⭐</span>
+              <img v-for="i in 5" :key="i" class="star" src="../../assets/icons/star.svg" alt="star" />
             </div>
             <span class="project-tag">{{ testimonial.project }}</span>
           </div>
@@ -270,7 +270,8 @@ defineProps<{
   gap: 4px;
 
   .star {
-    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
     filter: drop-shadow(0 2px 4px rgba(255, 200, 0, 0.3));
   }
 }

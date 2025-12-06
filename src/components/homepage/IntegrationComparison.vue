@@ -45,7 +45,9 @@
                     v-for="(advantage, aIndex) in item.advantages"
                     :key="aIndex"
                   >
-                    <span class="advantage-icon">✓</span>
+                    <span class="advantage-icon">
+                      <img src="../../assets/icons/check.svg" alt="check" />
+                    </span>
                     {{ advantage }}
                   </li>
                 </ul>
@@ -62,7 +64,9 @@
                     rel="noopener noreferrer"
                     class="resource-link"
                   >
-                    {{ resource.label }}
+                  <div class="resource-item">
+                   <img v-if="resource.icon" :src="`../../assets/icons/${resource.icon}.svg`" :alt="resource.icon" class="resource-icon" /> {{ resource.label }}
+                   </div>
                   </a>
                 </div>
               </div>
@@ -432,9 +436,12 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 0.875rem;
+
+      svg {
+        width: 14px;
+        height: 14px;
+        stroke: white;
+      }
     }
 
     .integration-comparison.light-mode & {
@@ -699,5 +706,30 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
       font-size: 0.8125rem;
     }
   }
+}
+
+.resource-item {
+  /* 核心：让子元素同行显示并垂直居中 */
+  display: flex;
+  align-items: center;
+  /* 可选：增加行高，优化文字显示 */
+  line-height: 1;
+}
+
+.resource-icon {
+  /* 统一尺寸：和文字大小保持一致 */
+  width: 1em;    /* 使用em单位，跟随父元素字体大小 */
+  height: 1em;
+  /* 可选：和文字之间增加间距 */
+  margin-right: 4px;
+  /* 确保SVG对齐 */
+  vertical-align: middle;
+}
+
+.resource-label {
+  /* 设置文字大小，图标会自动跟随 */
+  font-size: 14px; /* 可根据需求调整 */
+  /* 确保文字和图标基线对齐 */
+  vertical-align: middle;
 }
 </style>
