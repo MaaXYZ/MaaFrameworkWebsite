@@ -13,7 +13,13 @@
         >
           <div class="testimonial-header">
             <div class="avatar">
-              <span class="avatar-text">{{ testimonial.avatar }}</span>
+              <img
+                v-if="isImagePath(testimonial.avatar)"
+                :src="testimonial.avatar"
+                :alt="testimonial.name"
+                class="avatar-img"
+              />
+              <span v-else class="avatar-text">{{ testimonial.avatar }}</span>
             </div>
             <div class="author-info">
               <h4 class="author-name">{{ testimonial.name }}</h4>
@@ -26,7 +32,13 @@
           </div>
           <div class="testimonial-footer">
             <div class="rating">
-              <img v-for="i in 5" :key="i" class="star" src="../../assets/icons/star.svg" alt="star" />
+              <img
+                v-for="i in 5"
+                :key="i"
+                class="star"
+                src="../../assets/icons/star.svg"
+                alt="star"
+              />
             </div>
             <span class="project-tag">{{ testimonial.project }}</span>
           </div>
@@ -47,6 +59,15 @@ defineProps<{
   };
   isLightMode: boolean;
 }>();
+
+// 判断是否为图片路径
+const isImagePath = (value: string): boolean => {
+  return (
+    value.startsWith("/") ||
+    value.startsWith("data:") ||
+    /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(value)
+  );
+};
 </script>
 
 <style scoped lang="scss">
@@ -194,7 +215,14 @@ defineProps<{
   justify-content: center;
   flex-shrink: 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 16px rgba(189, 52, 254, 0.3);
+  box-shadow: 0 0px 16px rgba(189, 52, 254, 0.3);
+  overflow: hidden;
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   .avatar-text {
     font-size: 1.5rem;

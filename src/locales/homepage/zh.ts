@@ -1,4 +1,5 @@
 import type { HomepageContent } from "./types";
+import avatars from "../../assets/avatars/avatars";
 
 export const zhContent: HomepageContent = {
   hero: {
@@ -205,7 +206,7 @@ AgentServer.start_up(sock_id)`,
       {
         name: "MistEO",
         role: "项目架构师",
-        avatar: "M",
+        avatar: avatars.MistEO,
         content:
           "MaaFramework 大幅降低了我们自动化测试的开发成本，JSON 配置方式让非技术人员也能参与自动化流程的构建，团队协作效率大幅度提升！",
         project: "MAA",
@@ -213,7 +214,7 @@ AgentServer.start_up(sock_id)`,
       {
         name: "Windsland52",
         role: "游戏脚本开发者",
-        avatar: "默",
+        avatar: avatars.Windsland52,
         content:
           "OCR 识别准确度很高，模板匹配也很稳定。相比其他框架，MaaFramework 的学习曲线更平缓，文档和社区支持也很完善。强烈推荐！",
         project: "M9A",
@@ -221,7 +222,7 @@ AgentServer.start_up(sock_id)`,
       {
         name: "屑のFO",
         role: "UI开发者",
-        avatar: "屑",
+        avatar: avatars.SweetSmellFox,
         content:
           "跨平台支持非常完善，Windows、Linux、macOS 都能无缝运行。代码质量高，API 设计合理，扩展性强。这是我见过最专业的自动化框架之一！",
         project: "MFAA",
