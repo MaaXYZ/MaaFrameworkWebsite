@@ -234,7 +234,7 @@ AgentServer.start_up(sock_id)`,
     viewMore: "查看更多项目",
   },
   cta: {
-    title: "多说无益，即刻上手体验！",
+    title: "无需多言，即刻上手体验！",
     subtitle: "选择最适合您的方式开始使用 MaaFramework",
     cards: [
       {
