@@ -56,7 +56,7 @@ export const enContent: HomepageContent = {
       "From zero-code to fully customizable, choose the development approach that suits you",
     items: [
       {
-        id: "mpe",
+        id: "mpx",
         name: "MPE Zero-Code Dev",
         scenario: "Visual editing, complex JSON organization",
         advantages: [
@@ -106,6 +106,7 @@ export const enContent: HomepageContent = {
         },
         resources: [
           {
+            icon: "video",
             label: "Video Tutorial",
             link: "https://www.bilibili.com/video/BV1yr421E7MW",
           },
@@ -127,8 +128,7 @@ export const enContent: HomepageContent = {
         ],
         codeExample: {
           language: "python",
-          code: `# ========== JSON Config ==========
-# pipeline.json
+          code: `# ========== Pipeline ==========
 {
   "ClickConfirmIcon": {
     "next": ["CustomProcessModule"]
@@ -141,8 +141,7 @@ export const enContent: HomepageContent = {
   }
 }
 
-# ========== Python Code ==========
-# agent.py
+# ======= Custom (Agent) =======
 from maa.agent.agent_server import AgentServer
 
 # Register custom recognizer
@@ -162,8 +161,9 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
-            label: "Pipeline Protocol",
-            link: "/en/docs/3.1-PipelineProtocol",
+            icon: "book",
+            label: "Quick Start",
+            link: "/en/docs/1.1-QuickStarted",
           },
         ],
       },
@@ -195,8 +195,9 @@ AgentServer.start_up(sock_id)`,
         },
         resources: [
           {
-            label: "Integration Docs",
-            link: "/en/docs/2.1-Integration",
+            icon: "book",
+            label: "Quick Start",
+            link: "/en/docs/1.1-QuickStarted",
           },
         ],
       },

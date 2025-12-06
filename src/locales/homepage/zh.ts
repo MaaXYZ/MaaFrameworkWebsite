@@ -152,8 +152,8 @@ AgentServer.start_up(sock_id)`,
         resources: [
           {
             icon: "book",
-            label: "流水线协议",
-            link: "/docs/3.1-PipelineProtocol",
+            label: "快速开始",
+            link: "/docs/1.1-QuickStarted",
           },
         ],
       },
@@ -182,8 +182,8 @@ AgentServer.start_up(sock_id)`,
         resources: [
           {
             icon: "book",
-            label: "集成文档",
-            link: "/docs/2.1-Integration",
+            label: "快速开始",
+            link: "/docs/1.1-QuickStarted",
           },
         ],
       },
