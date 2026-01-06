@@ -59,12 +59,12 @@ export const zhContent: HomepageContent = {
         },
         resources: [
           {
-            label: "项目地址",
-            link: "https://mpe.codax.site/docs/",
+            label: "即刻开始",
+            link: "https://mpe.codax.site/stable/",
           },
           {
             icon: "book",
-            label: "文档",
+            label: "项目介绍",
             link: "https://mpe.codax.site/docs/",
           },
         ],

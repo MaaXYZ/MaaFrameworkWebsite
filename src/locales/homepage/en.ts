@@ -71,12 +71,12 @@ export const enContent: HomepageContent = {
         },
         resources: [
           {
-            label: "Project",
-            link: "https://mpe.codax.site/docs/",
+            label: "Start Now",
+            link: "https://mpe.codax.site/stable/",
           },
           {
             icon: "book",
-            label: "Documentation",
+            label: "Introduction",
             link: "https://mpe.codax.site/docs/",
           },
         ],
