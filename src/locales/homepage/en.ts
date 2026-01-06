@@ -44,7 +44,7 @@ export const enContent: HomepageContent = {
         description:
           "Support custom recognition and action modules through Agent Server",
         highlights: [
-          "AgentServer architecture",
+          "Multi-process architecture",
           "Custom recognition/actions",
           "Cross-language support",
         ],
@@ -58,7 +58,7 @@ export const enContent: HomepageContent = {
     items: [
       {
         id: "mpx",
-        name: "MPE Zero-Code Dev",
+        name: "Zero-Code Dev",
         scenario: "Visual editing, complex JSON organization",
         advantages: [
           "View and edit your logic with flowcharts",
@@ -126,7 +126,7 @@ export const enContent: HomepageContent = {
         scenario: "Medium complexity business logic",
         advantages: [
           "Retain JSON low-code advantages",
-          "Register custom task modules via AgentServer",
+          "Register custom task modules via independent process",
           "Seamless integration with project template",
         ],
         codeExample: {

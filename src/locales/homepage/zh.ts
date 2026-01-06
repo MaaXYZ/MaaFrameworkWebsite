@@ -35,8 +35,8 @@ export const zhContent: HomepageContent = {
       {
         icon: "wrench",
         title: "灵活扩展",
-        description: "通过 Agent Server 支持自定义识别和动作模块",
-        highlights: ["AgentServer 架构", "自定义识别/动作", "跨语言支持"],
+        description: "通过独立进程支持自定义识别和动作模块",
+        highlights: ["多进程架构", "自定义识别/动作", "跨语言支持"],
       },
     ],
   },
@@ -46,7 +46,7 @@ export const zhContent: HomepageContent = {
     items: [
       {
         id: "mpx",
-        name: "MPE 零代码开发",
+        name: "零代码开发",
         scenario: "可视化编辑、复杂 JSON 梳理",
         advantages: [
           "使用流程图查看与编辑你的思路",
@@ -114,7 +114,7 @@ export const zhContent: HomepageContent = {
         scenario: "中等复杂度业务逻辑",
         advantages: [
           "保留 JSON 低代码优势",
-          "通过 AgentServer 注册自定义任务模块",
+          "通过独立进程注册自定义任务模块",
           "无缝衔接项目模板",
         ],
         codeExample: {
