@@ -78,7 +78,7 @@ export const tools = [
     desc: "MaaFramework 用户日志分析工具，支持可视化任务执行流程和全文搜索",
     enDesc:
       "MaaFramework user log analysis tool, supporting visualization of task execution flow and full-text search",
-    logo: Logos.MaaFW,
+    logo: Logos.MAALogAnalyzer,
     stack: [Stack.TS],
     link: "https://github.com/Windsland52/MAALogAnalyzer",
   },
@@ -297,7 +297,7 @@ export const apps = [
     desc: "星塔旅人 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
       "A Stella Sora Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework!",
-    logo: Logos.MaaFW,
+    logo: Logos.StellaSoraAutoHelper,
     stack: [Stack.Pipeline],
     link: "https://github.com/SodaCodeSave/StellaSora-Auto-Helper",
   },
@@ -306,7 +306,7 @@ export const apps = [
     desc: "嘟嘟脸恶作剧 小助手。图像技术 + 模拟控制，自动捏脸，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
       "A DuDuL Assistant. Image technology + simulation control, auto face creation, freeing your hands! Powered by MaaFramework!",
-    logo: Logos.MaaFW,
+    logo: Logos.MaaDuDuL,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/kqcoxn/MaaDuDuL",
   },

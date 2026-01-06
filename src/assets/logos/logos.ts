@@ -5,7 +5,6 @@ const Logos = {
   MaaYYs: () => import("./maayys.png"),
   MPA: () => import("./mpa.png"),
   MaaYuan: () => import("./maayuan.png"),
-  MNMA: () => import("./mnma.png"),
   MaaGF2Exilium: () => import("./maagf2exilium.png"),
   MaaGumballs: () => import("./maagumballs.ico"),
   MaaHBR: () => import("./maahbr.png"),
@@ -22,6 +21,9 @@ const Logos = {
   MAAAE: () => import("./maaae.png"),
   MBCCTools: () => import("./mbcctools.jpg"),
   MaaEOV: () => import("./maaeov.png"),
+  MAALogAnalyzer: () => import("./mla.png"),
+  StellaSoraAutoHelper: () => import("./ssah.png"),
+  MaaDuDuL: () => import("./mddl.png"),
 };
 
 export default Logos;
