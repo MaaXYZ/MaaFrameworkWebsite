@@ -3,20 +3,20 @@ import { Stack } from "../types/Stack";
 
 export const uis = [
   {
-    name: "MFW-PyQt6",
-    desc: "基于PyQt6的通用GUI。由 MaaFramework 强力驱动！",
-    enDesc: "A generic GUI based on PyQt6. Powered by MaaFramework!",
-    logo: Logos.MFWPyQt6,
-    stack: [Stack.Python],
-    link: "https://github.com/overflow65537/MFW-PyQt6",
-  },
-  {
     name: "MFAAvalonia",
     desc: "基于 Avalonia 的 通用 GUI。由 MaaFramework 强力驱动！",
     enDesc: "A generic GUI based on Avalonia. Powered by MaaFramework!",
     logo: Logos.MFAAvalonia,
     stack: [Stack.CSharp],
     link: "https://github.com/SweetSmellFox/MFAAvalonia",
+  },
+  {
+    name: "MFW-CFA",
+    desc: "基于PySide6的通用GUI。由 MaaFramework 强力驱动！",
+    enDesc: "A generic GUI based on PySide6. Powered by MaaFramework!",
+    logo: Logos.MFWPyQt6,
+    stack: [Stack.Python],
+    link: "https://github.com/overflow65537/MFW-PyQt6",
   },
 ];
 
@@ -48,11 +48,39 @@ export const tools = [
   },
   {
     name: "MaaPipelineEditor",
-    desc: "基于 react-flow 的 MaaFramework Pipeline 工作流式可视化编辑器，使用“无代码”流程图构建您的 Pipeline！",
-    enDesc: `MaaFramework Pipeline workflow visual editor based on react-flow. Create your Pipeline using a "no code" flowchart!`,
+    desc: "可视化阅读与构建 Pipeline，功能完备，极致轻量跨平台，提供渐进式本地功能扩展，无缝兼容新旧项目",
+    enDesc:
+      "Visual reading and building of Pipeline, with complete features, extremely lightweight and cross-platform, providing progressive local feature extensions, seamlessly compatible with old and new projects",
     logo: Logos.MPE,
     stack: [Stack.TS],
     link: "https://github.com/kqcoxn/MaaPipelineEditor",
+  },
+  {
+    name: "MaaInspector",
+    desc: "基于 vue-flow 的可视化编辑器，集成节点预览,编辑,调试于一体的简单好用的 MaaFramework Pipeline 编辑器",
+    enDesc:
+      "A visual editor based on vue-flow, integrating node preview, editing, and debugging into one easy-to-use MaaFramework Pipeline editor",
+    logo: Logos.MaaFW,
+    stack: [Stack.TS],
+    link: "https://github.com/TanyaShue/MaaInspector",
+  },
+  {
+    name: "MaaMCP",
+    desc: "基于 MaaFramework 的 MCP 服务器 为 AI 助手提供 Android 设备和 Windows 桌面自动化能力",
+    enDesc:
+      "MCP server based on MaaFramework, providing Android device and Windows desktop automation capabilities for AI assistants",
+    logo: Logos.MaaFW,
+    stack: [Stack.Python],
+    link: "https://github.com/MaaXYZ/MaaMCP",
+  },
+  {
+    name: "MaaLogAnalyzer",
+    desc: "MaaFramework 用户日志分析工具，支持可视化任务执行流程和全文搜索",
+    enDesc:
+      "MaaFramework user log analysis tool, supporting visualization of task execution flow and full-text search",
+    logo: Logos.MaaFW,
+    stack: [Stack.TS],
+    link: "https://github.com/Windsland52/MAALogAnalyzer",
   },
 ];
 
@@ -70,16 +98,16 @@ export const apps = [
     name: "MSBA",
     desc: "尘白禁区 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "A brand new Onmyoji assistant powered by advanced architecture. Combining image recognition and simulated control, it automates daily tasks and frees your hands like a cyber-helper! Powered by MaaFramework!",
+      "A Snowbreak: Containment Zone Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework!",
     logo: Logos.MSBA,
-    stack: [Stack.Pipeline],
+    stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/overflow65537/MAA_SnowBreak",
   },
   {
     name: "MaaYYs",
     desc: "阴阳师小助手。图像技术 + 模拟控制，当赛博屯屯鼠，自动日常，解放你的双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "An assistant for Warship Girls R. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
+      "An Onmyoji assistant. Image technology + simulation control, as a cyber hamster, automate daily tasks, free your hands! Powered by MaaFramework.",
     logo: Logos.MaaYYs,
     stack: [Stack.Python, Stack.Qt6],
     link: "https://github.com/TanyaShue/MaaYYs",
@@ -104,7 +132,7 @@ export const apps = [
   },
   {
     name: "Maa-HBR",
-    desc: "代号鸢/如鸢 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    desc: "炽焰天穹/HBR 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
       "An assistant for Heaven Burns Red/HBR. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
     logo: Logos.MaaHBR,
@@ -137,15 +165,6 @@ export const apps = [
     logo: Logos.MaaFW,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/gitlihang/Maa_MHXY_MG",
-  },
-  {
-    name: "MNMA",
-    desc: "新月同行 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "A New Moon Accompanying Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
-    logo: Logos.MNMA,
-    stack: [Stack.Pipeline, Stack.Python],
-    link: "https://github.com/kqcoxn/MaaNewMoonAccompanying",
   },
   {
     name: "MaaTOT",
@@ -202,10 +221,10 @@ export const apps = [
     link: "https://github.com/miaojiuqing/Maa_bbb",
   },
   {
-    name: "MaaAutoNaruto",
-    desc: "火影忍者手游自动化工具。使用图像识别+模拟控制技术，解放双手！由 MaaFramework 强力驱动！",
+    name: "MAN",
+    desc: "火影忍者摸头村小助手。使用图像识别+模拟控制技术，解放双手！PC端与模拟器端同步支持，由 MaaFramework 强力驱动！",
     enDesc:
-      "Automation tool for NarutoMobile. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
+      "Naruto Mobile Assistant. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
     logo: Logos.MAN,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/duorua/narutomobile",
@@ -272,6 +291,24 @@ export const apps = [
     logo: Logos.MaaFW,
     stack: [Stack.TS],
     link: "https://github.com/26F-Studio/maa-star-resonance",
+  },
+  {
+    name: "StellaSora-Auto-Helper",
+    desc: "星塔旅人 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "A Stella Sora Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework!",
+    logo: Logos.MaaFW,
+    stack: [Stack.Pipeline],
+    link: "https://github.com/SodaCodeSave/StellaSora-Auto-Helper",
+  },
+  {
+    name: "MaaDuDuL",
+    desc: "嘟嘟脸恶作剧 小助手。图像技术 + 模拟控制，自动捏脸，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "A DuDuL Assistant. Image technology + simulation control, auto face creation, freeing your hands! Powered by MaaFramework!",
+    logo: Logos.MaaFW,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/kqcoxn/MaaDuDuL",
   },
 ];
 
