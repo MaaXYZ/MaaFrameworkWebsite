@@ -509,7 +509,6 @@ onMounted(() => {
   background: #0a0e1a;
   scroll-behavior: smooth;
   transition: background 0.3s ease;
-  contain: layout style paint;
 
   &.light-mode {
     background: #f8f9fa;
