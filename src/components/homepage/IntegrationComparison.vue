@@ -81,7 +81,7 @@
             <div class="panel-right">
               <div
                 v-if="item.codeExample.image"
-                class="image-example tilt-container"
+                class="image-example"
                 @mousemove="handleImageMouseMove"
                 @mouseleave="handleImageMouseLeave"
               >
@@ -89,7 +89,7 @@
               </div>
               <div
                 v-else
-                class="code-example tilt-container"
+                class="code-example"
                 @mousemove="handleCodeMouseMove"
                 @mouseleave="handleCodeMouseLeave"
               >
@@ -527,6 +527,11 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   background: rgba(10, 14, 26, 0.6);
   padding: 10px;
 
+  // 3D 变换属性
+  transition: transform 0.2s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+
   img {
     width: 100%;
     height: 100%;
@@ -542,12 +547,6 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   }
 }
 
-.tilt-container {
-  transition: transform 0.2s ease-out;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
 .code-example {
   background: rgba(10, 14, 26, 0.8);
   border: 1px solid rgba(71, 202, 255, 0.3);
@@ -558,6 +557,11 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
     inset 0 0 40px rgba(71, 202, 255, 0.05);
   position: relative;
   animation: codeGlow 5s ease-in-out infinite;
+
+  // 3D 变换属性
+  transition: transform 0.2s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
 
   .integration-comparison.light-mode & {
     background: rgba(10, 14, 26, 0.82);

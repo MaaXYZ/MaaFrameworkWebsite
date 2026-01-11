@@ -68,7 +68,7 @@ onMounted(() => {
   if (!carouselTrack.value) return;
 
   let scrollPosition = 0;
-  const scrollSpeed = 0.15;
+  const scrollSpeed = 0.5;
   let animationId: number;
   let lastTime = 0;
   const targetFPS = 30;
