@@ -68,12 +68,23 @@ onMounted(() => {
   if (!carouselTrack.value) return;
 
   let scrollPosition = 0;
-  const scrollSpeed = 0.2;
+  const scrollSpeed = 0.15;
   let animationId: number;
+  let lastTime = 0;
+  const targetFPS = 30;
+  const frameInterval = 1000 / targetFPS;
 
-  const scroll = () => {
+  const scroll = (currentTime: number) => {
     if (!carouselTrack.value) return;
 
+    const deltaTime = currentTime - lastTime;
+
+    if (deltaTime < frameInterval) {
+      animationId = requestAnimationFrame(scroll);
+      return;
+    }
+
+    lastTime = currentTime - (deltaTime % frameInterval);
     scrollPosition += scrollSpeed;
     const maxScroll = carouselTrack.value.scrollWidth / 2;
 

@@ -289,6 +289,8 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   flex-wrap: wrap;
   line-height: 1.5;
   text-align: center;
+  contain: layout style paint;
+  will-change: transform;
 
   &:hover {
     border-color: rgba(71, 202, 255, 0.5);

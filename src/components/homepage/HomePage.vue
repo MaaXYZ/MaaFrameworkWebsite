@@ -15,7 +15,13 @@
     >
       <div class="nav-content">
         <a href="/" class="nav-logo">
-          <img src="/maafw.png" alt="MaaFramework Logo" class="logo-icon" />
+          <img
+            src="/maafw.png"
+            alt="MaaFramework Logo"
+            class="logo-icon"
+            fetchpriority="high"
+            loading="eager"
+          />
           <span class="logo-text">MaaFramework</span>
         </a>
         <div class="nav-links">
@@ -200,16 +206,30 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from "vue";
+import {
+  computed,
+  ref,
+  onMounted,
+  onUnmounted,
+  defineAsyncComponent,
+} from "vue";
 import { zhContent, enContent } from "../../locales/homepage";
 import type { HomepageContent } from "../../locales/homepage";
 import HeroSection from "./HeroSection.vue";
-import FeatureShowcase from "./FeatureShowcase.vue";
-import IntegrationComparison from "./IntegrationComparison.vue";
-import Testimonials from "./Testimonials.vue";
-import CommunityProjects from "./CommunityProjects.vue";
-import CTASection from "./CTASection.vue";
-import FooterSection from "./FooterSection.vue";
+
+// 懒加载非关键组件
+const FeatureShowcase = defineAsyncComponent(
+  () => import("./FeatureShowcase.vue")
+);
+const IntegrationComparison = defineAsyncComponent(
+  () => import("./IntegrationComparison.vue")
+);
+const Testimonials = defineAsyncComponent(() => import("./Testimonials.vue"));
+const CommunityProjects = defineAsyncComponent(
+  () => import("./CommunityProjects.vue")
+);
+const CTASection = defineAsyncComponent(() => import("./CTASection.vue"));
+const FooterSection = defineAsyncComponent(() => import("./FooterSection.vue"));
 
 const props = defineProps<{
   lang: "zh" | "en";
@@ -233,8 +253,14 @@ const getInitialTheme = () => {
 
 const isLightMode = ref(getInitialTheme());
 
+// 滚动节流
+let scrollTimer: number | null = null;
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50;
+  if (scrollTimer) return;
+  scrollTimer = window.setTimeout(() => {
+    isScrolled.value = window.scrollY > 50;
+    scrollTimer = null;
+  }, 16);
 };
 
 const toggleTheme = () => {
@@ -292,14 +318,35 @@ onMounted(() => {
 
   window.addEventListener("scroll", handleScroll);
 
-  if (!particlesCanvas.value) return;
+  // 检测设备性能
+  const isLowEndDevice = () => {
+    // 检测 CPU 核心数
+    const cpuCores = navigator.hardwareConcurrency || 2;
+    // 检测内存 (GB)
+    const memory = (navigator as any).deviceMemory || 4;
+    // 移动设备
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
+    return cpuCores < 4 || memory < 4 || isMobile;
+  };
+
+  // 低端设备跳过 Canvas 动画
+  if (isLowEndDevice() || !particlesCanvas.value) {
+    return;
+  }
 
   const canvas = particlesCanvas.value;
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d", {
+    alpha: true,
+    desynchronized: true,
+  });
   if (!ctx) return;
 
   canvas.width = window.innerWidth;
-  canvas.height = document.documentElement.scrollHeight;
+  canvas.height = window.innerHeight;
 
   interface Particle {
     x: number;
@@ -311,7 +358,7 @@ onMounted(() => {
   }
 
   const particles: Particle[] = [];
-  const particleCount = 40;
+  const particleCount = 20;
 
   for (let i = 0; i < particleCount; i++) {
     particles.push({
@@ -326,69 +373,119 @@ onMounted(() => {
 
   let mouseX = 0;
   let mouseY = 0;
+  let isMouseActive = false;
 
   const handleMouseMove = (e: MouseEvent) => {
     mouseX = e.clientX;
     mouseY = e.clientY + window.scrollY;
+    isMouseActive = true;
   };
 
   window.addEventListener("mousemove", handleMouseMove);
 
-  const animate = () => {
+  // 降低帧率以优化性能
+  let lastTime = 0;
+  const targetFPS = 24;
+  const frameInterval = 1000 / targetFPS;
+
+  const animate = (currentTime: number) => {
+    const deltaTime = currentTime - lastTime;
+
+    if (deltaTime < frameInterval) {
+      requestAnimationFrame(animate);
+      return;
+    }
+
+    lastTime = currentTime - (deltaTime % frameInterval);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach((particle) => {
+    // 批量更新粒子位置
+    for (let i = 0; i < particles.length; i++) {
+      const particle = particles[i];
       particle.x += particle.vx;
       particle.y += particle.vy;
 
       if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
       if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
-      const dx = mouseX - particle.x;
-      const dy = mouseY - particle.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      // 只在鼠标活跃时计算交互
+      if (isMouseActive) {
+        const dx = mouseX - particle.x;
+        const dy = mouseY - particle.y;
+        const distSq = dx * dx + dy * dy;
 
-      if (distance < 100) {
-        const force = (100 - distance) / 100;
-        particle.x -= dx * force * 0.01;
-        particle.y -= dy * force * 0.01;
+        if (distSq < 10000) {
+          // 100*100
+          const force = (10000 - distSq) / 10000;
+          particle.x -= dx * force * 0.005;
+          particle.y -= dy * force * 0.005;
+        }
       }
+    }
 
+    // 批量绘制粒子
+    const particleColor = isLightMode.value
+      ? "rgba(37, 99, 235, "
+      : "rgba(71, 202, 255, ";
+
+    for (let i = 0; i < particles.length; i++) {
+      const particle = particles[i];
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      const particleColor = isLightMode.value
-        ? `rgba(37, 99, 235, ${particle.opacity})`
-        : `rgba(71, 202, 255, ${particle.opacity})`;
-      ctx.fillStyle = particleColor;
+      ctx.fillStyle = particleColor + particle.opacity + ")";
       ctx.fill();
+    }
 
-      particles.forEach((otherParticle) => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    // 简化连线绘制
+    if (!isMouseActive) {
+      const lineColor = isLightMode.value
+        ? "rgba(37, 99, 235, "
+        : "rgba(71, 202, 255, ";
 
-        if (distance < 80) {
-          ctx.beginPath();
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(otherParticle.x, otherParticle.y);
-          const lineColor = isLightMode.value
-            ? `rgba(37, 99, 235, ${0.05 * (1 - distance / 80)})`
-            : `rgba(71, 202, 255, ${0.05 * (1 - distance / 80)})`;
-          ctx.strokeStyle = lineColor;
-          ctx.lineWidth = 0.3;
-          ctx.stroke();
+      for (let i = 0; i < particles.length; i++) {
+        const particle = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const other = particles[j];
+          const dx = particle.x - other.x;
+          const dy = particle.y - other.y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < 6400) {
+            // 80*80
+            const dist = Math.sqrt(distSq);
+            ctx.beginPath();
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.strokeStyle = lineColor + 0.05 * (1 - dist / 80) + ")";
+            ctx.lineWidth = 0.3;
+            ctx.stroke();
+          }
         }
-      });
-    });
+      }
+    }
 
     requestAnimationFrame(animate);
   };
 
-  animate();
+  animate(0);
 
+  // 鼠标非活跃检测
+  let mouseTimeout: number;
+  window.addEventListener("mousemove", () => {
+    clearTimeout(mouseTimeout);
+    mouseTimeout = window.setTimeout(() => {
+      isMouseActive = false;
+    }, 1000);
+  });
+
+  // 防抖优化resize
+  let resizeTimer: number | null = null;
   const handleResize = () => {
-    canvas.width = window.innerWidth;
-    canvas.height = document.documentElement.scrollHeight;
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }, 250);
   };
 
   window.addEventListener("resize", handleResize);
@@ -398,6 +495,7 @@ onMounted(() => {
     window.removeEventListener("storage", handleStorageChange);
     window.removeEventListener("mousemove", handleMouseMove);
     window.removeEventListener("resize", handleResize);
+    clearTimeout(mouseTimeout);
   });
 });
 </script>
@@ -411,6 +509,7 @@ onMounted(() => {
   background: #0a0e1a;
   scroll-behavior: smooth;
   transition: background 0.3s ease;
+  contain: layout style paint;
 
   &.light-mode {
     background: #f8f9fa;
@@ -449,6 +548,7 @@ onMounted(() => {
     opacity: 0.4;
     animation: gridMove 30s linear infinite;
     transition: background-image 0.3s ease, opacity 0.3s ease;
+    will-change: background-position;
   }
 
   .glow-effect {
@@ -456,6 +556,7 @@ onMounted(() => {
     filter: blur(120px);
     animation: glowFloat 15s ease-in-out infinite;
     transition: background 0.3s ease;
+    will-change: transform, opacity;
 
     &.glow-1 {
       top: -20%;

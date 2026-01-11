@@ -9,6 +9,18 @@ export default withMermaid({
   description: "基于图像识别的自动化黑盒测试框架",
   lang: "zh-cn",
   head: [
+    // 关键资源预加载
+    ["link", { rel: "preload", href: `/maafw.png`, as: "image" }],
+    ["link", { rel: "dns-prefetch", href: "https://fonts.googleapis.com" }],
+    [
+      "link",
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+        crossorigin: "",
+      },
+    ],
+
     ["link", { rel: "icon", href: `/maafw.ico` }],
     ["meta", { name: "author", content: "MaaXYZ" }],
     ["meta", { name: "theme-color", content: "#1b73e8" }],
@@ -24,6 +36,42 @@ export default withMermaid({
   rewrites: sidebars.rewrites,
   sitemap: { hostname: "https://maafw.xyz" },
   locales,
+  // Vite 构建优化配置
+  vite: {
+    build: {
+      // 启用 CSS 代码分割
+      cssCodeSplit: true,
+      // 启用 Rollup 构建优化
+      rollupOptions: {
+        output: {
+          // 手动代码分割
+          manualChunks: {
+            "vue-runtime": ["vue"],
+            "homepage-components": [
+              "./src/components/homepage/FeatureShowcase.vue",
+              "./src/components/homepage/IntegrationComparison.vue",
+              "./src/components/homepage/Testimonials.vue",
+              "./src/components/homepage/CommunityProjects.vue",
+              "./src/components/homepage/CTASection.vue",
+              "./src/components/homepage/FooterSection.vue",
+            ],
+          },
+        },
+      },
+      // 压缩优化
+      minify: "terser",
+      terserOptions: {
+        compress: {
+          drop_console: true, // 生产环境移除 console
+          drop_debugger: true,
+        },
+      },
+    },
+    // 优化依赖预构建
+    optimizeDeps: {
+      include: ["vue"],
+    },
+  },
   transformHead({ page, siteConfig }) {
     const hostname = "https://maafw.xyz";
     const siteBase = (siteConfig && (siteConfig as any).site?.base) || "/";

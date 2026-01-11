@@ -98,6 +98,8 @@ defineProps<{
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: fadeInUp 0.6s ease-out backwards;
   z-index: 1;
+  contain: layout style paint;
+  will-change: transform;
 
   &::before {
     content: "";
@@ -124,8 +126,8 @@ defineProps<{
   }
 
   &:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: 0 24px 64px rgba(71, 202, 255, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 48px rgba(71, 202, 255, 0.25);
     border-color: rgba(71, 202, 255, 0.5);
 
     &::before {
@@ -133,7 +135,7 @@ defineProps<{
     }
 
     .feature-icon {
-      transform: scale(1.15) rotate(8deg);
+      transform: scale(1.1) rotate(5deg);
 
       .icon-emoji {
         animation: iconPulse 0.8s ease infinite;

@@ -361,7 +361,13 @@
             <div class="ring ring-3"></div>
           </div>
           <div class="logo-display">
-            <img src="/maafw.png" alt="MaaFramework Logo" class="main-logo" />
+            <img
+              src="/maafw.png"
+              alt="MaaFramework Logo"
+              class="main-logo"
+              fetchpriority="high"
+              loading="eager"
+            />
           </div>
         </div>
       </div>
@@ -570,6 +576,7 @@ const scrollToNext = () => {
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  will-change: transform;
 
   svg {
     width: 100%;
@@ -667,20 +674,12 @@ const scrollToNext = () => {
 @keyframes langFloat {
   0%,
   100% {
-    transform: translateY(0) translateX(0) rotate(0deg);
+    transform: translateY(0) translateX(0);
     opacity: 0.85;
   }
-  25% {
-    transform: translateY(-25px) translateX(10px) rotate(5deg);
-    opacity: 1;
-  }
   50% {
-    transform: translateY(-15px) translateX(-8px) rotate(-3deg);
+    transform: translateY(-20px) translateX(0);
     opacity: 0.75;
-  }
-  75% {
-    transform: translateY(-30px) translateX(5px) rotate(4deg);
-    opacity: 0.9;
   }
 }
 
@@ -702,6 +701,7 @@ const scrollToNext = () => {
   border: 2px solid;
   transform: translate(-50%, -50%);
   animation: ringPulse 4s ease-in-out infinite;
+  will-change: transform, opacity;
 
   &.ring-1 {
     width: 280px;
@@ -746,6 +746,7 @@ const scrollToNext = () => {
   animation: logoFloat 6s ease-in-out infinite;
   pointer-events: none;
   user-select: none;
+  will-change: transform;
 
   .main-logo {
     width: 100%;
@@ -756,6 +757,7 @@ const scrollToNext = () => {
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
+    will-change: filter;
   }
 }
 
