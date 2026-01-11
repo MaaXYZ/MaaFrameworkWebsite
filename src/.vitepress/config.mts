@@ -41,35 +41,14 @@ export default withMermaid({
     build: {
       // 启用 CSS 代码分割
       cssCodeSplit: true,
-      // 启用 Rollup 构建优化
-      rollupOptions: {
-        output: {
-          // 手动代码分割
-          manualChunks: {
-            "vue-runtime": ["vue"],
-            "homepage-components": [
-              "./src/components/homepage/FeatureShowcase.vue",
-              "./src/components/homepage/IntegrationComparison.vue",
-              "./src/components/homepage/Testimonials.vue",
-              "./src/components/homepage/CommunityProjects.vue",
-              "./src/components/homepage/CTASection.vue",
-              "./src/components/homepage/FooterSection.vue",
-            ],
-          },
-        },
-      },
       // 压缩优化
       minify: "terser",
       terserOptions: {
         compress: {
-          drop_console: true, // 生产环境移除 console
+          drop_console: true,
           drop_debugger: true,
         },
       },
-    },
-    // 优化依赖预构建
-    optimizeDeps: {
-      include: ["vue"],
     },
   },
   transformHead({ page, siteConfig }) {
