@@ -6,7 +6,7 @@ export const uis = [
     name: "MFAAvalonia",
     desc: "基于 Avalonia 的 通用 GUI。由 MaaFramework 强力驱动！",
     enDesc: "A generic GUI based on Avalonia. Powered by MaaFramework!",
-    logo: Logos.MFAAvalonia,
+    logo: Logos.MFA,
     stack: [Stack.CSharp],
     link: "https://github.com/SweetSmellFox/MFAAvalonia",
   },
@@ -38,13 +38,13 @@ export const tools = [
     link: "https://github.com/neko-para/maa-support-extension",
   },
   {
-    name: "MFATools",
-    desc: "基于WPF框架开发的工具界面，旨在提供类似于截图工具的功能",
+    name: "MFAToolsPlus",
+    desc: "基于 Avalonia 框架开发的跨平台开发工具箱，提供便捷的数据获取和模拟测试方法",
     enDesc:
-      "The tool interface is developed based on the WPF framework, aiming to provide functions similar to the screenshot tool.",
-    logo: Logos.MaaFW,
+      "A cross-platform development toolbox built on the Avalonia framework, providing convenient data acquisition and simulation testing methods.",
+    logo: Logos.MFA,
     stack: [Stack.CSharp],
-    link: "https://github.com/SweetSmellFox/MFATools",
+    link: "https://github.com/SweetSmellFox/MFAToolsPlus",
   },
   {
     name: "MaaPipelineEditor",
