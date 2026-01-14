@@ -243,7 +243,15 @@ const isScrolled = ref(false);
 const particlesCanvas = ref<HTMLCanvasElement | null>(null);
 
 // 初始化主题
-const isLightMode = ref(true);
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem("vitepress-theme-appearance");
+  if (savedTheme === "dark") return false;
+  if (savedTheme === "light") return true;
+  const hasLightClass = !document.documentElement.classList.contains("dark");
+  return hasLightClass || savedTheme === null;
+};
+
+const isLightMode = ref(getInitialTheme());
 
 // 滚动节流
 let scrollTimer: number | null = null;
