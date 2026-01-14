@@ -24,6 +24,7 @@ const Logos = {
   MAALogAnalyzer: () => import("./mla.png"),
   StellaSoraAutoHelper: () => import("./ssah.png"),
   MaaDuDuL: () => import("./mddl.png"),
+  MaaLYSK: () => import("./maalysk.webp"),
 };
 
 export default Logos;

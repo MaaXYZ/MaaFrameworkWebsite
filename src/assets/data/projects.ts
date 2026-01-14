@@ -310,6 +310,15 @@ export const apps = [
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/kqcoxn/MaaDuDuL",
   },
+  {
+    name: "MaaLYSK",
+    desc: "恋与深空 小助手。使用图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "Assistant for Love and Deepspace. Image technology + simulation control, automatic pinch face, free hands! Powerfully driven by MaaFramework!",
+    logo: Logos.MaaLYSK,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/Witty36/MaaLYSK",
+  },
 ];
 
 export const projects = [...uis, ...tools, ...apps];
