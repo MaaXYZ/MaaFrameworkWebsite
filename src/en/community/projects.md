@@ -7,7 +7,6 @@ aside: false
 ---
 
 <script setup>
-  import Project from "../../components/Project.vue"
   import { uis, tools, apps } from "../../assets/data/projects";
 </script>
 

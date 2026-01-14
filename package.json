@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "vitepress dev src",
     "build": "vitepress build src",
-    "preview": "vitepress preview src"
+    "preview": "vitepress build src && vitepress preview src"
   },
   "dependencies": {
     "shiki": "^3.18.0"
