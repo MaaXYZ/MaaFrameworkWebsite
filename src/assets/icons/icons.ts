@@ -4,6 +4,9 @@ import Share from "./share.png";
 import Qt from "./qt.png";
 import TS from "./typescript.png";
 import CSharp from "./csharp.png";
+import Rust from "./rust.png";
+import Vue from "./vue.png";
+import Golang from "./golang.png";
 
 const icons = {
   Pipeline,
@@ -12,6 +15,9 @@ const icons = {
   Qt,
   TS,
   CSharp,
+  Rust,
+  Vue,
+  Golang,
 };
 
 export default icons;

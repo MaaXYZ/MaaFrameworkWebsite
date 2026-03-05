@@ -25,6 +25,11 @@ const Logos = {
   StellaSoraAutoHelper: () => import("./ssah.png"),
   MaaDuDuL: () => import("./mddl.png"),
   MaaLYSK: () => import("./maalysk.webp"),
+  MWU: () => import("./mwu.jpg"),
+  MaaLogs: () => import("./MaaLogs.png"),
+  MRA: () => import("./mra.ico"),
+  MaaEnd: () => import("./MaaEnd.png"),
+  MaaGFNeuralCloud: () => import("./MaaGFNeuralCloud.png"),
 };
 
 export default Logos;

@@ -27,6 +27,21 @@ const badges = {
     label: Stack.TS,
     bgColor: "#8b36db",
   },
+  [Stack.Rust]: {
+    icon: icons.Rust,
+    label: Stack.Rust,
+    bgColor: "#CE412B",
+  },
+  [Stack.Vue]: {
+    icon: icons.Vue,
+    label: Stack.Vue,
+    bgColor: "#42B883",
+  },
+  [Stack.Go]: {
+    icon: icons.Golang,
+    label: Stack.Go,
+    bgColor: "#00ADD8",
+  },
 };
 
 export default badges;

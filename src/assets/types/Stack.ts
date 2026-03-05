@@ -4,4 +4,7 @@ export enum Stack {
   Qt6 = "Qt6",
   CSharp = "C#",
   TS = "Typescript",
+  Rust = "Rust",
+  Vue = "Vue",
+  Go = "Golang",
 }

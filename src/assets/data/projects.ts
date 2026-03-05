@@ -12,11 +12,29 @@ export const uis = [
   },
   {
     name: "MFW-CFA",
-    desc: "基于PySide6的通用GUI。由 MaaFramework 强力驱动！",
+    desc: "基于 PySide6 的通用 GUI。由 MaaFramework 强力驱动！",
     enDesc: "A generic GUI based on PySide6. Powered by MaaFramework!",
     logo: Logos.MFWPyQt6,
     stack: [Stack.Python],
     link: "https://github.com/overflow65537/MFW-PyQt6",
+  },
+  {
+    name: "MXU",
+    desc: "基于 Tauri 2 + React 的轻量级跨平台通用 GUI。由 MaaFramework 强力驱动！",
+    enDesc:
+      "A lightweight cross-platform generic GUI based on Tauri 2 + React. Powered by MaaFramework!",
+    logo: Logos.MaaFW,
+    stack: [Stack.TS, Stack.Rust],
+    link: "https://github.com/MistEO/MXU",
+  },
+  {
+    name: "MWU",
+    desc: "基于 Vue + FastAPI 的轻量级跨平台通用 WebUI。由 MaaFramework 强力驱动！",
+    enDesc:
+      "A lightweight cross-platform generic WebUI based on Vue + FastAPI. Powered by MaaFramework!",
+    logo: Logos.MWU,
+    stack: [Stack.Vue, Stack.Python],
+    link: "https://github.com/ravizhan/MWU",
   },
 ];
 
@@ -52,7 +70,7 @@ export const tools = [
     enDesc:
       "Visual reading and building of Pipeline, with complete features, extremely lightweight and cross-platform, providing progressive local feature extensions, seamlessly compatible with old and new projects",
     logo: Logos.MPE,
-    stack: [Stack.TS],
+    stack: [Stack.TS, Stack.Go],
     link: "https://github.com/kqcoxn/MaaPipelineEditor",
   },
   {
@@ -81,6 +99,15 @@ export const tools = [
     logo: Logos.MAALogAnalyzer,
     stack: [Stack.TS],
     link: "https://github.com/Windsland52/MAALogAnalyzer",
+  },
+  {
+    name: "MaaLogs",
+    desc: "MaaFramework 日志分析工具，支持多项目日志解析、可视化任务流程和 AI 智能分析",
+    enDesc:
+      "MaaFramework log analysis tool that supports multi-project log parsing, visual task processes, and AI intelligent analysis",
+    logo: Logos.MaaLogs,
+    stack: [Stack.TS],
+    link: "https://github.com/amiliyaai/MaaLogs",
   },
 ];
 
@@ -120,6 +147,15 @@ export const apps = [
     logo: Logos.MPA,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/overflow65537/MAA_Punish",
+  },
+  {
+    name: "MRA",
+    desc: "战舰少女R 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "A Warship Girls R Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
+    logo: Logos.MRA,
+    stack: [Stack.Pipeline],
+    link: "https://github.com/Saratoga-Official/MRA",
   },
   {
     name: "MaaYuan",
@@ -318,6 +354,24 @@ export const apps = [
     logo: Logos.MaaLYSK,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/Witty36/MaaLYSK",
+  },
+  {
+    name: "MaaEnd",
+    desc: "终末地小助手。由 MaaFramework 与 MXU 驱动，绝赞开发中！",
+    enDesc:
+      "An Endfield assistant powered by MaaFramework and MXU, still under active development.",
+    logo: Logos.MaaEnd,
+    stack: [Stack.Pipeline, Stack.Go],
+    link: "https://github.com/MaaEnd/MaaEnd",
+  },
+  {
+    name: "MaaGFNeuralCloud",
+    desc: "少女前线：云图计划自动化助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "An assistant tool for Girls' Frontline: Project Neural Cloud using MaaFramework.",
+    logo: Logos.MaaGFNeuralCloud,
+    stack: [Stack.Pipeline],
+    link: "https://github.com/PinkMMF/MaaGFNeuralCloud",
   },
 ];
 
