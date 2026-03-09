@@ -47,9 +47,12 @@ jobs:
         with:
           path: src/.vitepress/dist
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: src/.vitepress/dist
-          publish_branch: gh-pages
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+          REMOTE_USER: ${{ secrets.DEPLOY_USERNAME }}
+          TARGET: ${{ secrets.DEPLOY_PATH }}
+          SOURCE: src/.vitepress/dist
+          # ARGS: -avzr --delete
