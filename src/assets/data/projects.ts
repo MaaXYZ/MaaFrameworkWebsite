@@ -93,9 +93,9 @@ export const tools = [
   },
   {
     name: "MaaLogAnalyzer",
-    desc: "MaaFramework 用户日志分析工具，支持可视化任务执行流程和全文搜索",
+    desc: "MaaFramework 日志分析工具，提供用户友好的多视角可视化任务执行流程分析",
     enDesc:
-      "MaaFramework user log analysis tool, supporting visualization of task execution flow and full-text search",
+      "MaaFramework log analysis tool, providing user-friendly, multi-perspective visual analysis of task execution processes.",
     logo: Logos.MAALogAnalyzer,
     stack: [Stack.TS],
     link: "https://github.com/Windsland52/MAALogAnalyzer",
@@ -108,6 +108,32 @@ export const tools = [
     logo: Logos.MaaLogs,
     stack: [Stack.TS],
     link: "https://github.com/amiliyaai/MaaLogs",
+  },
+  {
+    name: "prettier-plugin-maafw-sort",
+    desc: "Prettier 插件，按照生命周期顺序自动排序 pipeline 字段",
+    enDesc:
+      "Prettier plugin that sorts pipeline keys according to lifecycle order.",
+    logo: Logos.MaaFW,
+    stack: [Stack.TS],
+    link: "https://github.com/neko-para/maa-support-extension/tree/main/pkgs/prettier-plugin-maafw-sort",
+  },
+  {
+    name: "Auto Green Background",
+    desc: "自动涂绿幕工具（Python/OpenCV，适用于TemplateMatch），支持多算法分割、固定画布输出、实时预览与便携版开箱即用打包。",
+    enDesc:
+      "An automatic green screen painting tool (Python/OpenCV, for TemplateMatch), supporting multi-algorithm segmentation, fixed canvas output, real-time preview, and a portable, out-of-the-box package.",
+    logo: Logos.MaaFW,
+    stack: [Stack.Python, Stack.Rust],
+    link: "https://github.com/Joe-Bao/Auto-Green-Background",
+  },
+  {
+    name: "maafw-cli",
+    desc: "用于AI Agent的 MaaFramework 命令行界面。",
+    enDesc: "A MaaFramework command-line interface (CLI) for AI Agents.",
+    logo: Logos.MaaFwCLI,
+    stack: [Stack.Python],
+    link: "https://github.com/otowa-kotori/maafw-cli",
   },
 ];
 
@@ -258,9 +284,9 @@ export const apps = [
   },
   {
     name: "MAN",
-    desc: "火影忍者摸头村小助手。使用图像识别+模拟控制技术，解放双手！PC端与模拟器端同步支持，由 MaaFramework 强力驱动！",
+    desc: "火影忍者手游小助手。使用图像识别+模拟控制技术，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "Naruto Mobile Assistant. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
+      "Naruto Mobile Mini Assistant. Uses image recognition and simulation control technology to free your hands! Powered by MaaFramework!",
     logo: Logos.MAN,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/duorua/narutomobile",
@@ -341,7 +367,7 @@ export const apps = [
     name: "MaaDuDuL",
     desc: "嘟嘟脸恶作剧 小助手。图像技术 + 模拟控制，自动捏脸，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "A DuDuL Assistant. Image technology + simulation control, auto face creation, freeing your hands! Powered by MaaFramework!",
+      "Assistant for Trickcal. Image technology + simulation control, automatic pinch face, free hands! Powerfully driven by MaaFramework!",
     logo: Logos.MaaDuDuL,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/kqcoxn/MaaDuDuL",
@@ -372,6 +398,15 @@ export const apps = [
     logo: Logos.MaaGFNeuralCloud,
     stack: [Stack.Pipeline],
     link: "https://github.com/PinkMMF/MaaGFNeuralCloud",
+  },
+  {
+    name: "MaaFgo",
+    desc: "FGO 小助手。使用图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "FGO Assistant. Featuring image recognition and simulated control for a truly hands-free experience! Powered by MaaFramework.",
+    logo: Logos.MaaFgo,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/xlxyvergil/MaaFgo",
   },
 ];
 

@@ -30,6 +30,8 @@ const Logos = {
   MRA: () => import("./mra.ico"),
   MaaEnd: () => import("./MaaEnd.png"),
   MaaGFNeuralCloud: () => import("./MaaGFNeuralCloud.png"),
+  MaaFgo: () => import("./maafgo.png"),
+  MaaFwCLI: () => import("./maafw-cli.png"),
 };
 
 export default Logos;
