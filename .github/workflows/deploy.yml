@@ -33,19 +33,11 @@ jobs:
           node-version: 22
           cache: yarn
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
       - name: Install dependencies
         run: yarn install
 
       - name: Build with VitePress
         run: yarn build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: src/.vitepress/dist
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
