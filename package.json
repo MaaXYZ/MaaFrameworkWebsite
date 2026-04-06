@@ -11,8 +11,8 @@
   },
   "scripts": {
     "dev": "vitepress dev src",
-    "build": "vitepress build src",
-    "preview": "vitepress build src && vitepress preview src"
+    "build": "vitepress build src && node scripts/post-build.js",
+    "preview": "vitepress build src && node scripts/post-build.js && vitepress preview src"
   },
   "dependencies": {
     "shiki": "^3.18.0"

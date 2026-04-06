@@ -8,8 +8,11 @@ export function genSidebar(args: VitePressSidebarOptions = {}) {
   });
 }
 
-function processRewritesRecursion(routes, targetKV) {
-  const rewrites = {};
+function processRewritesRecursion(
+  routes: Array<any>,
+  targetKV: Record<string, string>,
+) {
+  const rewrites: Record<string, string> = {};
   routes.forEach((route) => {
     let link = route.link as string;
     let text = route.text as string;
@@ -31,7 +34,7 @@ function processRewritesRecursion(routes, targetKV) {
   return rewrites;
 }
 
-function processRoutes(routes) {
+function processRoutes(routes: Array<any>) {
   routes.forEach((route) => {
     if (route["items"]) {
       processRoutes(route["items"]);
@@ -47,7 +50,7 @@ function processRoutes(routes) {
 }
 
 function getFileNameKV(routes: Array<any>) {
-  const kv = {};
+  const kv: Record<string, string> = {};
   routes.forEach((route) => {
     if (route.items) {
       Object.assign(kv, getFileNameKV(route.items));
@@ -66,7 +69,7 @@ function getLocaleSidebars() {
 
   // 生成国际化路径重写
   const rewriteList = [zn_routes];
-  const rewrites = {};
+  const rewrites: Record<string, string> = {};
   const kv = getFileNameKV(en_routes);
   rewriteList.forEach((item) => {
     const rw = processRewritesRecursion(item, kv);

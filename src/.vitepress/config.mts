@@ -78,8 +78,8 @@ export default withMermaid({
     const enPath = isEn
       ? routePath
       : routePath.startsWith("/en/")
-      ? routePath
-      : "/en" + routePath;
+        ? routePath
+        : "/en" + routePath;
     const zhUrl = hostname + baseNoSlash + zhPath;
     const enUrl = hostname + baseNoSlash + enPath;
 
