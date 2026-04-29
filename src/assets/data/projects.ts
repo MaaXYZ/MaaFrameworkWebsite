@@ -408,6 +408,15 @@ export const apps = [
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/xlxyvergil/MaaFgo",
   },
+  {
+    name: "MaaNTE",
+    desc: "异环小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "NTE Assistant. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
+    logo: Logos.MaaNTE,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/1bananachicken/MaaNTE",
+  },
 ];
 
 export const projects = [...uis, ...tools, ...apps];

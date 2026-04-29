@@ -32,6 +32,7 @@ const Logos = {
   MaaGFNeuralCloud: () => import("./MaaGFNeuralCloud.png"),
   MaaFgo: () => import("./maafgo.png"),
   MaaFwCLI: () => import("./maafw-cli.png"),
+  MaaNTE: () => import("./MaaNTE.png"),
 };
 
 export default Logos;
