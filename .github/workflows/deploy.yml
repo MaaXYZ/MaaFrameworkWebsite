@@ -26,6 +26,9 @@ jobs:
           cd src
           cp -r ../raw/docs/zh_cn/* docs
           cp -r ../raw/docs/en_us/* en/docs
+          mkdir -p public/docs
+          rm -rf public/docs/static
+          cp -r ../raw/docs/static public/docs
 
       - name: Setup Node
         uses: actions/setup-node@v4
