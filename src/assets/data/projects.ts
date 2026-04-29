@@ -135,6 +135,15 @@ export const tools = [
     stack: [Stack.Python],
     link: "https://github.com/otowa-kotori/maafw-cli",
   },
+  {
+    name: "maaframework-skills",
+    desc: "面向 AI 辅助开发的 MaaFramework 结构化参考文档。",
+    enDesc:
+      "Claude Code skill for MaaFramework, providing structured reference docs for AI-assisted pipeline development.",
+    logo: Logos.MaaFW,
+    stack: [Stack.Pipeline],
+    link: "https://github.com/Kutius/maaframework-skills",
+  },
 ];
 
 export const apps = [
