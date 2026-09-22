@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section" :class="{ 'light-mode': isLightMode }">
+  <section ref="section" :data-motion="motionActive ? 'on' : 'off'" class="hero-section" :class="{ 'light-mode': isLightMode }">
     <div class="hero-content">
       <div class="hero-left">
         <h1 class="hero-title">
@@ -220,6 +220,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import { useSectionMotion } from "./composables/motion";
 import type { HeroContent } from "../../locales/homepage/types";
 
 defineProps<{
@@ -228,12 +230,15 @@ defineProps<{
   isLightMode: boolean;
 }>();
 
+const section = ref<HTMLElement | null>(null);
+const motionActive = useSectionMotion(section);
+
 const scrollToNext = () => {
   const nextSection = document.querySelector(
     ".feature-showcase"
   ) as HTMLElement;
   if (nextSection) {
-    nextSection.scrollIntoView({ behavior: "smooth" });
+    nextSection.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }
 };
 </script>
@@ -281,7 +286,6 @@ const scrollToNext = () => {
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-shadow: 0 0 40px rgba(189, 52, 254, 0.3);
-      animation: titleShine 3s ease-in-out infinite;
     }
   }
 
@@ -312,17 +316,6 @@ const scrollToNext = () => {
   }
 }
 
-@keyframes titleShine {
-
-  0%,
-  100% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(1.2);
-  }
-}
 
 .hero-buttons {
   display: flex;
@@ -348,17 +341,16 @@ const scrollToNext = () => {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0;
-    height: 0;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s;
   }
 
   &:hover::before {
-    width: 300px;
-    height: 300px;
+    transform: translate(-50%, -50%) scale(1);
   }
 
   &-primary {
@@ -412,13 +404,11 @@ const scrollToNext = () => {
   position: absolute;
   width: 50px;
   height: 50px;
-  animation: langFloat 10s ease-in-out infinite;
   opacity: 0.85;
   transition: all 0.3s ease;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  will-change: transform;
 
   svg {
     width: 100%;
@@ -513,19 +503,6 @@ const scrollToNext = () => {
   }
 }
 
-@keyframes langFloat {
-
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.85;
-  }
-
-  50% {
-    transform: translateY(-20px) translateX(0);
-    opacity: 0.75;
-  }
-}
 
 .energy-rings {
   position: absolute;
@@ -545,7 +522,6 @@ const scrollToNext = () => {
   border: 2px solid;
   transform: translate(-50%, -50%);
   animation: ringPulse 4s ease-in-out infinite;
-  will-change: transform, opacity;
 
   &.ring-1 {
     width: 280px;
@@ -594,18 +570,15 @@ const scrollToNext = () => {
   animation: logoFloat 6s ease-in-out infinite;
   pointer-events: none;
   user-select: none;
-  will-change: transform;
 
   .main-logo {
     width: 100%;
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 0 40px rgba(71, 202, 255, 0.4));
-    animation: logoGlow 3s ease-in-out infinite;
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
-    will-change: filter;
   }
 }
 
@@ -621,17 +594,6 @@ const scrollToNext = () => {
   }
 }
 
-@keyframes logoGlow {
-
-  0%,
-  100% {
-    filter: drop-shadow(0 0 40px rgba(71, 202, 255, 0.4));
-  }
-
-  50% {
-    filter: drop-shadow(0 0 60px rgba(189, 52, 254, 0.6));
-  }
-}
 
 .scroll-indicator {
   position: absolute;
@@ -668,7 +630,6 @@ const scrollToNext = () => {
       background: #47caff;
       border-radius: 50%;
       transform: translateX(-50%);
-      animation: scrollBounce 2s infinite;
     }
   }
 
@@ -689,19 +650,6 @@ const scrollToNext = () => {
   }
 }
 
-@keyframes scrollBounce {
-
-  0%,
-  100% {
-    top: 8px;
-    opacity: 1;
-  }
-
-  50% {
-    top: 28px;
-    opacity: 0.5;
-  }
-}
 
 @media (max-width: 1024px) {
   .hero-content {

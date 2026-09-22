@@ -1,0 +1,30 @@
+{
+  "zh": {
+    "json": {
+      "language": "json",
+      "code": "{\n  \"点击开始按钮\": {\n    \"recognition\": \"OCR\",\n    \"expected\": \"开始\",\n    \"action\": \"Click\",\n    \"next\": [\"点击确认图标\"]\n  },\n  \"点击确认图标\": {\n    \"recognition\": \"TemplateMatch\",\n    \"template\": \"确认.png\",\n    \"action\": \"Click\"\n  }\n}"
+    },
+    "hybrid": {
+      "language": "python",
+      "code": "# ========== Pipeline ==========\n{\n  \"点击确认图标\": {\n    \"next\": [\"自定义处理模块\"]\n  },\n  \"自定义处理模块\": {\n    \"recognition\": \"Custom\",\n    \"custom_recognition\": \"MyReco\",\n    \"action\": \"Custom\",\n    \"custom_action\": \"MyAct\"\n  }\n}\n\n# ======= Custom (Agent) =======\nfrom maa.agent.agent_server import AgentServer\n\n# 注册自定义识别器\n@AgentServer.custom_recognition(\"MyReco\")\nclass CustomReco:\n    def analyze(ctx):\n        return (10,10,100,100)\n\n# 注册自定义动作\n@AgentServer.custom_action(\"MyAct\")\nclass CustomAction:\n    def run(ctx):\n        ctx.controller.post_click(100, 10).wait()\n        ctx.override_next([\"TaskA\", \"TaskB\"])\n\nAgentServer.start_up(sock_id)"
+    },
+    "code": {
+      "language": "python",
+      "code": "def main():\n    # 执行 JSON 预定义任务\n    result = tasker.post_task(\"点击开始按钮\").wait().get()\n    \n    if result.completed:\n        # 执行代码级操作\n        tasker.controller.post_click(100, 100)\n    else:\n        # 获取当前屏幕截图\n        image = tasker.controller.cached_image\n        # 注册自定义动作\n        tasker.resource.register_custom_action(\"MyAction\", MyAction())\n        # 执行混合任务链\n        tasker.post_task(\"点击确认图标\").wait()"
+    }
+  },
+  "en": {
+    "json": {
+      "language": "json",
+      "code": "{\n  \"ClickStartButton\": {\n    \"recognition\": \"OCR\",\n    \"expected\": \"Start\",\n    \"action\": \"Click\",\n    \"next\": [\"ClickConfirmIcon\"]\n  },\n  \"ClickConfirmIcon\": {\n    \"recognition\": \"TemplateMatch\",\n    \"template\": \"confirm.png\",\n    \"action\": \"Click\"\n  }\n}"
+    },
+    "hybrid": {
+      "language": "python",
+      "code": "# ========== Pipeline ==========\n{\n  \"ClickConfirmIcon\": {\n    \"next\": [\"CustomProcessModule\"]\n  },\n  \"CustomProcessModule\": {\n    \"recognition\": \"Custom\",\n    \"custom_recognition\": \"MyReco\",\n    \"action\": \"Custom\",\n    \"custom_action\": \"MyAct\"\n  }\n}\n\n# ======= Custom (Agent) =======\nfrom maa.agent.agent_server import AgentServer\n\n# Register custom recognizer\n@AgentServer.custom_recognition(\"MyReco\")\nclass CustomReco:\n    def analyze(ctx):\n        return (10,10,100,100)\n\n# Register custom action\n@AgentServer.custom_action(\"MyAct\")\nclass CustomAction:\n    def run(ctx):\n        ctx.controller.post_click(100, 10).wait()\n        ctx.override_next([\"TaskA\", \"TaskB\"])\n\nAgentServer.start_up(sock_id)"
+    },
+    "code": {
+      "language": "python",
+      "code": "def main():\n    # Execute predefined JSON task\n    result = tasker.post_task(\"ClickStartButton\").wait().get()\n    \n    if result.completed:\n        # Execute code-level operations\n        tasker.controller.post_click(100, 100)\n    else:\n        # Get current screenshot\n        image = tasker.controller.cached_image\n        # Register custom action\n        tasker.resource.register_custom_action(\"MyAction\", MyAction())\n        # Execute hybrid task chain\n        tasker.post_task(\"ClickConfirmIcon\").wait()"
+    }
+  }
+}

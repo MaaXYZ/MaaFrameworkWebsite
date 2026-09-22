@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "vitepress dev src",
+    "check:homepage": "node scripts/check-homepage.mjs",
     "build": "vitepress build src && node scripts/post-build.js",
     "preview": "vitepress build src && node scripts/post-build.js && vitepress preview src"
   },

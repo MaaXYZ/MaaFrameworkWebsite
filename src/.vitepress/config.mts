@@ -1,5 +1,7 @@
 import { withMermaid } from "vitepress-plugin-mermaid";
 import taskLists from "markdown-it-task-lists";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 
 import { locales } from "./locales";
 import { sidebars } from "./sidebars";
@@ -32,12 +34,27 @@ export default withMermaid({
   ],
   base: `/`,
   cleanUrls: true,
+  // VitePress preloads shared async chunks even when unused by this page.
+  // shouldPreload:false only changes this to prefetch, so remove the hint
+  // entirely: mounting a diagram will still import its renderer normally.
+  transformHtml: (html) => html.replace(
+    /<link rel="(?:modulepreload|prefetch)" href="[^"]*\/Mermaid\.[^"]+\.js">\s*/g,
+    "",
+  ),
   lastUpdated: true,
   rewrites: sidebars.rewrites,
   sitemap: { hostname: "https://maafw.com" },
   locales,
   // Vite 构建优化配置
   vite: {
+    resolve: {
+      alias: [
+        // Keep the plugin's markdown/config support, but defer its renderer
+        // until a page actually contains a Mermaid component.
+        { find: "vitepress-plugin-mermaid/Mermaid.vue", replacement: fileURLToPath(new URL("../components/LazyMermaid.ts", import.meta.url)) },
+        { find: "@maafw/mermaid-renderer", replacement: createRequire(import.meta.url).resolve("vitepress-plugin-mermaid/Mermaid.vue") },
+      ],
+    },
     build: {
       // 启用 CSS 代码分割
       cssCodeSplit: true,

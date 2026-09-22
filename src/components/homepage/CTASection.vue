@@ -12,7 +12,7 @@
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <div class="card-icon">
-            <img
+            <img loading="lazy" decoding="async"
               v-if="emojis[card.icon]"
               class="icon-png"
               :src="emojis[card.icon]"
@@ -68,22 +68,10 @@ defineProps<{
       transparent 70%
     );
     filter: blur(60px);
-    animation: bgPulse 10s ease-in-out infinite;
     z-index: -1;
   }
 }
 
-@keyframes bgPulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-}
 
 .container {
   position: relative;
@@ -140,7 +128,6 @@ defineProps<{
   border: 2px solid transparent;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: fadeInUp 0.6s ease-out backwards;
   overflow: visible;
   z-index: 1;
 
@@ -226,16 +213,6 @@ defineProps<{
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .card-icon {
   display: flex;

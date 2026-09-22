@@ -1,5 +1,5 @@
 <template>
-  <section class="community-projects" :class="{ 'light-mode': isLightMode }">
+  <section ref="section" :data-motion="motionActive ? 'on' : 'off'" class="community-projects" :class="{ 'light-mode': isLightMode }">
     <div class="container">
       <h2 class="section-title">{{ content.title }}</h2>
       <p class="section-subtitle">{{ content.subtitle }}</p>
@@ -10,9 +10,11 @@
             v-for="(project, index) in displayProjects"
             :key="`${project.link}-${index}`"
             class="project-slide"
+            :aria-hidden="index >= randomProjects.length || undefined"
           >
             <Project
               :title="project.name"
+              :duplicate="index >= randomProjects.length"
               :desc="lang === 'zh' ? project.desc : project.enDesc"
               :logo="project.logo"
               :stack="project.stack"
@@ -24,28 +26,20 @@
       </div>
 
       <div class="view-more">
-        <div
-          class="view-more-btn"
-          @click="
-            Router.open(
-              lang === 'zh' ? '/community/projects' : '/en/community/projects',
-              false
-            )
-          "
-        >
+        <a class="view-more-btn" :href="lang === 'zh' ? '/community/projects' : '/en/community/projects'">
           {{ content.viewMore }}
           <span class="btn-arrow">→</span>
-        </div>
+        </a>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, onUnmounted, computed, nextTick } from "vue";
+import { useSectionMotion } from "./composables/motion";
 import Project from "../Project.vue";
-import { getRandomProjects } from "../../assets/data/projects";
-import { Router } from "../utils/route";
+import { projects, getRandomProjects } from "../../assets/data/projects";
 
 defineProps<{
   content: {
@@ -58,45 +52,43 @@ defineProps<{
 }>();
 
 const carouselTrack = ref<HTMLElement | null>(null);
-const randomProjects = ref(getRandomProjects(9));
+const section = ref<HTMLElement | null>(null);
+const motionActive = useSectionMotion(section);
+// Deterministic SSR/first hydration; choose a fresh selection before entering view.
+const randomProjects = ref(projects.slice(0, 9));
 
 const displayProjects = computed(() => {
   return [...randomProjects.value, ...randomProjects.value];
 });
 
-onMounted(() => {
-  if (!carouselTrack.value) return;
-
-  let scrollPosition = 0;
-  const scrollSpeed = 0.5;
-  let animationId: number;
-  let lastTime = 0;
-  const targetFPS = 30;
-  const frameInterval = 1000 / targetFPS;
-
-  const scroll = (currentTime: number) => {
-    if (!carouselTrack.value) return;
-
-    const deltaTime = currentTime - lastTime;
-
-    if (deltaTime < frameInterval) {
-      animationId = requestAnimationFrame(scroll);
-      return;
-    }
-
-    lastTime = currentTime - (deltaTime % frameInterval);
-    scrollPosition += scrollSpeed;
-    const maxScroll = carouselTrack.value.scrollWidth / 2;
-
-    if (scrollPosition >= maxScroll) {
-      scrollPosition = 0;
-    }
-
-    carouselTrack.value.style.transform = `translateX(-${scrollPosition}px)`;
-    animationId = requestAnimationFrame(scroll);
-  };
-
-  animationId = requestAnimationFrame(scroll);
+let resizeObserver: ResizeObserver | undefined;
+let measureFrame = 0;
+let disposed = false;
+const measure = () => {
+  measureFrame = 0;
+  const track = carouselTrack.value;
+  const first = track?.children[0] as HTMLElement | undefined;
+  if (!track || !first) return;
+  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  const distance = (first.offsetWidth + gap) * randomProjects.value.length;
+  track.style.setProperty("--carousel-distance", "-" + distance + "px");
+  track.style.setProperty("--carousel-duration", distance / 15 + "s");
+};
+onMounted(async () => {
+  randomProjects.value = getRandomProjects(9);
+  await nextTick();
+  if (disposed || !carouselTrack.value) return;
+  measure();
+  resizeObserver = new ResizeObserver(() => {
+    if (!measureFrame) measureFrame = requestAnimationFrame(measure);
+  });
+  resizeObserver.observe(carouselTrack.value);
+  if (carouselTrack.value.firstElementChild) resizeObserver.observe(carouselTrack.value.firstElementChild);
+});
+onUnmounted(() => {
+  disposed = true;
+  resizeObserver?.disconnect();
+  cancelAnimationFrame(measureFrame);
 });
 </script>
 
@@ -232,9 +224,27 @@ onMounted(() => {
 .carousel-track {
   display: flex;
   gap: 24px;
-  will-change: transform;
+  animation: carouselScroll var(--carousel-duration, 254s) linear infinite;
+  animation-play-state: paused;
 }
 
+@keyframes carouselScroll {
+  to { transform: translateX(var(--carousel-distance, 0px)); }
+}
+.community-projects[data-motion="on"] .carousel-track {
+  animation-play-state: running;
+}
+.projects-carousel:hover .carousel-track,
+.projects-carousel:focus-within .carousel-track {
+  animation-play-state: paused;
+}
+.community-projects[data-motion="off"] .projects-carousel { overflow-x: auto; }
+.community-projects[data-motion="off"] .project-slide[aria-hidden="true"] { display: none; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .projects-carousel { overflow-x: auto; }
+  .carousel-track { animation: none; }
+  .project-slide[aria-hidden="true"] { display: none; }
+}
 .project-slide {
   flex-shrink: 0;
   width: 400px;
@@ -268,7 +278,7 @@ onMounted(() => {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -277,7 +287,8 @@ onMounted(() => {
       rgba(71, 202, 255, 0.15),
       transparent
     );
-    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover {
@@ -288,7 +299,7 @@ onMounted(() => {
       0 0 0 1px rgba(71, 202, 255, 0.1) inset;
 
     &::before {
-      left: 100%;
+      transform: translateX(100%);
     }
 
     .btn-arrow {

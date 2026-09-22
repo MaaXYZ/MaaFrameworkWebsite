@@ -1,5 +1,6 @@
 <template>
   <section
+    ref="section"
     class="integration-comparison"
     :class="{ 'light-mode': isLightMode }"
   >
@@ -82,16 +83,20 @@
               <div
                 v-if="item.codeExample.image"
                 class="image-example"
-                @mousemove="handleImageMouseMove"
-                @mouseleave="handleImageMouseLeave"
+                @pointerenter="tilt.enter"
+                @pointermove="tilt.move"
+                @pointerleave="tilt.leave"
+                @pointercancel="tilt.leave"
               >
-                <img :src="item.codeExample.image" :alt="item.name" />
+                <img v-if="activeTab === index" :src="item.codeExample.image" :alt="item.name" loading="lazy" decoding="async" />
               </div>
               <div
                 v-else
                 class="code-example"
-                @mousemove="handleCodeMouseMove"
-                @mouseleave="handleCodeMouseLeave"
+                @pointerenter="tilt.enter"
+                @pointermove="tilt.move"
+                @pointerleave="tilt.leave"
+                @pointercancel="tilt.leave"
               >
                 <div class="code-header">
                   <span class="code-language">{{
@@ -103,7 +108,7 @@
                     <span></span>
                   </div>
                 </div>
-                <div class="code-body" v-html="highlightedCode[item.id]"></div>
+                <div class="code-body" v-html="highlightedCode[lang][item.id]"></div>
               </div>
             </div>
           </div>
@@ -114,13 +119,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+import { ref, watch } from "vue";
+import { useSectionMotion } from "./composables/motion";
+import { useTilt } from "./composables/tilt";
+import { data as highlightedCode } from "../../locales/homepage/code.data";
 import type { Integration } from "../../locales/homepage/types";
-import { codeToHtml } from "shiki";
 import { emojis } from "../../assets/emojis/emojis";
 
 const activeTab = ref(1);
-const highlightedCode = ref<{ [key: string]: string }>({});
 
 const props = defineProps<{
   content: {
@@ -138,82 +144,13 @@ const props = defineProps<{
     };
   };
   isLightMode: boolean;
+  lang: "zh" | "en";
 }>();
 
-const highlightCode = async () => {
-  const highlighted: { [key: string]: string } = {};
-  for (const item of props.content.items) {
-    if (item.codeExample.code) {
-      try {
-        const html = await codeToHtml(item.codeExample.code, {
-          lang: item.codeExample.language.toLowerCase(),
-          theme: "github-dark",
-        });
-        highlighted[item.id] = html;
-      } catch (error) {
-        console.error(`Failed to highlight code for ${item.id}:`, error);
-        highlighted[
-          item.id
-        ] = `<pre><code>${item.codeExample.code}</code></pre>`;
-      }
-    }
-  }
-  highlightedCode.value = highlighted;
-};
-
-onMounted(() => {
-  highlightCode();
-});
-
-const handleImageMouseMove = (e: MouseEvent) => {
-  const container = e.currentTarget as HTMLElement;
-
-  const rect = container.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-
-  const deltaX = (x - centerX) / centerX;
-  const deltaY = (y - centerY) / centerY;
-
-  const rotateX = -deltaY * 8;
-  const rotateY = deltaX * 8;
-
-  container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-};
-
-const handleImageMouseLeave = (e: MouseEvent) => {
-  const container = e.currentTarget as HTMLElement;
-
-  container.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-};
-
-const handleCodeMouseMove = (e: MouseEvent) => {
-  const container = e.currentTarget as HTMLElement;
-
-  const rect = container.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-
-  const deltaX = (x - centerX) / centerX;
-  const deltaY = (y - centerY) / centerY;
-
-  const rotateX = -deltaY * 8;
-  const rotateY = deltaX * 8;
-
-  container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-};
-
-const handleCodeMouseLeave = (e: MouseEvent) => {
-  const container = e.currentTarget as HTMLElement;
-
-  container.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-};
+const section = ref<HTMLElement | null>(null);
+const motionActive = useSectionMotion(section);
+const tilt = useTilt(motionActive);
+watch(activeTab, tilt.leave);
 </script>
 
 <style scoped lang="scss">
@@ -290,7 +227,6 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   line-height: 1.5;
   text-align: center;
   contain: layout style paint;
-  will-change: transform;
 
   &:hover {
     border-color: rgba(71, 202, 255, 0.5);
@@ -317,7 +253,6 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
       font-size: 0.75rem;
       color: white;
       font-weight: 700;
-      animation: badgePulse 2s ease-in-out infinite;
     }
   }
 
@@ -344,15 +279,6 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   }
 }
 
-@keyframes badgePulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(189, 52, 254, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(189, 52, 254, 0);
-  }
-}
 
 .comparison-content {
   position: relative;
@@ -360,19 +286,8 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
 }
 
 .content-panel {
-  animation: fadeIn 0.4s ease-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .panel-grid {
   display: grid;
@@ -500,20 +415,10 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
       transparent 70%
     );
     filter: blur(30px);
-    animation: glowPulse 5s ease-in-out infinite;
     z-index: -1;
   }
 }
 
-@keyframes glowPulse {
-  0%,
-  100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
 
 .image-example {
   width: 100%;
@@ -522,7 +427,6 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(71, 202, 255, 0.3);
   position: relative;
-  animation: codeGlow 5s ease-in-out infinite;
   border: 1px solid rgba(71, 202, 255, 0.3);
   background: rgba(10, 14, 26, 0.6);
   padding: 10px;
@@ -530,7 +434,6 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   // 3D 变换属性
   transition: transform 0.2s ease-out;
   transform-style: preserve-3d;
-  will-change: transform;
 
   img {
     width: 100%;
@@ -556,12 +459,10 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(71, 202, 255, 0.3),
     inset 0 0 40px rgba(71, 202, 255, 0.05);
   position: relative;
-  animation: codeGlow 5s ease-in-out infinite;
 
   // 3D 变换属性
   transition: transform 0.2s ease-out;
   transform-style: preserve-3d;
-  will-change: transform;
 
   .integration-comparison.light-mode & {
     background: rgba(10, 14, 26, 0.82);
@@ -665,17 +566,6 @@ const handleCodeMouseLeave = (e: MouseEvent) => {
   }
 }
 
-@keyframes codeGlow {
-  0%,
-  100% {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(71, 202, 255, 0.3),
-      inset 0 0 40px rgba(71, 202, 255, 0.05);
-  }
-  50% {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(189, 52, 254, 0.5),
-      inset 0 0 60px rgba(189, 52, 254, 0.08);
-  }
-}
 
 @media (max-width: 1024px) {
   .panel-grid {

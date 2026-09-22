@@ -1,3 +1,4 @@
+import examples from "./examples.json";
 import type { HomepageContent } from "./types";
 import avatars from "../../assets/avatars/avatars";
 
@@ -90,22 +91,7 @@ export const enContent: HomepageContent = {
           "Automation through JSON configuration",
           "Video tutorials and project templates",
         ],
-        codeExample: {
-          language: "json",
-          code: `{
-  "ClickStartButton": {
-    "recognition": "OCR",
-    "expected": "Start",
-    "action": "Click",
-    "next": ["ClickConfirmIcon"]
-  },
-  "ClickConfirmIcon": {
-    "recognition": "TemplateMatch",
-    "template": "confirm.png",
-    "action": "Click"
-  }
-}`,
-        },
+        codeExample: examples.en.json,
         resources: [
           {
             icon: "video",
@@ -129,39 +115,7 @@ export const enContent: HomepageContent = {
           "Register custom task modules via independent process",
           "Seamless integration with project template",
         ],
-        codeExample: {
-          language: "python",
-          code: `# ========== Pipeline ==========
-{
-  "ClickConfirmIcon": {
-    "next": ["CustomProcessModule"]
-  },
-  "CustomProcessModule": {
-    "recognition": "Custom",
-    "custom_recognition": "MyReco",
-    "action": "Custom",
-    "custom_action": "MyAct"
-  }
-}
-
-# ======= Custom (Agent) =======
-from maa.agent.agent_server import AgentServer
-
-# Register custom recognizer
-@AgentServer.custom_recognition("MyReco")
-class CustomReco:
-    def analyze(ctx):
-        return (10,10,100,100)
-
-# Register custom action
-@AgentServer.custom_action("MyAct")
-class CustomAction:
-    def run(ctx):
-        ctx.controller.post_click(100, 10).wait()
-        ctx.override_next(["TaskA", "TaskB"])
-
-AgentServer.start_up(sock_id)`,
-        },
+        codeExample: examples.en.hybrid,
         resources: [
           {
             icon: "book",
@@ -179,23 +133,7 @@ AgentServer.start_up(sock_id)`,
           "Highly flexible",
           "Suitable for complex business logic",
         ],
-        codeExample: {
-          language: "python",
-          code: `def main():
-    # Execute predefined JSON task
-    result = tasker.post_task("ClickStartButton").wait().get()
-    
-    if result.completed:
-        # Execute code-level operations
-        tasker.controller.post_click(100, 100)
-    else:
-        # Get current screenshot
-        image = tasker.controller.cached_image
-        # Register custom action
-        tasker.resource.register_custom_action("MyAction", MyAction())
-        # Execute hybrid task chain
-        tasker.post_task("ClickConfirmIcon").wait()`,
-        },
+        codeExample: examples.en.code,
         resources: [
           {
             icon: "book",

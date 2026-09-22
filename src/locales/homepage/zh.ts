@@ -1,3 +1,4 @@
+import examples from "./examples.json";
 import type { HomepageContent } from "./types";
 import avatars from "../../assets/avatars/avatars";
 
@@ -78,22 +79,7 @@ export const zhContent: HomepageContent = {
           "通过 JSON 配置实现自动化流程",
           "配套视频教程和项目模板",
         ],
-        codeExample: {
-          language: "json",
-          code: `{
-  "点击开始按钮": {
-    "recognition": "OCR",
-    "expected": "开始",
-    "action": "Click",
-    "next": ["点击确认图标"]
-  },
-  "点击确认图标": {
-    "recognition": "TemplateMatch",
-    "template": "确认.png",
-    "action": "Click"
-  }
-}`,
-        },
+        codeExample: examples.zh.json,
         resources: [
           {
             icon: "video",
@@ -117,39 +103,7 @@ export const zhContent: HomepageContent = {
           "通过独立进程注册自定义任务模块",
           "无缝衔接项目模板",
         ],
-        codeExample: {
-          language: "python",
-          code: `# ========== Pipeline ==========
-{
-  "点击确认图标": {
-    "next": ["自定义处理模块"]
-  },
-  "自定义处理模块": {
-    "recognition": "Custom",
-    "custom_recognition": "MyReco",
-    "action": "Custom",
-    "custom_action": "MyAct"
-  }
-}
-
-# ======= Custom (Agent) =======
-from maa.agent.agent_server import AgentServer
-
-# 注册自定义识别器
-@AgentServer.custom_recognition("MyReco")
-class CustomReco:
-    def analyze(ctx):
-        return (10,10,100,100)
-
-# 注册自定义动作
-@AgentServer.custom_action("MyAct")
-class CustomAction:
-    def run(ctx):
-        ctx.controller.post_click(100, 10).wait()
-        ctx.override_next(["TaskA", "TaskB"])
-
-AgentServer.start_up(sock_id)`,
-        },
+        codeExample: examples.zh.hybrid,
         resources: [
           {
             icon: "book",
@@ -163,23 +117,7 @@ AgentServer.start_up(sock_id)`,
         name: "全代码开发",
         scenario: "深度定制、复杂流程",
         advantages: ["完全控制执行流程", "高度灵活", "适合复杂业务逻辑"],
-        codeExample: {
-          language: "python",
-          code: `def main():
-    # 执行 JSON 预定义任务
-    result = tasker.post_task("点击开始按钮").wait().get()
-    
-    if result.completed:
-        # 执行代码级操作
-        tasker.controller.post_click(100, 100)
-    else:
-        # 获取当前屏幕截图
-        image = tasker.controller.cached_image
-        # 注册自定义动作
-        tasker.resource.register_custom_action("MyAction", MyAction())
-        # 执行混合任务链
-        tasker.post_task("点击确认图标").wait()`,
-        },
+        codeExample: examples.zh.code,
         resources: [
           {
             icon: "book",

@@ -1,5 +1,5 @@
 <template>
-    <div class="homepage-container" :class="{ 'light-mode': isLightMode }">
+    <div class="homepage-container" :class="{ 'light-mode': isLightMode }" :data-motion="motionEnabled ? 'on' : 'off'">
         <!-- 全局背景效果 -->
         <div class="global-background">
             <div class="grid-overlay"></div>
@@ -178,7 +178,7 @@
 
         <HeroSection :content="content.hero" :lang="lang" :is-light-mode="isLightMode" />
         <FeatureShowcase :content="content.features" :is-light-mode="isLightMode" />
-        <IntegrationComparison :content="content.integrations" :is-light-mode="isLightMode" />
+        <IntegrationComparison :lang="lang" :content="content.integrations" :is-light-mode="isLightMode" />
         <Testimonials :content="content.testimonials" :is-light-mode="isLightMode" />
         <CommunityProjects :content="content.community" :lang="lang" :is-light-mode="isLightMode" />
         <CTASection :content="content.cta" :is-light-mode="isLightMode" />
@@ -187,321 +187,89 @@
 </template>
 
 <script setup lang="ts">
-import {
-    computed,
-    ref,
-    onMounted,
-    onUnmounted,
-    defineAsyncComponent,
-} from "vue";
+import { computed, ref, onMounted, onUnmounted, defineAsyncComponent, hydrateOnVisible } from "vue";
+import { useData } from "vitepress";
 import { zhContent, enContent } from "../../locales/homepage";
-import type { HomepageContent } from "../../locales/homepage";
 import HeroSection from "./HeroSection.vue";
+import { providePageMotion } from "./composables/motion";
+import { useParticles } from "./composables/particles";
 
-// 懒加载非关键组件
-const FeatureShowcase = defineAsyncComponent(
-    () => import("./FeatureShowcase.vue")
-);
-const IntegrationComparison = defineAsyncComponent(
-    () => import("./IntegrationComparison.vue")
-);
-const Testimonials = defineAsyncComponent(() => import("./Testimonials.vue"));
-const CommunityProjects = defineAsyncComponent(
-    () => import("./CommunityProjects.vue")
-);
-const CTASection = defineAsyncComponent(() => import("./CTASection.vue"));
-const FooterSection = defineAsyncComponent(() => import("./FooterSection.vue"));
+// SSR keeps all content readable. Below-fold interactions hydrate near the viewport.
+const FeatureShowcase = defineAsyncComponent({ loader: () => import("./FeatureShowcase.vue"), hydrate: hydrateOnVisible({ rootMargin: "300px" }) });
+const IntegrationComparison = defineAsyncComponent({ loader: () => import("./IntegrationComparison.vue"), hydrate: hydrateOnVisible({ rootMargin: "300px" }) });
+const Testimonials = defineAsyncComponent({ loader: () => import("./Testimonials.vue"), hydrate: hydrateOnVisible({ rootMargin: "300px" }) });
+const CommunityProjects = defineAsyncComponent({ loader: () => import("./CommunityProjects.vue"), hydrate: hydrateOnVisible({ rootMargin: "300px" }) });
+const CTASection = defineAsyncComponent({ loader: () => import("./CTASection.vue"), hydrate: hydrateOnVisible({ rootMargin: "300px" }) });
+const FooterSection = defineAsyncComponent({ loader: () => import("./FooterSection.vue"), hydrate: hydrateOnVisible({ rootMargin: "300px" }) });
 
-const props = defineProps<{
-    lang: "zh" | "en";
-}>();
-
-const content = computed<HomepageContent>(() => {
-    return props.lang === "zh" ? zhContent : enContent;
-});
-
+const props = defineProps<{ lang: "zh" | "en" }>();
+const content = computed(() => props.lang === "zh" ? zhContent : enContent);
+// Reuse VitePress's SSR-safe theme state and its storage/system-theme synchronization.
+const { isDark } = useData();
+// The first client render must match SSR; otherwise Vue can retain the server's
+// light-mode classes when a stored dark preference is already active.
+const themeReady = ref(false);
+const isLightMode = computed(() => !themeReady.value || !isDark.value);
+const toggleTheme = () => { isDark.value = !isDark.value; };
+const toggleLanguage = () => { window.location.href = props.lang === "zh" ? "/en/" : "/"; };
 const isScrolled = ref(false);
 const particlesCanvas = ref<HTMLCanvasElement | null>(null);
 const isMobileMenuOpen = ref(false);
+const motionEnabled = providePageMotion();
+useParticles(particlesCanvas, motionEnabled, isLightMode);
 
-// 移动端菜单控制
-const toggleMobileMenu = () => {
-    isMobileMenuOpen.value = !isMobileMenuOpen.value;
-    // 打开菜单时禁止页面滚动
-    if (isMobileMenuOpen.value) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = '';
-    }
-};
-
+let previousOverflow = "";
 const closeMobileMenu = () => {
+    if (!isMobileMenuOpen.value) return;
     isMobileMenuOpen.value = false;
-    document.body.style.overflow = '';
+    document.body.style.overflow = previousOverflow;
 };
-
-// 初始化主题
-const getInitialTheme = () => {
-    const savedTheme = localStorage.getItem("vitepress-theme-appearance");
-    if (savedTheme === "dark") return false;
-    if (savedTheme === "light") return true;
-    const hasLightClass = !document.documentElement.classList.contains("dark");
-    return hasLightClass || savedTheme === null;
+const toggleMobileMenu = () => {
+    if (isMobileMenuOpen.value) closeMobileMenu();
+    else {
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        isMobileMenuOpen.value = true;
+    }
 };
-
-const isLightMode = ref(getInitialTheme());
-
-// 滚动节流
-let scrollTimer: number | null = null;
+let scrollFrame = 0;
+const updateScroll = () => {
+    isScrolled.value = window.scrollY > 50;
+    scrollFrame = 0;
+};
 const handleScroll = () => {
-    if (scrollTimer) return;
-    scrollTimer = window.setTimeout(() => {
-        isScrolled.value = window.scrollY > 50;
-        scrollTimer = null;
-    }, 16);
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
 };
-
-const toggleTheme = () => {
-    isLightMode.value = !isLightMode.value;
-    const theme = isLightMode.value ? "light" : "dark";
-    localStorage.setItem("vitepress-theme-appearance", theme);
-    if (isLightMode.value) {
-        document.documentElement.classList.remove("dark");
-    } else {
-        document.documentElement.classList.add("dark");
-    }
-};
-
-// 切换语言
-const toggleLanguage = () => {
-    const newLang = props.lang === "zh" ? "en" : "zh";
-    const targetPath = newLang === "zh" ? "/" : "/en/";
-    window.location.href = targetPath;
-};
-
-// 监听 localStorage 变化
-const handleStorageChange = (e: StorageEvent) => {
-    if (e.key === "vitepress-theme-appearance") {
-        isLightMode.value = e.newValue === "light";
-    }
-};
-
-// 检查当前主题状态
-const checkTheme = () => {
-    const htmlElement = document.documentElement;
-    const hasLightClass = !htmlElement.classList.contains("dark");
-    const savedTheme = localStorage.getItem("vitepress-theme-appearance");
-    const shouldBeLightMode =
-        savedTheme === "light" ||
-        (savedTheme === "auto" && hasLightClass) ||
-        hasLightClass;
-
-    if (isLightMode.value !== shouldBeLightMode) {
-        isLightMode.value = shouldBeLightMode;
-    }
-};
-
-// 全局粒子背景动画
 onMounted(() => {
-    checkTheme();
-    window.addEventListener("storage", handleStorageChange);
-    const observer = new MutationObserver(() => {
-        checkTheme();
-    });
-
-    observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["class"],
-    });
-
-    window.addEventListener("scroll", handleScroll);
-
-    // 检测设备性能
-    const isLowEndDevice = () => {
-        // 检测 CPU 核心数
-        const cpuCores = navigator.hardwareConcurrency || 2;
-        // 检测内存 (GB)
-        const memory = (navigator as any).deviceMemory || 4;
-        // 移动设备
-        const isMobile =
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                navigator.userAgent
-            );
-
-        return cpuCores < 4 || memory < 4 || isMobile;
-    };
-
-    // 低端设备跳过 Canvas 动画
-    if (isLowEndDevice() || !particlesCanvas.value) {
-        return;
-    }
-
-    const canvas = particlesCanvas.value;
-    const ctx = canvas.getContext("2d", {
-        alpha: true,
-        desynchronized: true,
-    });
-    if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    interface Particle {
-        x: number;
-        y: number;
-        vx: number;
-        vy: number;
-        size: number;
-        opacity: number;
-    }
-
-    const particles: Particle[] = [];
-    const particleCount = 20;
-
-    for (let i = 0; i < particleCount; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.15,
-            vy: (Math.random() - 0.5) * 0.15,
-            size: Math.random() * 1.5 + 0.5,
-            opacity: Math.random() * 0.3 + 0.05,
-        });
-    }
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let isMouseActive = false;
-
-    const handleMouseMove = (e: MouseEvent) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY + window.scrollY;
-        isMouseActive = true;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    // 降低帧率以优化性能
-    let lastTime = 0;
-    const targetFPS = 24;
-    const frameInterval = 1000 / targetFPS;
-
-    const animate = (currentTime: number) => {
-        const deltaTime = currentTime - lastTime;
-
-        if (deltaTime < frameInterval) {
-            requestAnimationFrame(animate);
-            return;
-        }
-
-        lastTime = currentTime - (deltaTime % frameInterval);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // 批量更新粒子位置
-        for (let i = 0; i < particles.length; i++) {
-            const particle = particles[i];
-            particle.x += particle.vx;
-            particle.y += particle.vy;
-
-            if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-            if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-            // 只在鼠标活跃时计算交互
-            if (isMouseActive) {
-                const dx = mouseX - particle.x;
-                const dy = mouseY - particle.y;
-                const distSq = dx * dx + dy * dy;
-
-                if (distSq < 10000) {
-                    // 100*100
-                    const force = (10000 - distSq) / 10000;
-                    particle.x -= dx * force * 0.005;
-                    particle.y -= dy * force * 0.005;
-                }
-            }
-        }
-
-        // 批量绘制粒子
-        const particleColor = isLightMode.value
-            ? "rgba(37, 99, 235, "
-            : "rgba(71, 202, 255, ";
-
-        for (let i = 0; i < particles.length; i++) {
-            const particle = particles[i];
-            ctx.beginPath();
-            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            ctx.fillStyle = particleColor + particle.opacity + ")";
-            ctx.fill();
-        }
-
-        // 简化连线绘制
-        if (!isMouseActive) {
-            const lineColor = isLightMode.value
-                ? "rgba(37, 99, 235, "
-                : "rgba(71, 202, 255, ";
-
-            for (let i = 0; i < particles.length; i++) {
-                const particle = particles[i];
-                for (let j = i + 1; j < particles.length; j++) {
-                    const other = particles[j];
-                    const dx = particle.x - other.x;
-                    const dy = particle.y - other.y;
-                    const distSq = dx * dx + dy * dy;
-
-                    if (distSq < 6400) {
-                        // 80*80
-                        const dist = Math.sqrt(distSq);
-                        ctx.beginPath();
-                        ctx.moveTo(particle.x, particle.y);
-                        ctx.lineTo(other.x, other.y);
-                        ctx.strokeStyle =
-                            lineColor + 0.05 * (1 - dist / 80) + ")";
-                        ctx.lineWidth = 0.3;
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        requestAnimationFrame(animate);
-    };
-
-    animate(0);
-
-    // 鼠标非活跃检测
-    let mouseTimeout: number;
-    window.addEventListener("mousemove", () => {
-        clearTimeout(mouseTimeout);
-        mouseTimeout = window.setTimeout(() => {
-            isMouseActive = false;
-        }, 1000);
-    });
-
-    // 防抖优化resize
-    let resizeTimer: number | null = null;
-    const handleResize = () => {
-        if (resizeTimer) clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(() => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }, 250);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    onUnmounted(() => {
-        window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("storage", handleStorageChange);
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("resize", handleResize);
-        clearTimeout(mouseTimeout);
-        // 清理移动端菜单状态
-        document.body.style.overflow = '';
-    });
+    themeReady.value = true;
+    updateScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+});
+onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+    cancelAnimationFrame(scrollFrame);
+    closeMobileMenu();
 });
 </script>
 
 <style scoped lang="scss">
+// Static fallbacks remain visible in SSR, on touch devices and with reduced motion.
+.homepage-container[data-motion="off"] :deep(*),
+.homepage-container[data-motion="off"] :deep(*::before),
+.homepage-container[data-motion="off"] :deep(*::after),
+.homepage-container :deep([data-motion="off"] *),
+.homepage-container :deep([data-motion="off"] *::before),
+.homepage-container :deep([data-motion="off"] *::after) {
+    animation-play-state: paused !important;
+}
+@media (prefers-reduced-motion: reduce) {
+    .homepage-container :deep(*), .homepage-container :deep(*::before), .homepage-container :deep(*::after) {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 .homepage-container {
     width: 100%;
     min-height: 100vh;
@@ -546,17 +314,13 @@ onMounted(() => {
                 transparent 1px);
         background-size: 50px 50px;
         opacity: 0.4;
-        animation: gridMove 30s linear infinite;
         transition: background-image 0.3s ease, opacity 0.3s ease;
-        will-change: background-position;
     }
 
     .glow-effect {
         position: absolute;
         filter: blur(120px);
-        animation: glowFloat 15s ease-in-out infinite;
         transition: background 0.3s ease;
-        will-change: transform, opacity;
 
         &.glow-1 {
             top: -20%;
@@ -624,34 +388,7 @@ onMounted(() => {
     }
 }
 
-@keyframes gridMove {
-    0% {
-        background-position: 0 0;
-    }
 
-    100% {
-        background-position: 50px 50px;
-    }
-}
-
-@keyframes glowFloat {
-
-    0%,
-    100% {
-        opacity: 0.6;
-        transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-        opacity: 0.8;
-        transform: translate(20px, -30px) scale(1.1);
-    }
-
-    66% {
-        opacity: 0.7;
-        transform: translate(-20px, 20px) scale(0.95);
-    }
-}
 
 .homepage-nav {
     position: fixed;
@@ -704,7 +441,6 @@ onMounted(() => {
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    transition: padding 0.3s ease;
 }
 
 .homepage-nav.scrolled .nav-content {
@@ -765,10 +501,12 @@ onMounted(() => {
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 0;
+        width: 100%;
         height: 2px;
         background: linear-gradient(90deg, #bd34fe, #47caff);
-        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:hover {
@@ -776,7 +514,7 @@ onMounted(() => {
         transform: translateY(-2px);
 
         &::after {
-            width: 100%;
+            transform: scaleX(1);
         }
     }
 
@@ -861,7 +599,7 @@ onMounted(() => {
         }
 
         &.active {
-            left: 30px;
+            transform: translateX(28px);
             background: linear-gradient(135deg, #1e293b, #334155);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }

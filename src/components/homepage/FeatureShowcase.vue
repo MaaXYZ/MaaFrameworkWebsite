@@ -11,7 +11,7 @@
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <div class="feature-icon">
-            <img
+            <img loading="lazy" decoding="async"
               v-if="emojis[feature.icon]"
               class="icon-png"
               :src="emojis[feature.icon]"
@@ -96,10 +96,8 @@ defineProps<{
   border-radius: 24px;
   border: 1px solid rgba(71, 202, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: fadeInUp 0.6s ease-out backwards;
   z-index: 1;
   contain: layout style paint;
-  will-change: transform;
 
   &::before {
     content: "";
@@ -138,7 +136,6 @@ defineProps<{
       transform: scale(1.1) rotate(5deg);
 
       .icon-emoji {
-        animation: iconPulse 0.8s ease infinite;
       }
     }
   }
@@ -156,38 +153,8 @@ defineProps<{
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes iconBounce {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-}
 
-@keyframes iconPulse {
-  0%,
-  100% {
-    transform: scale(1);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  }
-  50% {
-    transform: scale(1.15);
-    filter: drop-shadow(0 8px 16px rgba(71, 202, 255, 0.6));
-  }
-}
 
 .feature-icon {
   width: 80px;
