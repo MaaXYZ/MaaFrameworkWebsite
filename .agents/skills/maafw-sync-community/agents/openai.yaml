@@ -1,0 +1,4 @@
+interface:
+  display_name: "同步 MaaFramework 社区项目"
+  short_description: "根据上游中英文 README 同步社区项目、图标和技术栈，并验证网站构建"
+  default_prompt: "使用 $maafw-sync-community 同步 MaaFramework 网站的社区项目，核对中英文 README，更新项目资料与图标并完成校验。"
