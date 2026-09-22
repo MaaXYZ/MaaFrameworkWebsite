@@ -42,6 +42,21 @@ const badges = {
     label: Stack.Go,
     bgColor: "#00ADD8",
   },
+  [Stack.Kotlin]: {
+    icon: icons.Kotlin,
+    label: Stack.Kotlin,
+    bgColor: "#7F52FF",
+  },
+  [Stack.Android]: {
+    icon: icons.Android,
+    label: Stack.Android,
+    bgColor: "#23844B",
+  },
+  [Stack.JS]: {
+    icon: icons.JS,
+    label: Stack.JS,
+    bgColor: "#8A7600",
+  },
 };
 
 export default badges;

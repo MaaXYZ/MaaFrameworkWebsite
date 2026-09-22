@@ -7,6 +7,9 @@ import CSharp from "./csharp.png";
 import Rust from "./rust.png";
 import Vue from "./vue.png";
 import Golang from "./golang.png";
+import Kotlin from "./kotlin.svg";
+import Android from "./android.svg";
+import JS from "./javascript.svg";
 
 const icons = {
   Pipeline,
@@ -18,6 +21,9 @@ const icons = {
   Rust,
   Vue,
   Golang,
+  Kotlin,
+  Android,
+  JS,
 };
 
 export default icons;

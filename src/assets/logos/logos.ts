@@ -39,6 +39,9 @@ const Logos = {
   MaaKes: () => import("./maa_kes.png"),
   MAH: () => import("./mah.png"),
   MATR: () => import("./matr.png"),
+  MaaADr: () => import("./maaadr.png"),
+  MFABD2: () => import("./mfabd2.png"),
+  MaaWoA: () => import("./maawoa.png"),
 };
 
 export default Logos;

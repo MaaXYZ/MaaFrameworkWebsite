@@ -36,6 +36,15 @@ export const uis = [
     stack: [Stack.Vue, Stack.Python],
     link: "https://github.com/ravizhan/MWU",
   },
+  {
+    name: "MaaFwApp",
+    desc: "基于 Kotlin + Jetpack Compose 的 Android 通用 GUI。由 MaaFramework 强力驱动！",
+    enDesc:
+      "An Android generic GUI based on Kotlin + Jetpack Compose. Powered by MaaFramework!",
+    logo: Logos.MaaFW,
+    stack: [Stack.Kotlin, Stack.Android],
+    link: "https://github.com/Aliothmoon/MaaFwApp",
+  },
 ];
 
 export const tools = [
@@ -68,7 +77,7 @@ export const tools = [
     name: "MaaPipelineEditor",
     desc: "可视化阅读与构建 Pipeline，功能完备，极致轻量跨平台，提供渐进式本地功能扩展，无缝兼容新旧项目",
     enDesc:
-      "Visual reading and building of Pipeline, with complete features, extremely lightweight and cross-platform, providing progressive local feature extensions, seamlessly compatible with old and new projects",
+      "Visual reading and construction Pipeline, fully functional, extremely lightweight cross-platform, progressive local function extension, seamless compatibility between old and new projects.",
     logo: Logos.MPE,
     stack: [Stack.TS, Stack.Go],
     link: "https://github.com/kqcoxn/MaaPipelineEditor",
@@ -77,19 +86,10 @@ export const tools = [
     name: "MaaInspector",
     desc: "基于 vue-flow 的可视化编辑器，集成节点预览,编辑,调试于一体的简单好用的 MaaFramework Pipeline 编辑器",
     enDesc:
-      "A visual editor based on vue-flow, integrating node preview, editing, and debugging into one easy-to-use MaaFramework Pipeline editor",
+      "A visual editor based on vue-flow — a simple and user-friendly MaaFramework Pipeline Editor that integrates node preview, editing, and debugging all in one.",
     logo: Logos.MaaFW,
     stack: [Stack.TS],
     link: "https://github.com/TanyaShue/MaaInspector",
-  },
-  {
-    name: "MaaMCP",
-    desc: "基于 MaaFramework 的 MCP 服务器 为 AI 助手提供 Android 设备和 Windows 桌面自动化能力",
-    enDesc:
-      "MCP server based on MaaFramework, providing Android device and Windows desktop automation capabilities for AI assistants",
-    logo: Logos.MaaFW,
-    stack: [Stack.Python],
-    link: "https://github.com/MaaXYZ/MaaMCP",
   },
   {
     name: "MaaLogAnalyzer",
@@ -98,13 +98,13 @@ export const tools = [
       "MaaFramework log analysis tool, providing user-friendly, multi-perspective visual analysis of task execution processes.",
     logo: Logos.MAALogAnalyzer,
     stack: [Stack.TS],
-    link: "https://github.com/Windsland52/MAALogAnalyzer",
+    link: "https://github.com/MaaXYZ/MaaLogAnalyzer",
   },
   {
     name: "MaaLogs",
     desc: "MaaFramework 日志分析工具，支持多项目日志解析、可视化任务流程和 AI 智能分析",
     enDesc:
-      "MaaFramework log analysis tool that supports multi-project log parsing, visual task processes, and AI intelligent analysis",
+      "MaaFramework log analysis tool that supports multi-project log parsing, visual task processes, and AI intelligent analysis.",
     logo: Logos.MaaLogs,
     stack: [Stack.TS],
     link: "https://github.com/amiliyaai/MaaLogs",
@@ -137,18 +137,18 @@ export const tools = [
   },
   {
     name: "maaframework-skills",
-    desc: "面向 AI 辅助开发的 MaaFramework 结构化参考文档。",
+    desc: "Claude Code skill for MaaFramework — 面向 AI 辅助开发的结构化参考文档。",
     enDesc:
-      "Claude Code skill for MaaFramework, providing structured reference docs for AI-assisted pipeline development.",
+      "Claude Code skill for MaaFramework — structured reference docs for AI-assisted pipeline development.",
     logo: Logos.MaaFW,
-    stack: [Stack.Pipeline],
+    stack: [],
     link: "https://github.com/Kutius/maaframework-skills",
   },
   {
     name: "MaaOWM",
     desc: "MaaFramework 多资源包开发工具。挂载: base+mod 合并成全字段工作区; 卸载: diff 出最小化 mod 增量。",
     enDesc:
-      "A multi-resource-package development tool for MaaFramework. Mount base and mod packages into a complete workspace, then unmount them into a minimal mod diff.",
+      "A MaaFramework multi-resource-pack development tool. Mount: merges base+mod into a full-field workspace; Unmount: diffs out a minimal mod delta.",
     logo: Logos.MaaFW,
     stack: [Stack.Python],
     link: "https://github.com/sunyink/MaaOWM",
@@ -157,7 +157,7 @@ export const tools = [
     name: "create-maa-project",
     desc: "MaaFW 项目脚手架 CLI & MCP Server，交互式创建与增量维护 Pipeline / Agent 项目",
     enDesc:
-      "A MaaFW project scaffolding CLI and MCP server for interactively creating and incrementally maintaining Pipeline and Agent projects.",
+      "MaaFW project scaffolding CLI & MCP Server for interactive creation and incremental maintenance of Pipeline / Agent projects.",
     logo: Logos.MaaFW,
     stack: [Stack.TS],
     link: "https://github.com/Windsland52/create-maa-project",
@@ -166,7 +166,7 @@ export const tools = [
     name: "MaaEvidenceKit",
     desc: "为 AI Agent 提取 MaaFramework 日志与项目配置中的确定性证据，支持运行时与静态分析、源码定位及任务流程关联",
     enDesc:
-      "Extracts deterministic evidence from MaaFramework logs and project configurations for AI agents, with runtime and static analysis, source lookup, and task-flow correlation.",
+      "Extracts deterministic evidence from MaaFramework logs and project configurations for AI agents, with runtime and static analysis, source location, and task-flow correlation.",
     logo: Logos.MaaFW,
     stack: [Stack.TS],
     link: "https://github.com/Windsland52/MaaEvidenceKit",
@@ -175,10 +175,19 @@ export const tools = [
     name: "Everything-Maa",
     desc: "面向 AI 辅助开发的 MaaFramework 工具集，提供可复用 Skills、版本化 MCP 配置与 CLI 安装器，覆盖项目创建、Pipeline 编写、测试和分析",
     enDesc:
-      "A MaaFramework toolkit for AI-assisted development, providing reusable skills, versioned MCP configurations, and a CLI installer for project creation, Pipeline authoring, testing, and analysis.",
+      "A MaaFramework toolkit for AI-assisted development, providing reusable skills, versioned MCP profiles, and a CLI installer for project creation, Pipeline authoring, testing, and analysis.",
     logo: Logos.MaaFW,
-    stack: [],
+    stack: [Stack.JS],
     link: "https://github.com/KhazixW2/Everything-Maa",
+  },
+  {
+    name: "MaaCtl",
+    desc: "MaaFramework / ProjectInterface v2 命令行客户端，纯参数化运行 PI 项目与 Pipeline 节点，提供 Go 单文件可执行程序与 npm（npx/全局安装）分发",
+    enDesc:
+      "A command-line client for MaaFramework / ProjectInterface v2, running PI projects and Pipeline nodes in a fully parameterized way, distributed as a Go single-file executable and an npm (npx / global install) package.",
+    logo: Logos.MaaFW,
+    stack: [Stack.Go],
+    link: "https://github.com/TanyaShue/MaaCtl",
   },
 ];
 
@@ -187,7 +196,7 @@ export const apps = [
     name: "M9A",
     desc: "亿韭韭韭 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "A Skland Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
+      "A 1999 Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
     logo: Logos.M9A,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/MaaXYZ/M9A",
@@ -205,7 +214,7 @@ export const apps = [
     name: "MaaYYs",
     desc: "阴阳师小助手。图像技术 + 模拟控制，当赛博屯屯鼠，自动日常，解放你的双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "An Onmyoji assistant. Image technology + simulation control, as a cyber hamster, automate daily tasks, free your hands! Powered by MaaFramework.",
+      "A brand new Onmyoji assistant powered by advanced architecture. Combining image recognition and simulated control, it automates daily tasks and frees your hands like a cyber-helper! Powered by MaaFramework!",
     logo: Logos.MaaYYs,
     stack: [Stack.Python, Stack.Qt6],
     link: "https://github.com/TanyaShue/MaaYYs",
@@ -248,7 +257,7 @@ export const apps = [
   },
   {
     name: "MaaGF2Exilium",
-    desc: "少女前线2: 追放自动化助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    desc: "少女前线 2: 追放自动化助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
       "An automation assistant for Girls' Frontline 2: Exilium, built on a brand-new architecture. Featuring image recognition technology and simulation control to free up your hands! Powered by MaaFramework!",
     logo: Logos.MaaGF2Exilium,
@@ -270,7 +279,7 @@ export const apps = [
     enDesc:
       "Fantasy Westward Journey Mobile Assistant Based on New Architecture. Image technology + analogue control to free your hands! Powered by MaaFramework!",
     logo: Logos.MaaFW,
-    stack: [Stack.Pipeline, Stack.Python],
+    stack: [Stack.Pipeline],
     link: "https://github.com/gitlihang/Maa_MHXY_MG",
   },
   {
@@ -293,21 +302,12 @@ export const apps = [
   },
   {
     name: "MMleo",
-    desc: "偶像梦幻祭2小助手。使用图像识别+模拟控制技术，解放双手！助力屯屯鼠的制作人生涯！由 MaaFramework 强力驱动！",
+    desc: "偶像梦幻祭 2 小助手。使用图像识别+模拟控制技术，解放双手！助力屯屯鼠的制作人生涯！由 MaaFramework 强力驱动！",
     enDesc:
       "Little Assistant for EnsembleStars Music. Free your hands with image recognition and simulated control technology! Boost the producer career of hamsters! Powered by MaaFramework!",
     logo: Logos.MMleo,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/fictionalflaw/MMleo",
-  },
-  {
-    name: "autodori",
-    desc: "BanG Dream邦多利小助手。图像识别+模拟控制，解放双手！由 MaaFramework、弦卷财団、TGW Group 强力驱动！",
-    enDesc:
-      "Assistant for BanG Dream! Image recognition + simulation control, freeing your hands! Powered by MaaFramework, Tsurumaki Foundation, TGW Group.",
-    logo: Logos.MaaFW,
-    stack: [Stack.Pipeline, Stack.Python],
-    link: "https://github.com/EvATive7/autodori",
   },
   {
     name: "SLIMEIM_Maa",
@@ -320,7 +320,7 @@ export const apps = [
   },
   {
     name: "Maa_bbb",
-    desc: "崩坏三小助手。使用图像识别+模拟控制技术，解放双手！PC端与模拟器端同步支持，由 MaaFramework 强力驱动！",
+    desc: "崩坏三小助手。使用图像识别+模拟控制技术，解放双手！PC 端与模拟器端同步支持，由 MaaFramework 强力驱动！",
     enDesc:
       "Honkai Impact 3 Mini Assistant. Uses image recognition and simulation control technology to free your hands! Supports both PC and emulator simultaneously, powered by MaaFramework!",
     logo: Logos.Maabbb,
@@ -392,7 +392,7 @@ export const apps = [
   },
   {
     name: "MAA Star Resonance",
-    desc: "星痕共鸣小助手。使用 Electron + 文本图像识别 + ADB模拟控制 技术，解放双手！由 MaaFramework 和 Quasar 强力驱动！",
+    desc: "星痕共鸣小助手。使用 Electron + 文本图像识别 + ADB 模拟控制 技术，解放双手！由 MaaFramework 和 Quasar 强力驱动！",
     enDesc:
       "A helper for Star Resonance. Using Electron + text image recognition + ADB simulation control technology, freeing your hands! Powered by MaaFramework and Quasar.",
     logo: Logos.MaaFW,
@@ -403,7 +403,7 @@ export const apps = [
     name: "StellaSora-Auto-Helper",
     desc: "星塔旅人 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "A Stella Sora Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework!",
+      "Assistant for Stella Sora. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
     logo: Logos.StellaSoraAutoHelper,
     stack: [Stack.Pipeline],
     link: "https://github.com/SodaCodeSave/StellaSora-Auto-Helper",
@@ -459,7 +459,7 @@ export const apps = [
     enDesc:
       "NTE Assistant. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
     logo: Logos.MaaNTE,
-    stack: [Stack.Pipeline, Stack.Python],
+    stack: [Stack.Python],
     link: "https://github.com/1bananachicken/MaaNTE",
   },
   {
@@ -484,7 +484,7 @@ export const apps = [
     name: "MR3A",
     desc: "忍者必须死3 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "A Ninja Must Die 3 assistant. Image recognition and simulated control free your hands. Powered by MaaFramework!",
+      "A Ninja Must Die 3 Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework!",
     logo: Logos.MR3A,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/originalsage/MR3A",
@@ -509,7 +509,8 @@ export const apps = [
   {
     name: "MAH",
     desc: "东京放课后召唤师小助手。由 MaaFramework 强力驱动！",
-    enDesc: "A Tokyo Afterschool Summoners assistant powered by MaaFramework!",
+    enDesc:
+      "A assistant for Tokyo Afterschool Summoners. Free your hands! Powered by MaaFramework!",
     logo: Logos.MAH,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/Quartewe/MAH",
@@ -518,10 +519,46 @@ export const apps = [
     name: "MATR",
     desc: "刀剑乱舞小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
-      "A Touken Ranbu assistant. Image recognition and simulated control free your hands. Powered by MaaFramework!",
+      "A Touken Ranbu Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework!",
     logo: Logos.MATR,
     stack: [Stack.Pipeline],
     link: "https://github.com/NotZoruak/MATR",
+  },
+  {
+    name: "MaaADr",
+    desc: "龍脈・另一種姿態R(AnaDos)小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "An assistant for AnotherEidos Of Dragon Vein R(AnaDos). Powered by MaaFramework!",
+    logo: Logos.MaaADr,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/Azureetude/MaaADr",
+  },
+  {
+    name: "MFABD2",
+    desc: "棕色尘埃2 (Brown Dust 2) 小助手。图像技术 + 模拟控制，解放双手！PC 端、模拟器与 PlayCover 同步支持，由 MaaFramework 强力驱动！",
+    enDesc:
+      "A Brown Dust 2 assistant. Image technology + simulation control, freeing your hands! Supports PC, emulator and PlayCover. Powered by MaaFramework!",
+    logo: Logos.MFABD2,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/sunyink/MFABD2",
+  },
+  {
+    name: "MaaWoA",
+    desc: "机场世界 (World of Airports) 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "An assistant for World of Airports. Image technology + simulation control, freeing your hands! Powered by MaaFramework!",
+    logo: Logos.MaaWoA,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/huzesama/MaaWoA",
+  },
+  {
+    name: "MAES",
+    desc: "偶像梦幻祭 2 打歌小助手。使用图像识别 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "Ensemble Stars!! Music rhythm-game auto-play assistant focused on song play and lane calibration. Powered by MaaFramework.",
+    logo: Logos.MaaFW,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/Guili-Ad/MAES",
   },
 ];
 

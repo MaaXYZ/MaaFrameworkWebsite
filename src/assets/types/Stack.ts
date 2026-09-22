@@ -7,4 +7,7 @@ export enum Stack {
   Rust = "Rust",
   Vue = "Vue",
   Go = "Golang",
+  Kotlin = "Kotlin",
+  Android = "Android",
+  JS = "JavaScript",
 }
