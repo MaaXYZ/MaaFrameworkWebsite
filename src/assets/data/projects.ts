@@ -234,7 +234,7 @@ export const apps = [
     enDesc:
       "A Warship Girls R Assistant. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
     logo: Logos.MRA,
-    stack: [Stack.Pipeline],
+    stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/Saratoga-Official/MRA",
   },
   {
@@ -559,6 +559,15 @@ export const apps = [
     logo: Logos.MaaFW,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/Guili-Ad/MAES",
+  },
+  {
+    name: "MaaPVZ",
+    desc: "植物大战僵尸2 小助手。图像技术 + 模拟控制，由 MaaFramework 强力驱动，带给你妙趣横生的游戏体验！",
+    enDesc:
+      "PVZ2 (Plants vs. Zombies 2) assistant. Image recognition + simulation control, powered by MaaFramework, bringing you a delightful gaming experience!",
+    logo: Logos.MaaPVZ,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/Maa-Assistant-PVZ-The-best/MAAPVZ",
   },
 ];
 
