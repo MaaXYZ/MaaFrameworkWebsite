@@ -101,15 +101,6 @@ export const tools = [
     link: "https://github.com/MaaXYZ/MaaLogAnalyzer",
   },
   {
-    name: "MaaLogs",
-    desc: "MaaFramework 日志分析工具，支持多项目日志解析、可视化任务流程和 AI 智能分析",
-    enDesc:
-      "MaaFramework log analysis tool that supports multi-project log parsing, visual task processes, and AI intelligent analysis.",
-    logo: Logos.MaaLogs,
-    stack: [Stack.TS],
-    link: "https://github.com/amiliyaai/MaaLogs",
-  },
-  {
     name: "prettier-plugin-maafw-sort",
     desc: "Prettier 插件，按照生命周期顺序自动排序 pipeline 字段",
     enDesc:
@@ -452,15 +443,6 @@ export const apps = [
     logo: Logos.MaaFgo,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/xlxyvergil/MaaFgo",
-  },
-  {
-    name: "MaaNTE",
-    desc: "异环小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "NTE Assistant. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
-    logo: Logos.MaaNTE,
-    stack: [Stack.Python],
-    link: "https://github.com/1bananachicken/MaaNTE",
   },
   {
     name: "MALW",
