@@ -18,7 +18,6 @@ const Logos = {
   MAN: () => import("./man.png"),
   MaaGakumasu: () => import("./MaaGakumasu.png"),
   MaaStarResonance: () => import("./MaaStarResonance.png"),
-  MAAAE: () => import("./maaae.png"),
   MBCCTools: () => import("./mbcctools.jpg"),
   MaaEOV: () => import("./maaeov.png"),
   MAALogAnalyzer: () => import("./mla.png"),
@@ -31,7 +30,6 @@ const Logos = {
   MaaGFNeuralCloud: () => import("./MaaGFNeuralCloud.png"),
   MaaFgo: () => import("./maafgo.png"),
   MaaFwCLI: () => import("./maafw-cli.png"),
-  MALostWord: () => import("./MALostWord.png"),
   AUTOMAS: () => import("./AUTO-MAS.ico"),
   MR3A: () => import("./mr3a.png"),
   MaaKes: () => import("./maa_kes.png"),
@@ -41,6 +39,8 @@ const Logos = {
   MFABD2: () => import("./mfabd2.png"),
   MaaWoA: () => import("./maawoa.png"),
   MaaPVZ: () => import("./maapvz.png"),
+  MaaBanG: () => import("./maabang.webp"),
+  MaaRacingMaster: () => import("./maaracingmaster.webp"),
 };
 
 export default Logos;

@@ -57,6 +57,11 @@ const badges = {
     label: Stack.JS,
     bgColor: "#8A7600",
   },
+  [Stack.Cpp]: {
+    icon: icons.Cpp,
+    label: Stack.Cpp,
+    bgColor: "#00599C",
+  },
 };
 
 export default badges;

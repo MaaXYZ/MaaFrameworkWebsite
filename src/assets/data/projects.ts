@@ -47,31 +47,35 @@ export const uis = [
   },
 ];
 
-export const tools = [
+export const plugins = [
+  {
+    name: "MaaTrace",
+    desc: "MaaFramework 运行记录插件，采集结构化任务执行记录，支持查看、校验与导出。",
+    enDesc:
+      "A runtime tracing plugin for MaaFramework that captures structured task execution records for inspection, validation, and export.",
+    logo: Logos.MaaFW,
+    stack: [Stack.Cpp],
+    link: "https://github.com/MaaXYZ/MaaTrace",
+  },
+];
+
+const editingTools = [
   {
     name: "MaaDebugger",
     desc: "MaaFramework Pipeline 调试器",
     enDesc: "MaaFramework Pipeline Debugger",
     logo: Logos.MaaFW,
-    stack: [Stack.Python],
-    link: "https://github.com/MaaXYZ/MaaDebugger",
+    stack: [Stack.Go, Stack.Vue],
+    link: "https://github.com/MaaXYZ/MaaDebugger/tree/rft/nodejs",
   },
   {
     name: "maa-support-extension",
-    desc: "MaaFramework VSCode 插件",
-    enDesc: "MaaFramework VSCode Extension",
+    desc: "MaaFramework VSCode 插件，支持补全、跳转与错误检查，任务运行与流程可视化，截图工具包与图形化编辑",
+    enDesc:
+      "A MaaFramework VSCode extension: completion, navigation and error checking, task running with flow visualization, screenshot toolkit and graphical editing.",
     logo: Logos.MaaFW,
     stack: [Stack.TS],
     link: "https://github.com/neko-para/maa-support-extension",
-  },
-  {
-    name: "MFAToolsPlus",
-    desc: "基于 Avalonia 框架开发的跨平台开发工具箱，提供便捷的数据获取和模拟测试方法",
-    enDesc:
-      "A cross-platform development toolbox built on the Avalonia framework, providing convenient data acquisition and simulation testing methods.",
-    logo: Logos.MFA,
-    stack: [Stack.CSharp],
-    link: "https://github.com/SweetSmellFox/MFAToolsPlus",
   },
   {
     name: "MaaPipelineEditor",
@@ -91,23 +95,17 @@ export const tools = [
     stack: [Stack.TS],
     link: "https://github.com/TanyaShue/MaaInspector",
   },
+];
+
+const resourceTools = [
   {
-    name: "MaaLogAnalyzer",
-    desc: "MaaFramework 日志分析工具，提供用户友好的多视角可视化任务执行流程分析",
+    name: "MFAToolsPlus",
+    desc: "基于 Avalonia 框架开发的跨平台开发工具箱，提供便捷的数据获取和模拟测试方法",
     enDesc:
-      "MaaFramework log analysis tool, providing user-friendly, multi-perspective visual analysis of task execution processes.",
-    logo: Logos.MAALogAnalyzer,
-    stack: [Stack.TS],
-    link: "https://github.com/MaaXYZ/MaaLogAnalyzer",
-  },
-  {
-    name: "prettier-plugin-maafw-sort",
-    desc: "Prettier 插件，按照生命周期顺序自动排序 pipeline 字段",
-    enDesc:
-      "Prettier plugin that sorts pipeline keys according to lifecycle order.",
-    logo: Logos.MaaFW,
-    stack: [Stack.TS],
-    link: "https://github.com/neko-para/maa-support-extension/tree/main/pkgs/prettier-plugin-maafw-sort",
+      "A cross-platform development toolbox built on the Avalonia framework, providing convenient data acquisition and simulation testing methods.",
+    logo: Logos.MFA,
+    stack: [Stack.CSharp],
+    link: "https://github.com/SweetSmellFox/MFAToolsPlus",
   },
   {
     name: "Auto Green Background",
@@ -118,6 +116,30 @@ export const tools = [
     stack: [Stack.Python, Stack.Rust],
     link: "https://github.com/Joe-Bao/Auto-Green-Background",
   },
+  {
+    name: "MaaOWM",
+    desc: "MaaFramework 多资源包开发工具。挂载: base+mod 合并成全字段工作区; 卸载: diff 出最小化 mod 增量。",
+    enDesc:
+      "A MaaFramework multi-resource-pack development tool. Mount: merges base+mod into a full-field workspace; Unmount: diffs out a minimal mod delta.",
+    logo: Logos.MaaFW,
+    stack: [Stack.Python],
+    link: "https://github.com/sunyink/MaaOWM",
+  },
+];
+
+const logTools = [
+  {
+    name: "MaaLogAnalyzer",
+    desc: "MaaFramework 日志分析工具，提供用户友好的多视角可视化任务执行流程分析",
+    enDesc:
+      "MaaFramework log analysis tool, providing user-friendly, multi-perspective visual analysis of task execution processes.",
+    logo: Logos.MAALogAnalyzer,
+    stack: [Stack.TS],
+    link: "https://github.com/MaaXYZ/MaaLogAnalyzer",
+  },
+];
+
+const aiTools = [
   {
     name: "maafw-cli",
     desc: "用于AI Agent的 MaaFramework 命令行界面。",
@@ -136,15 +158,6 @@ export const tools = [
     link: "https://github.com/Kutius/maaframework-skills",
   },
   {
-    name: "MaaOWM",
-    desc: "MaaFramework 多资源包开发工具。挂载: base+mod 合并成全字段工作区; 卸载: diff 出最小化 mod 增量。",
-    enDesc:
-      "A MaaFramework multi-resource-pack development tool. Mount: merges base+mod into a full-field workspace; Unmount: diffs out a minimal mod delta.",
-    logo: Logos.MaaFW,
-    stack: [Stack.Python],
-    link: "https://github.com/sunyink/MaaOWM",
-  },
-  {
     name: "create-maa-project",
     desc: "MaaFW 项目脚手架 CLI & MCP Server，交互式创建与增量维护 Pipeline / Agent 项目",
     enDesc:
@@ -155,9 +168,9 @@ export const tools = [
   },
   {
     name: "MaaEvidenceKit",
-    desc: "为 AI Agent 提取 MaaFramework 日志与项目配置中的确定性证据，支持运行时与静态分析、源码定位及任务流程关联",
+    desc: "为 AI Agent 从 MaaFramework 运行日志与项目文件中提取确定性证据，提供文件级定位与任务流程关联",
     enDesc:
-      "Extracts deterministic evidence from MaaFramework logs and project configurations for AI agents, with runtime and static analysis, source location, and task-flow correlation.",
+      "Extracts deterministic evidence from MaaFramework runtime logs and project files for AI agents, with file-level locations and task-flow correlation.",
     logo: Logos.MaaFW,
     stack: [Stack.TS],
     link: "https://github.com/Windsland52/MaaEvidenceKit",
@@ -181,6 +194,53 @@ export const tools = [
     link: "https://github.com/TanyaShue/MaaCtl",
   },
 ];
+
+const otherTools = [
+  {
+    name: "prettier-plugin-maafw-sort",
+    desc: "Prettier 插件，按照生命周期顺序自动排序 pipeline 字段",
+    enDesc:
+      "Prettier plugin that sorts pipeline keys according to lifecycle order.",
+    logo: Logos.MaaFW,
+    stack: [Stack.TS],
+    link: "https://github.com/neko-para/maa-support-extension/tree/main/pkgs/prettier-plugin-maafw-sort",
+  },
+];
+
+export const toolGroups = [
+  {
+    id: "editing-debugging",
+    name: "编辑与调试",
+    enName: "Editing & Debugging",
+    projects: editingTools,
+  },
+  {
+    id: "assets-resources",
+    name: "素材与资源制作",
+    enName: "Asset & Resource Production",
+    projects: resourceTools,
+  },
+  {
+    id: "log-analysis",
+    name: "日志分析",
+    enName: "Log Analysis",
+    projects: logTools,
+  },
+  {
+    id: "ai-development",
+    name: "AI 辅助开发",
+    enName: "AI-Assisted Development",
+    projects: aiTools,
+  },
+  {
+    id: "other-tools",
+    name: "其它",
+    enName: "Others",
+    projects: otherTools,
+  },
+];
+
+export const tools = toolGroups.flatMap((group) => group.projects);
 
 export const apps = [
   {
@@ -346,24 +406,6 @@ export const apps = [
     link: "https://github.com/233Official/MaaStarResonance",
   },
   {
-    name: "MAG",
-    desc: "深空之眼小助手。使用图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "Assistant for Aether Gazer. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
-    logo: Logos.MaaFW,
-    stack: [Stack.Pipeline, Stack.Python],
-    link: "https://github.com/Kazaorus/MAG",
-  },
-  {
-    name: "MAAAE",
-    desc: "白荆回廊 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "An assistant for Ash Echoes. Image technology + simulation control, freeing your hands! Powered by MaaFramework.",
-    logo: Logos.MAAAE,
-    stack: [Stack.Pipeline, Stack.Python],
-    link: "https://github.com/NewWYoming/MAAAE",
-  },
-  {
     name: "MBCCtools",
     desc: "无期迷途 小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
     enDesc:
@@ -380,15 +422,6 @@ export const apps = [
     logo: Logos.MaaEOV,
     stack: [Stack.Pipeline],
     link: "https://github.com/Tigerisu/MaaEOV",
-  },
-  {
-    name: "MAA Star Resonance",
-    desc: "星痕共鸣小助手。使用 Electron + 文本图像识别 + ADB 模拟控制 技术，解放双手！由 MaaFramework 和 Quasar 强力驱动！",
-    enDesc:
-      "A helper for Star Resonance. Using Electron + text image recognition + ADB simulation control technology, freeing your hands! Powered by MaaFramework and Quasar.",
-    logo: Logos.MaaFW,
-    stack: [Stack.TS],
-    link: "https://github.com/26F-Studio/maa-star-resonance",
   },
   {
     name: "StellaSora-Auto-Helper",
@@ -443,15 +476,6 @@ export const apps = [
     logo: Logos.MaaFgo,
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/xlxyvergil/MaaFgo",
-  },
-  {
-    name: "MALW",
-    desc: "东方归言录小助手。图像技术 + 模拟控制，解放双手！由 MaaFramework 强力驱动！",
-    enDesc:
-      "Touhou LostWord Assistant. Image recognition + simulation control to free your hands! Powered by MaaFramework!",
-    logo: Logos.MALostWord,
-    stack: [Stack.Python],
-    link: "https://github.com/lisadnsess/MALostWord",
   },
   {
     name: "AUTO-MAS",
@@ -551,9 +575,27 @@ export const apps = [
     stack: [Stack.Pipeline, Stack.Python],
     link: "https://github.com/Maa-Assistant-PVZ-The-best/MAAPVZ",
   },
+  {
+    name: "MaaBanG",
+    desc: "BanG Dream! 少女乐团派对！中国服自动化助手，支持日常任务、自动演出与 Bestdori 档案同步。由 MaaFramework 强力驱动！",
+    enDesc:
+      "An automation assistant for the Chinese server of BanG Dream! Girls Band Party!, supporting daily tasks, automated live performances, and Bestdori profile synchronization. Powered by MaaFramework!",
+    logo: Logos.MaaBanG,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/hiaatcnd/MaaBanG",
+  },
+  {
+    name: "MaaRacingMaster",
+    desc: "《巅峰极速》小助手。图像技术 + 模拟控制，自动完成活动全流程，解放双手！由 MaaFramework 强力驱动！",
+    enDesc:
+      "A Racing Master assistant. Image recognition + simulated input, automating the full event loop, freeing your hands! Powered by MaaFramework.",
+    logo: Logos.MaaRacingMaster,
+    stack: [Stack.Pipeline, Stack.Python],
+    link: "https://github.com/Maa-RM/MaaRacingMaster",
+  },
 ];
 
-export const projects = [...uis, ...tools, ...apps];
+export const projects = [...uis, ...plugins, ...tools, ...apps];
 
 export function getRandomProjects(count: number = 6) {
   const rps = [...projects];

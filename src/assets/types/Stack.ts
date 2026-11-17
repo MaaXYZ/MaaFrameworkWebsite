@@ -10,4 +10,5 @@ export enum Stack {
   Kotlin = "Kotlin",
   Android = "Android",
   JS = "JavaScript",
+  Cpp = "C++",
 }

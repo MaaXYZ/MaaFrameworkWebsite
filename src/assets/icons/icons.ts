@@ -10,6 +10,7 @@ import Golang from "./golang.png";
 import Kotlin from "./kotlin.svg";
 import Android from "./android.svg";
 import JS from "./javascript.svg";
+import Cpp from "./cplusplus.svg";
 
 const icons = {
   Pipeline,
@@ -24,6 +25,7 @@ const icons = {
   Kotlin,
   Android,
   JS,
+  Cpp,
 };
 
 export default icons;
